@@ -1,0 +1,17 @@
+﻿@model IList<FairyTaleVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<h3>Tales</h3>
+
+@foreach (var ft in Model) {
+    <div>
+        <div>@ft.Id</div>
+        <div>@ft.Title</div>
+        <div>@ft.CreatedAtUtc</div>
+    </div>
+}
