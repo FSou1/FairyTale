@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using FT.MvcApp.FairyTale.Models;
-using FT.MvcApp.Shared.Models;
+using FT.MvcApp.FairyTales.Models;
+using FT.Entities;
 
-namespace FT.MvcApp.FairyTale.Controllers
+namespace FT.MvcApp.FairyTales.Controllers
 {
-    public class FairyTaleController : Controller
+    public class FairyTalesController : Controller
     {
         // GET: FairyTale
         public ActionResult Index()
@@ -14,8 +14,8 @@ namespace FT.MvcApp.FairyTale.Controllers
             var model = new IndexViewModel()
             {
                 Title = "Главная страница",
-                FairyTales = new List<FairyTaleViewModel>() {
-                    new FairyTaleViewModel {
+                FairyTales = new List<FairyTale>() {
+                    new FairyTale {
                         Id = 1,
                         Title = "First",
                         CreatedAtUtc = DateTime.UtcNow
