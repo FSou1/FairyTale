@@ -1,14 +1,14 @@
-﻿@model IList<FairyTaleVm>
+﻿@model FT.MvcApp.FairyTale.Models.IndexViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = Model.Title;
 }
 
 <h2>Index</h2>
 
 <h3>Tales</h3>
 
-@foreach (var ft in Model) {
+@foreach (var ft in Model.FairyTales) {
     <div>
         <div>@ft.Id</div>
         <div>@ft.Title</div>

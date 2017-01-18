@@ -90,21 +90,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BootstrapController.cs" />
-    <Compile Include="Controllers\FairyTaleController.cs" />
+    <Compile Include="Home\Controllers\HomeController.cs" />
+    <Compile Include="FairyTale\Controllers\FairyTaleController.cs" />
+    <Compile Include="CustomRazorViewEngine.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\FairyTaleVm.cs" />
+    <Compile Include="Shared\Models\FairyTaleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FairyTale\Models\IndexViewModel.cs" />
+    <Compile Include="Shared\Models\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\FairyTale\Index.cshtml" />
+    <Content Include="_ViewStart.cshtml" />
+    <Content Include="Shared\Views\_Layout.cshtml" />
+    <Content Include="FairyTale\Views\Index.cshtml" />
+    <Content Include="Home\Views\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,11 +114,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Areas\" />
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FT.Entities\FT.Entities.csproj">
       <Project>{0CF880D2-5EF1-4365-8183-D35A54E7F40F}</Project>
