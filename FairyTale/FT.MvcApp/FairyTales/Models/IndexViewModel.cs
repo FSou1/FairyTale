@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using FT.Entities;
-using FT.MvcApp.ViewModels;
+using FT.MvcApp.Shared.Models;
 
 namespace FT.MvcApp.FairyTales.Models
 {

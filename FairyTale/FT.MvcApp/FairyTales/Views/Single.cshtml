@@ -1,0 +1,15 @@
+﻿@model FT.MvcApp.FairyTales.Models.SingleViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h2>Single</h2>
+
+@{ var ft = Model.FairyTale; }
+
+<div>
+    <div>@ft.Id</div>
+    <div>@ft.Title</div>
+    <div>@ft.CreatedAtUtc</div>
+</div>

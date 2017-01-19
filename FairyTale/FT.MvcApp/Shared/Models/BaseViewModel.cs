@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FT.MvcApp.ViewModels
+﻿namespace FT.MvcApp.Shared.Models
 {
     public class BaseViewModel
     {

@@ -90,8 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Error\Controllers\ErrorController.cs" />
+    <Compile Include="FairyTales\Models\SingleViewModel.cs" />
+    <Compile Include="FairyTales\Services\FairyTalesService.cs" />
     <Compile Include="Home\Controllers\HomeController.cs" />
-    <Compile Include="FairyTales\Controllers\FairyTaleController.cs" />
+    <Compile Include="FairyTales\Controllers\FairyTalesController.cs" />
     <Compile Include="CustomRazorViewEngine.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -106,6 +109,10 @@
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="FairyTales\Views\Index.cshtml" />
     <Content Include="Home\Views\Index.cshtml" />
+    <Content Include="FairyTales\Views\Single.cshtml" />
+    <Content Include="Error\Views\NotFound.cshtml" />
+    <Content Include="Error\Views\Index.cshtml" />
+    <Content Include="Error\Views\Unauthorized.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
