@@ -7,10 +7,30 @@ using System.Threading.Tasks;
 
 namespace FT.Repositories {
     public class FairyTaleRepository {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IList<FairyTale> GetAll() {
             return data;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        public IList<FairyTale> GetAll(string term)
+        {
+            // TODO: extract to str.Contains(string, StringComparison) extension
+            return data.Where(ft=>ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public FairyTale Get(int id) {
             return data.FirstOrDefault(t => t.Id == id);
         }

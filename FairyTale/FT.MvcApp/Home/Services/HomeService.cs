@@ -22,6 +22,18 @@ namespace FT.MvcApp.Home.Services {
             return model;
         }
 
+        public SearchViewModel BuildSearchViewModel(string term)
+        {
+            var model = new SearchViewModel()
+            {
+                Title = "Поиск",
+                Term = term,
+                FoundFairyTales = _repository.GetAll(term)
+            };
+
+            return model;
+        }
+
         /// <summary>
         /// 
         /// </summary>

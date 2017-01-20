@@ -1,0 +1,17 @@
+﻿@model FT.MvcApp.Home.Models.SearchViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<h1>Поиск</h1>
+
+<div>Результаты поиска по запросу % @Model.Term %</div>
+
+@foreach (var ft in Model.FoundFairyTales)
+{
+    <div>
+        <span>@Html.ActionLink(ft)</span>
+        <div>@ft.Text</div>
+    </div>
+}

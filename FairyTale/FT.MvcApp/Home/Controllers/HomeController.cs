@@ -1,4 +1,6 @@
-﻿using FT.MvcApp.Home.Services;
+﻿using FT.MvcApp.Home.Models;
+using FT.MvcApp.Home.Services;
+using System.Web;
 using System.Web.Mvc;
 
 namespace FT.MvcApp.Home.Controllers
@@ -14,6 +16,21 @@ namespace FT.MvcApp.Home.Controllers
         public ActionResult Index()
         {
             var model = service.BuildIndexViewModel();
+            return View(model);
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        [Route("search")]
+        public ActionResult Search(SearchParams param)
+        {
+            if (string.IsNullOrEmpty(param.Term))
+                throw new HttpException(400, "Term is null or empty");
+
+            var model = service.BuildSearchViewModel(param.Term);
             return View(model);
         }
 
