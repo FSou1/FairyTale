@@ -4,10 +4,21 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
 </head>
 <body>
-    <div class="container body-content">
-        @RenderBody()
-    </div>
+    <header>
+
+    </header>
+
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer>
+        © vskazki.ru 2011-@DateTime.Now.Year
+    </footer>
 </body>
 </html>

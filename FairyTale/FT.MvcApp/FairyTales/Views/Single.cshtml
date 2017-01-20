@@ -2,14 +2,10 @@
 
 @{
     ViewBag.Title = Model.Title;
+
+    var fairyTale = Model.FairyTale;
 }
 
-<h2>Single</h2>
+<h1>@fairyTale.Title</h1>
 
-@{ var ft = Model.FairyTale; }
-
-<div>
-    <div>@ft.Id</div>
-    <div>@ft.Title</div>
-    <div>@ft.CreatedAtUtc</div>
-</div>
+<p>@fairyTale.Text</p>

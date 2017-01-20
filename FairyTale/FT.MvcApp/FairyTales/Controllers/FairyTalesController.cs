@@ -9,13 +9,6 @@ namespace FT.MvcApp.FairyTales.Controllers
     {
         private readonly FairyTalesService _service = new FairyTalesService();
 
-        // GET: FairyTales
-        public ActionResult Index()
-        {
-            var model = _service.BuildIndexViewModel();
-            return View("Index", model);
-        }
-
         // GET: Tale
         public ActionResult Single(int id)
         {

@@ -1,0 +1,36 @@
+﻿body{
+	max-width:1024px;
+	margin:0 auto;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:15px;
+}
+
+header {
+    height: 157px;
+    padding-top: 28px;
+}
+
+h1{
+	font-size:24px;
+	color:#474646;
+	margin-top:4px;
+	font-weight:normal;
+}
+
+h1 a{
+	font-size:24px;
+	color:#474646;
+	margin-top:4px;
+	font-weight:normal;
+	text-decoration: none;
+}
+
+h1 a:hover{
+	color: inherit !important;
+}
+
+h1:first-letter{
+	font-size:30px;
+	color:#ef9d1f;
+	font-family: PragmaticaC, "Myriad Pro";
+}

@@ -1,5 +1,13 @@
-﻿@{
-    ViewBag.Title = " Home / Index";
+﻿@model FT.MvcApp.Home.Models.IndexViewModel
+
+@{
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Index</h2>
+@foreach (var ft in Model.RandomFairyTales) {
+    <div>        
+        <span>@Html.ActionLink(ft)</span>        
+        <div>@ft.Text</div>
+    </div>
+    <hr />
+}

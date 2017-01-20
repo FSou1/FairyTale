@@ -2,10 +2,10 @@
 using FT.Entities;
 using FT.MvcApp.Shared.Models;
 
-namespace FT.MvcApp.FairyTales.Models
+namespace FT.MvcApp.Home.Models
 {
     public class IndexViewModel : BaseViewModel
     {
-        public IList<FairyTale> FairyTales { get; set; }
+        public IList<FairyTale> RandomFairyTales { get; set; }
     }
 }
