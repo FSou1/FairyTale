@@ -3,13 +3,23 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
 </head>
 <body>
     <header>
+        <a class="logo" href="@Url.Action("Index", "Home")">
+            <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
+        </a>
 
+        <div class="search">
+            <input type="text" value="Поиск по сайту.." />
+        </div>        
     </header>
+
+    <nav>
+        @Html.ActionLink("О сайте", "About", "Home")
+    </nav>
 
     <main>
         <div class="container body-content">
