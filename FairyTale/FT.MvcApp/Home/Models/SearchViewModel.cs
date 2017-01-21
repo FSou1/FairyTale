@@ -11,10 +11,13 @@ namespace FT.MvcApp.Home.Models
     {
         public string Term { get; set; }
         public IList<FairyTale> FoundFairyTales { get; set; }
+        public int TotalCount { get; set; }
+        public int CurrentPage { get; set; }
     }
 
     public class SearchParams
     {
         public string Term { get; set; }
+        public int Page { get; set; }
     }
 }

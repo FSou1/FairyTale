@@ -120,6 +120,7 @@
     <Content Include="Error\Views\Unauthorized.cshtml" />
     <Content Include="Home\Views\About.cshtml" />
     <Content Include="Home\Views\Search.cshtml" />
+    <Content Include="Shared\Views\Partial\FairyTale.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

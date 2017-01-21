@@ -13,8 +13,10 @@
         </a>
 
         <div class="search">
-            <input type="text" value="Поиск по сайту.." />
-        </div>        
+            @using (Html.BeginForm("Search", "Home", FormMethod.Get)) {
+                <input type="text" name="term" placeholder="Поиск по сайту.." />
+            }
+        </div>
     </header>
 
     <nav>

@@ -7,11 +7,11 @@
 <h1>Поиск</h1>
 
 <div>Результаты поиска по запросу % @Model.Term %</div>
+<div>Текущая страница: @Model.CurrentPage</div>
 
 @foreach (var ft in Model.FoundFairyTales)
 {
-    <div>
-        <span>@Html.ActionLink(ft)</span>
-        <div>@ft.Text</div>
-    </div>
+    @Html.Partial("FairyTale", ft)
 }
+
+@Html.ActionLink("1", "Search", new {  term = Model.Term, page = Model.CurrentPage })

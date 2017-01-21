@@ -30,7 +30,7 @@ namespace FT.MvcApp.Home.Controllers
             if (string.IsNullOrEmpty(param.Term))
                 throw new HttpException(400, "Term is null or empty");
 
-            var model = service.BuildSearchViewModel(param.Term);
+            var model = service.BuildSearchViewModel(param.Term, param.Page);
             return View(model);
         }
 

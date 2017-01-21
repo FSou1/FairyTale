@@ -5,8 +5,5 @@
 }
 
 @foreach (var ft in Model.RandomFairyTales) {
-    <div>        
-        <span>@Html.ActionLink(ft)</span>        
-        <div>@ft.Text</div>
-    </div>
+    @Html.Partial("FairyTale", ft)
 }

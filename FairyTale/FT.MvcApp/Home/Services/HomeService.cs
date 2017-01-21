@@ -22,13 +22,20 @@ namespace FT.MvcApp.Home.Services {
             return model;
         }
 
-        public SearchViewModel BuildSearchViewModel(string term)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        public SearchViewModel BuildSearchViewModel(string term, int page)
         {
             var model = new SearchViewModel()
             {
                 Title = "Поиск",
                 Term = term,
-                FoundFairyTales = _repository.GetAll(term)
+                FoundFairyTales = _repository.GetAll(term),
+                TotalCount = _repository.Count(term),
+                CurrentPage = page         
             };
 
             return model;

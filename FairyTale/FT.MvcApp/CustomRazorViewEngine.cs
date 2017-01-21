@@ -13,7 +13,7 @@ namespace FT.MvcApp
 
             PartialViewLocationFormats = new[]
             {
-                "~/Shared/Views/{0}.cshtml"
+                "~/Shared/Views/Partial/{0}.cshtml"
             };
         }
     }

@@ -35,12 +35,22 @@ namespace FT.Repositories {
             return data.FirstOrDefault(t => t.Id == id);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
+        public int Count(string term)
+        {
+            return data.Count(ft => ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0);
+        }
+
         private IList<FairyTale> data = new List<FairyTale>()
         {
             new FairyTale
             {
                 Id = 1,
-                Title = "Маша и медведь",
+                Title = "Даша и медведь",
                 Text = "Жил себе старик со старухою. Было у них три сына: двое умные, а третий — дурачок. Умных они и жалеют, каждую неделю старуха им чистые рубашки дает, а дурачка все ругают, смеются над ним, — а он знай ...",
                 CreatedAtUtc = DateTime.UtcNow
             },
