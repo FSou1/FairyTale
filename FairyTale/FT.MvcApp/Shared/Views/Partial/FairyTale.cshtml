@@ -2,7 +2,7 @@
 
 <div>
     <h1>@Html.ActionLink(Model)</h1>
-    <div>@Model.Text</div>
+    <div>@Html.Raw(Model.Text)</div>
 
     <div>
         @foreach (var tag in Model.Tags) {

@@ -23,28 +23,6 @@ header, main, footer {
     margin: 20px auto;
 }
 
-.logo {
-    float: left;
-}
-
-.search {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.search_input {
-    width: 80%;
-    height: 40px;
-    float: left;
-    font-size: 16px;
-}
-
-.search_button {
-    width: 15%;
-    height: 46px;
-    float: left;
-}
-
 .clearfix:after {
     content: "";
     display: table;
