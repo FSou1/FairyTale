@@ -6,12 +6,13 @@
 
 <h1>Поиск</h1>
 
-<div>Результаты поиска по запросу % @Model.Term %</div>
-<div>Текущая страница: @Model.CurrentPage</div>
+<div>Найдено @Model.TotalCount по запросу % @Model.Term %</div>
 
 @foreach (var ft in Model.FoundFairyTales)
 {
     @Html.Partial("FairyTale", ft)
 }
+
+<div>Текущая страница: @Model.CurrentPage из @Model.TotalPages</div>
 
 @Html.ActionLink("1", "Search", new {  term = Model.Term, page = Model.CurrentPage })

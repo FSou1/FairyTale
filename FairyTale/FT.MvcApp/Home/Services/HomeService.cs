@@ -27,15 +27,15 @@ namespace FT.MvcApp.Home.Services {
         /// </summary>
         /// <param name="term"></param>
         /// <returns></returns>
-        public SearchViewModel BuildSearchViewModel(string term, int page)
+        public SearchViewModel BuildSearchViewModel(string term, int page, int perPage)
         {
-            var model = new SearchViewModel()
+            var model = new SearchViewModel(perPage)
             {
                 Title = "Поиск",
                 Term = term,
-                FoundFairyTales = _repository.GetAll(term),
+                FoundFairyTales = _repository.GetAll(term, page * perPage, perPage),
                 TotalCount = _repository.Count(term),
-                CurrentPage = page         
+                CurrentPage = page
             };
 
             return model;

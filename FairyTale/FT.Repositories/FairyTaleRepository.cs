@@ -20,10 +20,14 @@ namespace FT.Repositories {
         /// </summary>
         /// <param name="term"></param>
         /// <returns></returns>
-        public IList<FairyTale> GetAll(string term)
+        public IList<FairyTale> GetAll(string term, int skip, int take)
         {
             // TODO: extract to str.Contains(string, StringComparison) extension
-            return data.Where(ft=>ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0).ToList();
+            return data
+                .Where(ft=>ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
         }
 
         /// <summary>

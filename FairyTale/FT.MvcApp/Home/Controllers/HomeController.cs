@@ -8,6 +8,7 @@ namespace FT.MvcApp.Home.Controllers
     public class HomeController : Controller
     {
         private readonly HomeService service = new HomeService();
+        private readonly int perPage = 1;
 
         /// <summary>
         /// 
@@ -30,7 +31,7 @@ namespace FT.MvcApp.Home.Controllers
             if (string.IsNullOrEmpty(param.Term))
                 throw new HttpException(400, "Term is null or empty");
 
-            var model = service.BuildSearchViewModel(param.Term, param.Page);
+            var model = service.BuildSearchViewModel(param.Term, param.Page, perPage);
             return View(model);
         }
 
