@@ -1,6 +1,12 @@
 ﻿@model FairyTale
 
 <div>
-    <span>@Html.ActionLink(Model)</span>
+    <h1>@Html.ActionLink(Model)</h1>
     <div>@Model.Text</div>
+
+    <div>
+        @foreach (var tag in Model.Tags) {
+            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, new { @class="tag" }) 
+        }
+    </div>
 </div>

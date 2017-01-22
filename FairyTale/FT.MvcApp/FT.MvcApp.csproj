@@ -112,6 +112,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\HtmlHelpers\FairyTaleHtmlHelpers.cs" />
     <Compile Include="Shared\Models\BaseViewModel.cs" />
+    <Compile Include="Tags\Controllers\TagsController.cs" />
+    <Compile Include="Tags\Models\SingleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -125,6 +127,9 @@
     <Content Include="Home\Views\About.cshtml" />
     <Content Include="Home\Views\Search.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTale.cshtml" />
+    <Content Include="Shared\Views\Partial\SiteDescription.cshtml" />
+    <Content Include="Shared\Views\Partial\YandexMetrika.cshtml" />
+    <Content Include="Tags\Views\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

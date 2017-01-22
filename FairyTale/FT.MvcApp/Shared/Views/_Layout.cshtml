@@ -7,26 +7,30 @@
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
 </head>
 <body>
-    <header>
-        <a class="logo" href="@Url.Action("Index", "Home")">
-            <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
-        </a>
 
-        <div class="search">
-            @using (Html.BeginForm("Search", "Home", FormMethod.Get)) {
-                <input type="text" name="term" placeholder="Поиск по сайту.." />
-            }
-        </div>
-    </header>
+<header class="clearfix">
+    <a class="logo" href="@Url.Action("Index", "Home")">
+        <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
+    </a>
+</header>
 
-    <main>
-        <div class="container body-content">
-            @RenderBody()
-        </div>
-    </main>
+<section class="search">
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "clearfix" })) {
+        <input type="text" name="term" class="search_input" placeholder="Поиск по сайту.." />
+        <button class="search_button" type="submit">Искать</button>
+    }
+</section>
 
-    <footer>
-        © vskazki.ru 2011-@DateTime.Now.Year
-    </footer>
+<main>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Html.Partial("YandexMetrika")
+</main>
+
+<footer>
+    © vskazki.ru 2011-@DateTime.Now.Year
+</footer>
 </body>
 </html>

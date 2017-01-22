@@ -32,8 +32,9 @@ namespace FT.MvcApp.Home.Controllers
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         public ActionResult Search(SearchParams param)
         {
-            if (string.IsNullOrEmpty(param.Term))
-                throw new HttpException(400, "Term is null or empty");
+            if (string.IsNullOrEmpty(param.Term)) {
+                return RedirectToAction("Index");
+            }
 
             var model = _service.BuildSearchViewModel(param.Term, param.CurrentPage, PerPage);
             return View(model);

@@ -18,14 +18,63 @@ h1:first-letter{
 	font-family: PragmaticaC, "Myriad Pro";
 }
 
-header, nav, main, footer {
-    margin: 20px 0;
-    border: 1px solid green;
+header, main, footer {
+    width: 100%;
+    margin: 20px auto;
+}
+
+.logo {
+    float: left;
+}
+
+.search {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.search_input {
+    width: 80%;
+    height: 40px;
+    float: left;
+    font-size: 16px;
+}
+
+.search_button {
+    width: 15%;
+    height: 46px;
+    float: left;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Tag */
+.tag {
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 11px;
+    padding: 0 4px 1px;
+    margin: 0 2px 0 0;
+    line-height: 12px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: linear-gradient(to top,#f3f3f3 100%,#f3f3f3 100%);
+    border: 1px solid;
+    border-color: #e0e0e0 #c4c4c4 #adadad #cecece;
+    border-radius: 3px;
+    border-collapse: separate;
+    white-space: nowrap;
+    color: #777;
 }
 
 /* Pager */
 .pager {
-    margin: 8px 3px;
+    margin: 25px 0;
     padding: 3px;
 }
 
@@ -33,7 +82,7 @@ header, nav, main, footer {
         border: 1px solid #ddd;
         color: #999;
         margin-top: 4px;
-        padding: 3px;
+        padding: 10px 15px;
         text-align: center;
     }
 
@@ -43,7 +92,7 @@ header, nav, main, footer {
         color: #fff;
         font-weight: bold;
         margin-top: 4px;
-        padding: 3px 5px;
+        padding: 10px 15px;
         text-align: center;
     }
 
@@ -53,11 +102,7 @@ header, nav, main, footer {
 
     .pager a {
         border: 1px solid #aaa;
-        padding: 3px 5px;
+        padding: 10px 15px;
         text-align: center;
         text-decoration: none;
     }
-
-.source {
-    margin-top: 30px;
-}

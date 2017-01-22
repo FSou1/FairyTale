@@ -8,15 +8,19 @@
 
 <h1>Поиск</h1>
 
-<div>
-    Найдено @fairyTales.TotalItemCount сказок
-</div>
+@if (Model.Found) {
+    <div>
+        Результатов поиска: @fairyTales.TotalItemCount
+    </div>
 
-@foreach (var ft in fairyTales)
-{
-    @Html.Partial("FairyTale", ft)
+    foreach (var ft in fairyTales) {
+        @Html.Partial("FairyTale", ft)
+    }
+
+    <div class="pager">
+        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term))
+    </div>
 }
-
-<div class="pager">
-    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o=>o.AddRouteValue("term", Model.Term))
-</div>
+else {
+    <p>По вашему запросу ничего не нашлось. Попробуйте указать другое слово для поиска или вернить на @Html.ActionLink("главную страницу", "Index")</p>
+}

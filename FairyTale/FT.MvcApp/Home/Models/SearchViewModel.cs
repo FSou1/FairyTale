@@ -1,4 +1,5 @@
-﻿using FT.Entities;
+﻿using System.Linq;
+using FT.Entities;
 using FT.MvcApp.Shared.Models;
 using MvcPaging;
 
@@ -7,7 +8,7 @@ namespace FT.MvcApp.Home.Models
     public class SearchViewModel : BaseViewModel
     {
         public string Term { get; set; }
-                
+        public bool Found => FoundFairyTales.Any();
         public IPagedList<FairyTale> FoundFairyTales { get; set; }
     }
 
