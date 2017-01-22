@@ -10,14 +10,6 @@ namespace FT.Repositories {
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public IList<FairyTale> GetAll() {
-            return data;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="term"></param>
         /// <returns></returns>
         public IList<FairyTale> GetAll(string term, int skip, int take)
@@ -25,6 +17,22 @@ namespace FT.Repositories {
             // TODO: extract to str.Contains(string, StringComparison) extension
             return data
                 .Where(ft=>ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="orderBy"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        public IList<FairyTale> GetAll<T>(Func<FairyTale, T> orderBy, int skip, int take) {
+            // TODO: extract to str.Contains(string, StringComparison) extension
+            return data
+                .OrderBy(orderBy)
                 .Skip(skip)
                 .Take(take)
                 .ToList();
@@ -44,13 +52,22 @@ namespace FT.Repositories {
         /// </summary>
         /// <param name="term"></param>
         /// <returns></returns>
+        public int Count() {
+            return data.Count();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="term"></param>
+        /// <returns></returns>
         public int Count(string term)
         {
             // TODO: extract to str.Contains(string, StringComparison) extension
             return data.Count(ft => ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0);
         }
 
-        private IList<FairyTale> data = new List<FairyTale>()
+        private IEnumerable<FairyTale> data = new List<FairyTale>()
         {
             new FairyTale
             {

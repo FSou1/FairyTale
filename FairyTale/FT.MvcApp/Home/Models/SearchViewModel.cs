@@ -16,6 +16,6 @@ namespace FT.MvcApp.Home.Models
         public string Term { get; set; }
         public int? Page { get; set; }
 
-        public int CurrentPage => Page.HasValue ? Page.Value - 1 : 0;
+        public int CurrentPage => Page - 1 ?? 0;
     }
 }

@@ -1,6 +1,8 @@
 ﻿using FT.MvcApp.Home.Models;
 using FT.Repositories;
 using MvcPaging;
+using System;
+using System.Linq;
 
 namespace FT.MvcApp.Home.Services {
     public class HomeService {
@@ -10,10 +12,13 @@ namespace FT.MvcApp.Home.Services {
         /// 
         /// </summary>
         /// <returns></returns>
-        public IndexViewModel BuildIndexViewModel() {
+        public IndexViewModel BuildIndexViewModel(int page, int perPage) {
+            var totalCount = _repository.Count();
+            var data = _repository.GetAll(ft => Guid.NewGuid(), page, perPage);
+
             var model = new IndexViewModel() {
                 Title = "Главная страница",
-                RandomFairyTales = _repository.GetAll()
+                RandomFairyTales = data.ToPagedList(page, perPage, totalCount)
             };
 
             return model;
@@ -23,6 +28,8 @@ namespace FT.MvcApp.Home.Services {
         /// 
         /// </summary>
         /// <param name="term"></param>
+        /// <param name="page"></param>
+        /// <param name="perPage"></param>
         /// <returns></returns>
         public SearchViewModel BuildSearchViewModel(string term, int page, int perPage)
         {

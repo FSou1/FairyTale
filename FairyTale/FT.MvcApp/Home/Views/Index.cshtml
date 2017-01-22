@@ -2,8 +2,16 @@
 
 @{
     ViewBag.Title = Model.Title;
+
+    var fairyTales = Model.RandomFairyTales;
 }
 
-@foreach (var ft in Model.RandomFairyTales) {
+<h1>Случайные сказки</h1>
+
+@foreach (var ft in fairyTales) {
     @Html.Partial("FairyTale", ft)
 }
+
+<div class="pager">
+    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
+</div>
