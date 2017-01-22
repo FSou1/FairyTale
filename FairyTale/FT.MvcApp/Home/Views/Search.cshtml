@@ -2,17 +2,21 @@
 
 @{
     ViewBag.Title = Model.Title;
+
+    var fairyTales = Model.FoundFairyTales;
 }
 
 <h1>Поиск</h1>
 
-<div>Найдено @Model.TotalCount по запросу % @Model.Term %</div>
+<div>
+    Найдено @fairyTales.TotalItemCount сказок
+</div>
 
-@foreach (var ft in Model.FoundFairyTales)
+@foreach (var ft in fairyTales)
 {
     @Html.Partial("FairyTale", ft)
 }
 
-<div>Текущая страница: @Model.CurrentPage из @Model.TotalPages</div>
-
-@Html.ActionLink("1", "Search", new {  term = Model.Term, page = Model.CurrentPage })
+<div class="pager">
+    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o=>o.AddRouteValue("term", Model.Term))
+</div>

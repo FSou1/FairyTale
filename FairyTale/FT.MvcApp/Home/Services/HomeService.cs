@@ -1,9 +1,6 @@
 ﻿using FT.MvcApp.Home.Models;
 using FT.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using MvcPaging;
 
 namespace FT.MvcApp.Home.Services {
     public class HomeService {
@@ -29,13 +26,14 @@ namespace FT.MvcApp.Home.Services {
         /// <returns></returns>
         public SearchViewModel BuildSearchViewModel(string term, int page, int perPage)
         {
-            var model = new SearchViewModel(perPage)
+            var totalCount = _repository.Count(term);
+            var data = _repository.GetAll(term, page * perPage, perPage);
+
+            var model = new SearchViewModel()
             {
                 Title = "Поиск",
                 Term = term,
-                FoundFairyTales = _repository.GetAll(term, page * perPage, perPage),
-                TotalCount = _repository.Count(term),
-                CurrentPage = page
+                FoundFairyTales = data.ToPagedList(page, perPage, totalCount)
             };
 
             return model;
