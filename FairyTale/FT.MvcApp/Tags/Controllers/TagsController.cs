@@ -25,5 +25,12 @@ namespace FT.MvcApp.Tags.Controllers {
 
             return View("Single", model);
         }
+
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
+        public ActionResult Index()
+        {
+            var model = _service.BuildIndexViewModel();
+            return View("Index", model);
+        }
     }
 }

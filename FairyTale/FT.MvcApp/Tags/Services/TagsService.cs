@@ -33,5 +33,22 @@ namespace FT.MvcApp.Tags.Services
 
             return model;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IndexViewModel BuildIndexViewModel()
+        {
+            var tagData = repository.GetAll(t => t.FairyTalesCount);
+
+            var model = new IndexViewModel()
+            {
+                Title = "Список тегов",
+                Tags = tagData
+            };
+
+            return model;
+        }
     }
 }

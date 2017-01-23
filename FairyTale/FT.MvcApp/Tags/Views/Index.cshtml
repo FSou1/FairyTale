@@ -1,0 +1,13 @@
+﻿@model FT.MvcApp.Tags.Models.IndexViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+
+    var tags = Model.Tags;
+}
+
+<h1>Популярные теги</h1>
+
+@foreach (var tag in tags) {
+    @Html.ActionLink(tag) <span>(@tag.FairyTalesCount)</span>
+}
