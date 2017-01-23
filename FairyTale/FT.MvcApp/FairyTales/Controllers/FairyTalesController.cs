@@ -9,7 +9,11 @@ namespace FT.MvcApp.FairyTales.Controllers
     {
         private readonly FairyTalesService _service = new FairyTalesService();
 
-        // GET: Tale
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActionResult Single(int id)
         {
             var model = _service.BuildSingleViewModel(id);

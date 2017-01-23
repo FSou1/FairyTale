@@ -2,4 +2,18 @@
 
 @{
     ViewBag.Title = Model.Title;
+
+    var tag = Model.Tag;
+    var fairyTales = Model.FairyTales;
 }
+
+<h1>@tag.Title</h1>
+
+@foreach (var ft in fairyTales)
+{
+    @Html.Partial("FairyTale", ft)
+}
+
+<div class="pager">
+    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
+</div>

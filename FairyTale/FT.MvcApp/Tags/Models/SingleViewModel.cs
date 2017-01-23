@@ -7,4 +7,12 @@ namespace FT.MvcApp.Tags.Models {
         public Tag Tag { get; set; }
         public IPagedList<FairyTale> FairyTales { get; set; }
     }
+
+    public class SingleParams
+    {
+        public int Id { get; set; }
+        public int? Page { get; set; }
+
+        public int CurrentPage => Page - 1 ?? 0;
+    }
 }
