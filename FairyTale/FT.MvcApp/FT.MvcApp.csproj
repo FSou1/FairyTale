@@ -115,6 +115,7 @@
     <Compile Include="Shared\Models\BaseViewModel.cs" />
     <Compile Include="Tags\Controllers\TagsController.cs" />
     <Compile Include="Tags\Models\SingleViewModel.cs" />
+    <Compile Include="Tags\Services\TagsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

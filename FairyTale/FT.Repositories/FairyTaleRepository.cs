@@ -25,6 +25,22 @@ namespace FT.Repositories {
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        public IList<FairyTale> GetAll(Tag tag, int skip, int take)
+        {
+            return data
+                .Where(ft => ft.Tags.Contains(tag))
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="orderBy"></param>
         /// <param name="skip"></param>
         /// <param name="take"></param>
@@ -65,6 +81,16 @@ namespace FT.Repositories {
         {
             // TODO: extract to str.Contains(string, StringComparison) extension
             return data.Count(ft => ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public int Count(Tag tag)
+        {
+            return data.Count(ft => ft.Tags.Contains(tag));
         }
 
         private IEnumerable<FairyTale> data = new List<FairyTale>()
