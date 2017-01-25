@@ -1,29 +1,30 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/reset.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/pager.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
 </head>
 <body>
 
-<header class="clearfix">
-    <a class="logo" href="@Url.Action("Index", "Home")">
+<header>
+    <a href="@Url.Action("Index", "Home")">
         <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
     </a>
 </header>
 
-<section class="search">
+<section>
     @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "clearfix" })) {
-        <input type="text" name="term" class="search_input" placeholder="Поиск по сайту.." />
-        <button class="search_button" type="submit">Искать</button>
+        <input type="text" name="term" placeholder="Поиск по сайту.." />
+        <button type="submit">Искать</button>
     }
 </section>
 
 <main>
-    <div class="container body-content">
+    <div>
         @RenderBody()
     </div>
 

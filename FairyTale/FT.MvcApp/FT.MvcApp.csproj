@@ -89,6 +89,7 @@
   <ItemGroup>
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\reset.css" />
+    <Content Include="Content\pager.css" />
     <Content Include="Content\site.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config">
@@ -149,7 +150,7 @@
       <Name>FT.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\FT.Repositories\FT.Repositories.csproj">
-      <Project>{21b70a6e-e5b5-4181-9f1b-99f93e93676e}</Project>
+      <Project>{21B70A6E-E5B5-4181-9F1B-99F93E93676E}</Project>
       <Name>FT.Repositories</Name>
     </ProjectReference>
   </ItemGroup>

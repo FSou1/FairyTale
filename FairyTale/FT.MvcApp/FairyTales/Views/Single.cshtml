@@ -6,6 +6,16 @@
     var fairyTale = Model.FairyTale;
 }
 
-<h1>@fairyTale.Title</h1>
-
-<div>@Html.Raw(fairyTale.Text)</div>
+<article>
+    <header>
+        <h1>@fairyTale.Title</h1>
+        <p>
+            @foreach (var tag in fairyTale.Tags)
+            {
+                @Html.ActionLink(tag.Title, "Single", "Tags", new {id = tag.Id}, null)
+            }
+        </p>
+    </header>
+    
+    @Html.Raw(fairyTale.Text)
+</article>

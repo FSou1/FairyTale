@@ -6,7 +6,7 @@
 
     <div>
         @foreach (var tag in Model.Tags) {
-            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, new { @class="tag" }) 
+            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, null) 
         }
     </div>
 </div>

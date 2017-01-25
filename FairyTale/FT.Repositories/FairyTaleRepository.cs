@@ -32,7 +32,7 @@ namespace FT.Repositories {
         public IList<FairyTale> GetAll(Tag tag, int skip, int take)
         {
             return data
-                .Where(ft => ft.Tags.Contains(tag))
+                .Where(ft => ft.Tags.Select(t=>t.Id).Contains(tag.Id))
                 .Skip(skip)
                 .Take(take)
                 .ToList();
@@ -90,7 +90,7 @@ namespace FT.Repositories {
         /// <returns></returns>
         public int Count(Tag tag)
         {
-            return data.Count(ft => ft.Tags.Contains(tag));
+            return data.Count(ft => ft.Tags.Select(t => t.Id).Contains(tag.Id));
         }
 
         private IEnumerable<FairyTale> data = new List<FairyTale>()
