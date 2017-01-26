@@ -136,6 +136,7 @@
     <Content Include="Shared\Views\Partial\YandexMetrika.cshtml" />
     <Content Include="Tags\Views\Single.cshtml" />
     <Content Include="Tags\Views\Index.cshtml" />
+    <Content Include="Shared\Views\Partial\Tags.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

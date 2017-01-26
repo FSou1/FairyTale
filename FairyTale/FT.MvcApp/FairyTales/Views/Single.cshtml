@@ -9,12 +9,7 @@
 <article>
     <header>
         <h1>@fairyTale.Title</h1>
-        <p>
-            @foreach (var tag in fairyTale.Tags)
-            {
-                @Html.ActionLink(tag.Title, "Single", "Tags", new {id = tag.Id}, null)
-            }
-        </p>
+        @Html.Partial("Tags", fairyTale.Tags)
     </header>
     
     @Html.Raw(fairyTale.Text)

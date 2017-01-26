@@ -6,21 +6,24 @@
     var fairyTales = Model.FoundFairyTales;
 }
 
-<h1>Поиск</h1>
-
-@if (Model.Found) {
-    <div>
-        Результатов поиска: @fairyTales.TotalItemCount
-    </div>
-
-    foreach (var ft in fairyTales) {
-        @Html.Partial("FairyTale", ft)
+<header>
+    <h1>Поиск</h1>
+    @if (Model.Found) {
+        <p>Результатов поиска: @fairyTales.TotalItemCount</p>
     }
+</header>
 
-    <div class="pager">
-        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term))
-    </div>
-}
-else {
-    <p>По вашему запросу ничего не нашлось. Попробуйте указать другое слово для поиска или вернить на @Html.ActionLink("главную страницу", "Index")</p>
-}
+<section>
+    @if (Model.Found) {
+        foreach (var ft in fairyTales) {
+            @Html.Partial("FairyTale", ft)
+        }
+
+        <nav class="pager">
+            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term))
+        </nav>
+    }
+    else {
+        <p>По вашему запросу ничего не нашлось. Попробуйте указать другое слово для поиска или вернить на @Html.ActionLink("главную страницу", "Index")</p>
+    }
+</section>

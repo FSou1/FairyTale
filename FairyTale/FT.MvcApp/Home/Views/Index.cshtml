@@ -6,16 +6,18 @@
     var fairyTales = Model.RandomFairyTales;
 }
 
-<h1>Случайные сказки</h1>
+<section>
+    <h1>Случайные сказки</h1>
 
-@foreach (var ft in fairyTales) {
-    @Html.Partial("FairyTale", ft)
-}
+    @foreach (var ft in fairyTales) {
+        @Html.Partial("FairyTale", ft)
+    }
 
-<div class="pager">
-    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
-</div>
+    <nav class="pager">
+        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
+    </nav>
+</section>
 
-<div>
+<article>
     @Html.Partial("SiteDescription")
-</div>
+</article>

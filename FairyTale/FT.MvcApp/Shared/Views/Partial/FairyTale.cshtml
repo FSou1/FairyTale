@@ -1,12 +1,10 @@
 ﻿@model FairyTale
 
-<div>
-    <div>@Html.ActionLink(Model)</div>
-    <div>@Html.Raw(Model.Text)</div>
+<article>
+    <header>
+        <h2>@Html.ActionLink(Model)</h2>
+        @Html.Partial("Tags", Model.Tags)
+    </header>
 
-    <div>
-        @foreach (var tag in Model.Tags) {
-            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, null) 
-        }
-    </div>
-</div>
+    @Html.Raw(Model.Teaser)
+</article>

@@ -1,0 +1,11 @@
+﻿@model IList<Tag>
+
+@{ var tags = Model; }
+
+@if (tags.Count > 0) {
+    <p>
+        @foreach (var tag in tags) {
+            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, new { @class = "tag" })
+        }
+    </p>
+}

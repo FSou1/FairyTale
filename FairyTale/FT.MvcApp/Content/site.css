@@ -10,6 +10,10 @@ p {
     margin: 16px;
 }
 
+.tag {
+    margin: 0 5px;
+}
+
 .clearfix:after {
     content: "";
     display: table;

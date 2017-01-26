@@ -16,7 +16,7 @@ namespace FT.MvcApp.Home.Controllers
         /// </summary> 
         /// <param name="param"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]
+        //[OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]
         public ActionResult Index(IndexParams param)
         {
             var model = _service.BuildIndexViewModel(param.CurrentPage, PerPage);

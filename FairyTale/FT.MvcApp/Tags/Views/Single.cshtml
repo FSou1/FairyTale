@@ -7,15 +7,20 @@
     var fairyTales = Model.FairyTales;
 }
 
-<h1>@tag.Title</h1>
+<header>
+    <h1>@tag.Title</h1>
 
-<p>@tag.Description</p>
+    @if (!string.IsNullOrEmpty(tag.Description)) {
+        <p>@tag.Description</p>
+    }
+</header>
 
-@foreach (var ft in fairyTales)
-{
-    @Html.Partial("FairyTale", ft)
-}
+<section>
+    @foreach (var ft in fairyTales) {
+        @Html.Partial("FairyTale", ft)
+    }
 
-<div class="pager">
-    @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
-</div>
+    <nav class="pager">
+        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
+    </nav>
+</section>
