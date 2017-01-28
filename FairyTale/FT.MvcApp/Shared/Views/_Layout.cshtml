@@ -10,17 +10,15 @@
 </head>
 <body>
 
-<header>
-    <a href="@Url.Action("Index", "Home")">
+<header class="clearfix">
+    <a href="@Url.Action("Index", "Home")" class="logo">
         <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
     </a>
 
-    <section>
-        @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "clearfix" })) {
-            <input type="text" name="term" placeholder="Поиск по сайту.." />
-            <button type="submit">Искать</button>
-        }
-    </section>
+    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "search" })) {
+        <input type="text" name="term" class="search_text" placeholder="Поиск по сайту.." />
+        <input type="submit" class="search_submit" value="Искать"/>
+    }
 </header>
 
 <div class="container">
