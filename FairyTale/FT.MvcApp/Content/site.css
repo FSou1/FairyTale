@@ -7,6 +7,7 @@
 body{
 	max-width:1024px;
 	margin:0 auto;
+    padding: 0 10px;
 	font-family: Tahoma,Helvetica,Arial,sans-serif;
 	font-size:15px;
 }
@@ -55,22 +56,21 @@ article, .container > header {
 .logo {
     float: left;
     display: inline-block;
-    width: 250px;
+    width: 163px;
 }
 
 /* search */
 .search {
   position: relative;
   margin: 0;
-  width: 100%;
+    float: right;
 }
 
 .search_text {
-    width: 100%;
-  max-width: 400px;
-  height: 50px;
+    max-width: 500px;
+    min-width: 226px;
+    height: 50px;
   position: relative;
-  float: right;
   margin: 0;
   padding: 10px 60px 10px 15px; 
   border: 1px solid #ccc;
@@ -79,18 +79,21 @@ article, .container > header {
 }
 
 .search_text:focus {
-  width: 200%;
-  outline: none;
+    outline: none;
 }
 
 .search_submit {
   position: absolute;
-  right: 0;
-  font-size: 22px; 
-  padding: 14px;
-  background-color: transparent;
   border: none;
   cursor: pointer;
+    background-image: url(images/find.png);
+    color: white;
+    background-color: white;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    top: 9px;
+    right: 9px;
 }
 
 .search_submit:hover {
