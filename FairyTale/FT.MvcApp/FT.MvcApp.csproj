@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\tag-icon.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\pager.css" />
     <Content Include="Content\site.css" />
