@@ -6,11 +6,17 @@
     var fairyTale = Model.FairyTale;
 }
 
+
+<header>
+    <h1>@fairyTale.Title</h1>
+    <p>@Model.Description</p>
+</header>
+
 <article>
     <header>
-        <h1>@fairyTale.Title</h1>
-        @Html.Partial("Tags", fairyTale.Tags)
+        <h2>@fairyTale.Title читать:</h2>
+        <p>@Html.Partial("Tags", fairyTale.Tags)</p>
     </header>
-    
+
     @Html.Raw(fairyTale.Text)
 </article>

@@ -23,6 +23,12 @@
     }
 </header>
 
+<nav class="clearfix">
+    <ul class="top_menu clearfix">
+        <li>@Html.ActionLink("список тегов", "Index", "Tags")</li>
+    </ul>
+</nav>
+
 <div class="container">
     @RenderBody()
 
@@ -33,12 +39,7 @@
     <nav class="clearfix">
         <dl>
             <dt>Разделы</dt>
-            <dd>@Html.ActionLink("Теги", "Index", "Tags")</dd>
-        </dl>
-        
-        <dl>
-            <dt>Инфо</dt>
-            <dd>@Html.ActionLink("О сайте", "About", "Home")</dd>
+            <dd>@Html.ActionLink("Список тегов", "Index", "Tags")</dd>
         </dl>
     </nav>
 </footer>

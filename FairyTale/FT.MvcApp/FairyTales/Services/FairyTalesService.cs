@@ -16,12 +16,14 @@ namespace FT.MvcApp.FairyTales.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public SingleViewModel BuildSingleViewModel(int id)
-        {
+        public SingleViewModel BuildSingleViewModel(int id) {
+            var fairyTale = repository.Get(id);
+
             var model = new SingleViewModel
             {
                 Title = "Просмотр",
-                FairyTale = repository.Get(id)
+                Description = fairyTale.Description,
+                FairyTale = fairyTale
             };
 
             return model;

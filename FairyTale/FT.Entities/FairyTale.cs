@@ -34,6 +34,12 @@ namespace FT.Entities {
         /// </summary>
         public DateTime CreatedAtUtc { get; set; }
 
+        /// <summary>
+        /// Описание
+        /// </summary>
+        public string Description { get; set; }
+
+
         public virtual string FormatTeaser(string text, int lines) {
             var parts = Text
                 .Split(new[] {"<p>", "</p>"}, StringSplitOptions.RemoveEmptyEntries)
