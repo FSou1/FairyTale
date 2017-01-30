@@ -4,48 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using FluentNHibernate.Mapping;
 
 namespace FT.Entities {
     public class FairyTale {
-        public int Id { get; set; }        
+        public virtual long Id { get; set; }        
+        public virtual string Title { get; set; }
+        public virtual string Teaser { get; set; }
+        public virtual string Text { get; set; }
+        public virtual DateTime CreatedAtUtc { get; set; }
+        public virtual string Description { get; set; }
 
-        /// <summary>
-        /// Заголовок
-        /// </summary>
-        public string Title { get; set; }
+        public virtual IList<Tag> Tags { get; set; } = new List<Tag>();
+    }
 
-        /// <summary>
-        /// Превью
-        /// </summary>
-        public string Teaser => FormatTeaser(Text, 1);
+    public class FairyTaleMap : ClassMap<FairyTale> {
+        public FairyTaleMap() {
+            Schema("[ft]");
+            Table("[FairyTales]");
 
-        /// <summary>
-        /// HTML содержимое
-        /// </summary>
-        public string Text { get; set; }
+            Id(x => x.Id).GeneratedBy.Identity();
+            Map(x => x.Title);
+            Map(x => x.Teaser);
+            Map(x => x.Text);
+            Map(x => x.CreatedAtUtc);
+            Map(x => x.Description);
 
-        /// <summary>
-        /// Список тегов
-        /// </summary>
-        public IList<Tag> Tags { get; set; }
-
-        /// <summary>
-        /// Дата добавления
-        /// </summary>
-        public DateTime CreatedAtUtc { get; set; }
-
-        /// <summary>
-        /// Описание
-        /// </summary>
-        public string Description { get; set; }
-
-
-        public virtual string FormatTeaser(string text, int lines) {
-            var parts = Text
-                .Split(new[] {"<p>", "</p>"}, StringSplitOptions.RemoveEmptyEntries)
-                .Select(part => $"<p>{part}</p>");
-
-            return string.Join(string.Empty, parts.Take(lines));
+            HasManyToMany(x => x.Tags)
+                .Schema("[ft]")
+                .Table("[FairyTales_Tags]")
+                .ParentKeyColumn("FairyTaleId")
+                .ChildKeyColumn("TagId");
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using FT.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using FT.Entities;
 
-namespace FT.Repositories
+namespace FT.Repositories.Fake
 {
-    public class TagRepository
+    public class FakeTagRepository
     {
         /// <summary>
         /// 

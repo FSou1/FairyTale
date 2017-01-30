@@ -7,10 +7,12 @@ using System.Web.Routing;
 
 namespace FT.MvcApp
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
+            UnityConfig.RegisterComponents();
+
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomRazorViewEngine());
             AreaRegistration.RegisterAllAreas();

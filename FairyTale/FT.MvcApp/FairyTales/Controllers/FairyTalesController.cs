@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FT.MvcApp.FairyTales.Services;
@@ -7,22 +8,25 @@ namespace FT.MvcApp.FairyTales.Controllers
 {
     public class FairyTalesController : Controller
     {
-        private readonly FairyTalesService _service = new FairyTalesService();
+        public FairyTalesController(IFairyTalesService service) {
+            _service = service;
+        }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult Single(int id)
+        public async Task<ActionResult> Single(long id)
         {
-            var model = _service.BuildSingleViewModel(id);
-            if (model.FairyTale == null)
-            {
+            var model = await _service.BuildSingleViewModel(id);
+            if (model.FairyTale == null) {
                 throw new HttpException(404, "ola");
             }
 
             return View("Single", model);
         }
+
+        private readonly IFairyTalesService _service;
     }
 }
