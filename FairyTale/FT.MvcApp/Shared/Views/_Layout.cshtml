@@ -29,9 +29,19 @@
     @Html.Partial("YandexMetrika")
 </div>
 
-    <footer>
-        © vskazki.ru 2011-@DateTime.Now.Year
-    </footer>
+<footer>
+    <nav class="clearfix">
+        <dl>
+            <dt>Разделы</dt>
+            <dd>@Html.ActionLink("Теги", "Index", "Tags")</dd>
+        </dl>
+        
+        <dl>
+            <dt>Инфо</dt>
+            <dd>@Html.ActionLink("О сайте", "About", "Home")</dd>
+        </dl>
+    </nav>
+</footer>
 
 </body>
 </html>

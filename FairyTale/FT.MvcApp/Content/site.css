@@ -100,7 +100,27 @@ article, .container > header {
   color: #6e99aa;
 }
 
+/* footer */
+body > footer {
+    padding: 20px 0;
+    font-size: 14px;
+}
 
+body > footer dt, body > footer dl {
+    margin: 0 0 5px;
+}
+
+body > footer dl {
+    float: left;
+    width: 15%;
+    display: block;
+}
+
+body > footer dd {
+    line-height: 150%;
+    font-size: 13px;
+    margin: 0 16px;
+}
 
 /* tags */
 .tags:before {

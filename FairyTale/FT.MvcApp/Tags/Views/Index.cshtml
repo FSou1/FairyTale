@@ -2,12 +2,19 @@
 
 @{
     ViewBag.Title = Model.Title;
-
-    var tags = Model.Tags;
 }
 
-<h1>Популярные теги</h1>
+<header>
+    <h1>Популярные теги</h1>
+    <p>На этой странице упорядочены по популярности все теги (категории) сказок, которые вы сможете найти на нашем сайте.</p>
+</header>
 
-@foreach (var tag in tags) {
-    @Html.ActionLink(tag) <span>(@tag.FairyTalesCount)</span>
-}
+<section>
+    <p class="tags">
+        @foreach (var tag in Model.Tags)
+        {
+            <span>(@tag.FairyTalesCount)</span>
+            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, new { @class = "tag" })
+        }
+    </p>
+</section>
