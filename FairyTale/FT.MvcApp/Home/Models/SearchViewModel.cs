@@ -5,7 +5,7 @@ using MvcPaging;
 
 namespace FT.MvcApp.Home.Models
 {
-    public class SearchViewModel : BaseViewModel
+    public class SearchViewModel : LayoutViewModel
     {
         public string Term { get; set; }
         public bool Found => FoundFairyTales.Any();

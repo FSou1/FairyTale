@@ -7,7 +7,7 @@ using System.Web;
 
 namespace FT.MvcApp.Tags.Models
 {
-    public class IndexViewModel : BaseViewModel
+    public class IndexViewModel : LayoutViewModel
     {
         public IList<Tag> Tags { get; set; }
     }

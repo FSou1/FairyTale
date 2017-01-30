@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@model LayoutViewModel
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    <title>@Model.Title</title>
+    <meta content="@Model.Description" name="description"  />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/reset.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/pager.css")" />
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
@@ -11,7 +13,7 @@
 <body>
 
 <header class="clearfix">
-    <a href="@Url.Action("Index", "Home")" class="logo">
+    <a href="/" class="logo" title="На главную страницу">
         <img src="@Url.Content("~/Content/images/logo.gif")" width="163" height="40" alt="logo">
     </a>
 

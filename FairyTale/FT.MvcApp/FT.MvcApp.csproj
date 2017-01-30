@@ -116,7 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\HtmlHelpers\FairyTaleHtmlHelpers.cs" />
     <Compile Include="Shared\HtmlHelpers\TagHtmlHelpers.cs" />
-    <Compile Include="Shared\Models\BaseViewModel.cs" />
+    <Compile Include="Shared\Models\LayoutViewModel.cs" />
     <Compile Include="Tags\Controllers\TagsController.cs" />
     <Compile Include="Tags\Models\IndexViewModel.cs" />
     <Compile Include="Tags\Models\SingleViewModel.cs" />

@@ -5,7 +5,7 @@ using MvcPaging;
 
 namespace FT.MvcApp.Home.Models
 {
-    public class IndexViewModel : BaseViewModel
+    public class IndexViewModel : LayoutViewModel
     {
         public IPagedList<FairyTale> RandomFairyTales { get; set; }
     }

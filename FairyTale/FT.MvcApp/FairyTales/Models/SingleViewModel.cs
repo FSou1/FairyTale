@@ -3,7 +3,7 @@ using FT.MvcApp.Shared.Models;
 
 namespace FT.MvcApp.FairyTales.Models
 {
-    public class SingleViewModel : BaseViewModel
+    public class SingleViewModel : LayoutViewModel
     {
         public FairyTale FairyTale { get; set; }
     }
