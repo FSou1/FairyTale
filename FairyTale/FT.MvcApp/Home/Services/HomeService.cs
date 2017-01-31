@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using FT.Entities;
-using FT.Repositories.Fake;
 
 namespace FT.MvcApp.Home.Services {
     public class HomeService : IHomeService {

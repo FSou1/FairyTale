@@ -8,7 +8,7 @@ using FluentNHibernate.Mapping;
 
 namespace FT.Entities {
     public class FairyTale {
-        public virtual long Id { get; set; }        
+        public virtual int Id { get; set; }        
         public virtual string Title { get; set; }
         public virtual string Teaser { get; set; }
         public virtual string Text { get; set; }
