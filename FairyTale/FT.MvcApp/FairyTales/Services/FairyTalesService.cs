@@ -25,7 +25,7 @@ namespace FT.MvcApp.FairyTales.Services
 
             var model = new SingleViewModel
             {
-                Title = "Просмотр",
+                Title = fairyTale.Title,
                 Description = fairyTale.Description,
                 FairyTale = fairyTale
             };

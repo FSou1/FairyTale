@@ -14,7 +14,7 @@ namespace FT.Entities {
         public virtual string Text { get; set; }
         public virtual DateTime CreatedAtUtc { get; set; }
         public virtual string Description { get; set; }
-
+        
         public virtual IList<Tag> Tags { get; set; } = new List<Tag>();
     }
 
@@ -29,7 +29,7 @@ namespace FT.Entities {
             Map(x => x.Text);
             Map(x => x.CreatedAtUtc);
             Map(x => x.Description);
-
+            
             HasManyToMany(x => x.Tags)
                 .Schema("[ft]")
                 .Table("[FairyTales_Tags]")
