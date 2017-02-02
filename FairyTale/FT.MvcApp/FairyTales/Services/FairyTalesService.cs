@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Models;
 using FT.Repositories;
-using FT.Repositories.Fake;
 
 namespace FT.MvcApp.FairyTales.Services
 {
@@ -21,7 +20,7 @@ namespace FT.MvcApp.FairyTales.Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<SingleViewModel> BuildSingleViewModel(long id) {
+        public async Task<SingleViewModel> BuildSingleViewModel(int id) {
             var fairyTale = await _repository.GetAsync(id);
 
             var model = new SingleViewModel
@@ -36,6 +35,6 @@ namespace FT.MvcApp.FairyTales.Services
     }
 
     public interface IFairyTalesService {
-        Task<SingleViewModel> BuildSingleViewModel(long id);
+        Task<SingleViewModel> BuildSingleViewModel(int id);
     }
 }

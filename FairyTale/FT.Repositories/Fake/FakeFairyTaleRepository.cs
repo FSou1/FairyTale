@@ -1,94 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 using FT.Entities;
 
 namespace FT.Repositories.Fake {
-    public class FakeFairyTaleRepository {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="term"></param>
-        /// <returns></returns>
-        public IList<FairyTale> GetAll(string term, int skip, int take)
+    public class FakeFairyTaleRepository : IRepository<FairyTale> {
+        public Task<IList<FairyTale>> GetAllAsync(
+            Expression<Func<FairyTale, bool>> filter, int skip, int take)
         {
-            // TODO: extract to str.Contains(string, StringComparison) extension
-            return data
-                .Where(ft=>ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
+            var result = data.Where(filter.Compile()).Skip(skip).Take(take).ToList();
+            return Task.FromResult<IList<FairyTale>>(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        public IList<FairyTale> GetAll(Tag tag, int skip, int take)
+        public Task<IList<FairyTale>> GetAllAsync<TKey>(
+            Expression<Func<FairyTale, bool>> filter, Func<FairyTale, TKey> orderBy, int skip, int take)
         {
-            return data
-                .Where(ft => ft.Tags.Select(t=>t.Id).Contains(tag.Id))
-                .Skip(skip)
-                .Take(take)
-                .ToList();
+            var result = data.Where(filter.Compile()).OrderBy(orderBy).Skip(skip).Take(take).ToList();
+            return Task.FromResult<IList<FairyTale>>(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="orderBy"></param>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        public IList<FairyTale> GetAll<T>(Func<FairyTale, T> orderBy, int skip, int take) {
-            // TODO: extract to str.Contains(string, StringComparison) extension
-            return data
-                .OrderBy(orderBy)
-                .Skip(skip)
-                .Take(take)
-                .ToList();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public FairyTale Get(int id) {
-            return data.FirstOrDefault(t => t.Id == id);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="term"></param>
-        /// <returns></returns>
-        public int Count() {
-            return data.Count();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="term"></param>
-        /// <returns></returns>
-        public int Count(string term)
+        public Task<IList<FairyTale>> GetAllAsync<TKey>(
+            Func<FairyTale, TKey> orderBy)
         {
-            // TODO: extract to str.Contains(string, StringComparison) extension
-            return data.Count(ft => ft.Title.IndexOf(term, StringComparison.InvariantCultureIgnoreCase) >= 0);
+            var result = data.OrderBy(orderBy).ToList();
+            return Task.FromResult<IList<FairyTale>>(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public int Count(Tag tag)
+        public Task<FairyTale> GetAsync(object id)
         {
-            return data.Count(ft => ft.Tags.Select(t => t.Id).Contains(tag.Id));
+            var result = data.FirstOrDefault(f => f.Id == (int)id);
+            return Task.FromResult(result);
+        }
+
+        public Task<int> CountAsync()
+        {
+            var result = data.Count();
+            return Task.FromResult(result);
+        }
+
+        public Task<int> CountAsync(Expression<Func<FairyTale, bool>> filter)
+        {
+            var result = data.Count(filter.Compile());
+            return Task.FromResult(result);
         }
 
         private IEnumerable<FairyTale> data = new List<FairyTale>()

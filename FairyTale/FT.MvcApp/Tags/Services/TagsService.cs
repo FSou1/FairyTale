@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using FT.Entities;
-using FT.Repositories.Fake;
 
 namespace FT.MvcApp.Tags.Services
 {

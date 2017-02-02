@@ -7,26 +7,47 @@ using FT.Entities;
 
 namespace FT.Repositories.Fake
 {
-    public class FakeTagRepository
+    public class FakeTagRepository : IRepository<Tag>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public Tag Get(int id)
+        public Task<IList<Tag>> GetAllAsync(
+            Expression<Func<Tag, bool>> filter, int skip, int take)
         {
-            return data.FirstOrDefault(t => t.Id == id);
+            var result = data.Where(filter.Compile()).Skip(skip).Take(take).ToList();
+            return Task.FromResult<IList<Tag>>(result);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IList<Tag> GetAll(Func<Tag, int> orderByDescending)
+        public Task<IList<Tag>> GetAllAsync<TKey>(
+            Expression<Func<Tag, bool>> filter, Func<Tag, TKey> orderBy, int skip, int take)
         {
-            return data.OrderByDescending(orderByDescending).ToList();
+            var result = data.Where(filter.Compile()).OrderBy(orderBy).Skip(skip).Take(take).ToList();
+            return Task.FromResult<IList<Tag>>(result);
         }
+
+        public Task<IList<Tag>> GetAllAsync<TKey>(
+            Func<Tag, TKey> orderBy)
+        {
+            var result = data.OrderBy(orderBy).ToList();
+            return Task.FromResult<IList<Tag>>(result);
+        }
+
+        public Task<Tag> GetAsync(object id)
+        {
+            var result = data.FirstOrDefault(f => f.Id == (int)id);
+            return Task.FromResult(result);
+        }
+
+        public Task<int> CountAsync()
+        {
+            var result = data.Count();
+            return Task.FromResult(result);
+        }
+
+        public Task<int> CountAsync(Expression<Func<Tag, bool>> filter)
+        {
+            var result = data.Count(filter.Compile());
+            return Task.FromResult(result);
+        }
+        
 
         private static readonly IEnumerable<Tag> data = new List<Tag>()
         {
