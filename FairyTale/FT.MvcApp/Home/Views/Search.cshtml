@@ -20,7 +20,7 @@
         }
 
         <nav class="pager">
-            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term))
+            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term)).Options(x => x.MaxNrOfPages(3))
         </nav>
     }
     else {

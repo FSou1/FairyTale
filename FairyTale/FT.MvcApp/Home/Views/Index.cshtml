@@ -12,7 +12,7 @@
     }
 
     <nav class="pager">
-        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount)
+        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(x=> x.MaxNrOfPages(3))
     </nav>
 </section>
 

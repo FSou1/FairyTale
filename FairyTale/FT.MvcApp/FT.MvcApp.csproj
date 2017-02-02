@@ -49,6 +49,10 @@
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.7.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.7\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -189,6 +193,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\FT.Components\FT.Components.csproj">
+      <Project>{4CEE7B92-5CBA-42BF-8B9B-C6C41BCCD70D}</Project>
+      <Name>FT.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FT.Entities\FT.Entities.csproj">
       <Project>{0CF880D2-5EF1-4365-8183-D35A54E7F40F}</Project>
       <Name>FT.Entities</Name>

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using FT.Components.Logger;
+using log4net;
 
 namespace FT.MvcApp
 {
@@ -12,6 +14,10 @@ namespace FT.MvcApp
         protected void Application_Start()
         {
             UnityConfig.RegisterComponents();
+            LoggerConfig.Configure();
+
+            var logger = LogManager.GetLogger(typeof (MvcApplication));
+            logger.Debug("hello");
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomRazorViewEngine());
