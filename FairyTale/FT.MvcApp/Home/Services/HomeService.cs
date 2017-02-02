@@ -21,7 +21,7 @@ namespace FT.MvcApp.Home.Services {
             var data = await _repository.GetAllAsync(ft => true, ft => Guid.NewGuid(), page*perPage, perPage);
 
             var model = new IndexViewModel() {
-                Title = "Главная страница",
+                Title = "«ВСказки» - вновь навстречу чуду",
                 RandomFairyTales = data.ToPagedList(page, perPage, totalCount)
             };
 

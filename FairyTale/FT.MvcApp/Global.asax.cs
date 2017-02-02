@@ -15,10 +15,7 @@ namespace FT.MvcApp
         {
             UnityConfig.RegisterComponents();
             LoggerConfig.Configure();
-
-            var logger = LogManager.GetLogger(typeof (MvcApplication));
-            logger.Debug("hello");
-
+            
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomRazorViewEngine());
             AreaRegistration.RegisterAllAreas();

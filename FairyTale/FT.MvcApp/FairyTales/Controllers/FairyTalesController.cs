@@ -17,6 +17,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Route("story/{id}")]
         public async Task<ActionResult> Single(int id)
         {
             var model = await _service.BuildSingleViewModel(id);

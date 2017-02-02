@@ -20,7 +20,7 @@ namespace FT.MvcApp.Home.Controllers
         /// </summary> 
         /// <param name="param"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]
+        [OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]        
         public async Task<ActionResult> Index(IndexParams param)
         {
             var model = await _service.BuildIndexViewModel(param.CurrentPage, PerPage);
