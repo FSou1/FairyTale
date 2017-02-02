@@ -1,0 +1,22 @@
+﻿@model FT.MvcApp.FairyTales.Models.SingleViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+
+    var fairyTale = Model.FairyTale;
+}
+
+
+<header>
+    <h1>@fairyTale.Title</h1>
+</header>
+
+<article>
+    <header>
+        <h2>@fairyTale.Title читать:</h2>
+    </header>
+
+    @Html.ActionLink("Approve", "Clean", new { fairyTale.Id })
+
+    @Html.Raw(fairyTale.Text)
+</article>

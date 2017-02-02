@@ -47,7 +47,11 @@ namespace FT.Repositories.Fake
             var result = data.Count(filter.Compile());
             return Task.FromResult(result);
         }
-        
+
+        public Task UpdateAsync(FairyTale fairyTale) {
+            throw new NotImplementedException();
+        }
+
 
         private static readonly IEnumerable<Tag> data = new List<Tag>()
         {

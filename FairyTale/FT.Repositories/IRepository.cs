@@ -46,6 +46,11 @@ namespace FT.Repositories {
             return Task.FromResult(count);
         }
 
+        public Task UpdateAsync(FairyTale fairyTale) {
+            Session.Update(fairyTale);
+            return Task.CompletedTask;
+        }
+
         private readonly UnitOfWork _unitOfWork;
     }
 
@@ -61,5 +66,7 @@ namespace FT.Repositories {
         Task<int> CountAsync();
 
         Task<int> CountAsync(Expression<Func<T, bool>> filter);
+
+        Task UpdateAsync(FairyTale fairyTale);
     }
 }

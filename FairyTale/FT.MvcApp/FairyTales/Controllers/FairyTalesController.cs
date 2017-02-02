@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -26,6 +28,37 @@ namespace FT.MvcApp.FairyTales.Controllers
             }
 
             return View("Single", model);
+        }
+
+        [Route("dirty")]
+        public async Task<ActionResult> Dirty() {
+            var model = await _service.BuildDirtyViewModel();
+            if (model.FairyTale == null) {
+                throw new HttpException(404, "ola");
+            }
+            
+            // cleanup
+
+            return View("Dirty", model);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("clean/{id}")]
+        public async Task<ActionResult> Clean(int id) {
+            var model = await _service.BuildSingleViewModel(id);
+            if (model.FairyTale == null) {
+                throw new HttpException(404, "ola");
+            }
+
+            // cleanup
+
+            await _service.UpdateAsync(model.FairyTale);
+
+            return RedirectToAction("Dirty");
         }
 
         private readonly IFairyTalesService _service;

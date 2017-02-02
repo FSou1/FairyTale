@@ -21,7 +21,7 @@ namespace FT.MvcApp
             container.RegisterType<ITagsService, TagsService>(new PerRequestLifetimeManager());
             container.RegisterType<IHomeService, HomeService>(new PerRequestLifetimeManager());
 
-            RegisterStub(container);
+            RegisterDatabase(container);
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

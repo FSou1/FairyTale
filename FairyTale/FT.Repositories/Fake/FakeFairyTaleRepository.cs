@@ -46,6 +46,10 @@ namespace FT.Repositories.Fake {
             return Task.FromResult(result);
         }
 
+        public Task UpdateAsync(FairyTale fairyTale) {
+            throw new NotImplementedException();
+        }
+
         private IEnumerable<FairyTale> data = new List<FairyTale>()
         {
             new FairyTale
