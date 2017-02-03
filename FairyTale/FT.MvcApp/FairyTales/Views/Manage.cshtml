@@ -1,0 +1,28 @@
+﻿@model FT.MvcApp.FairyTales.Models.SingleViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+
+    var fairyTale = Model.FairyTale;
+}
+
+<article>
+    <strong>Title:</strong>
+    <p>@Html.TextBoxFor(x => x.FairyTale.Title, new { @style = "width: 100%" })</p>
+
+    <strong>Description</strong>
+    <p>@Html.TextBoxFor(x => x.FairyTale.Description, new { @style = "width: 100%" })</p>
+
+    <strong>Tags:</strong>
+    <p>@Html.Partial("Tags", fairyTale.Tags)</p>
+
+    <strong>Text:</strong>
+    <div class="clearfix">
+        <div style="float: left; width: 50%">
+            @Html.TextAreaFor(x => x.FairyTale.Text, new { @cols = 60, @rows = 30 })
+        </div>
+        <div style="float: left; width: 50%">
+            @Html.Raw(fairyTale.Text)
+        </div>
+    </div>
+</article>

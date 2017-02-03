@@ -185,6 +185,7 @@
     <Content Include="Tags\Views\Single.cshtml" />
     <Content Include="Tags\Views\Index.cshtml" />
     <Content Include="Shared\Views\Partial\Tags.cshtml" />
+    <Content Include="FairyTales\Views\Manage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

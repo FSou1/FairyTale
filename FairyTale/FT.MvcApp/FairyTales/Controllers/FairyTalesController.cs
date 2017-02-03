@@ -28,6 +28,23 @@ namespace FT.MvcApp.FairyTales.Controllers
             return View("Single", model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Route("manage-story/{id}")]
+        public async Task<ActionResult> Manage(int id)
+        {
+            var model = await _service.BuildSingleViewModel(id);
+            if (model.FairyTale == null)
+            {
+                throw new HttpException(404, "ola");
+            }
+
+            return View("Manage", model);
+        }
+
         private readonly IFairyTalesService _service;
     }
 }
