@@ -45,7 +45,7 @@ namespace FT.Repositories.Fake {
             var result = data.Count(filter.Compile());
             return Task.FromResult(result);
         }
-
+        
         private IEnumerable<FairyTale> data = new List<FairyTale>()
         {
             new FairyTale

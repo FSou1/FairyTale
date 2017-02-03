@@ -47,7 +47,6 @@ namespace FT.Repositories.Fake
             var result = data.Count(filter.Compile());
             return Task.FromResult(result);
         }
-        
 
         private static readonly IEnumerable<Tag> data = new List<Tag>()
         {

@@ -45,7 +45,7 @@ namespace FT.Repositories {
             var count = Session.Query<T>().Where(filter).Count();
             return Task.FromResult(count);
         }
-
+        
         private readonly UnitOfWork _unitOfWork;
     }
 
