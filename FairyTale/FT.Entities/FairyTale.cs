@@ -26,7 +26,7 @@ namespace FT.Entities {
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Title);
             Map(x => x.Teaser);
-            Map(x => x.Text);
+            Map(x => x.Text).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.CreatedAtUtc);
             Map(x => x.Description);
             

@@ -16,6 +16,24 @@
     <strong>Tags:</strong>
     <p>@Html.Partial("Tags", fairyTale.Tags)</p>
 
+    <strong>Actions:</strong>
+    <p>
+        <table>
+            <tr>
+                <td>
+                    @using (Html.BeginForm("AddNewLines", "FairyTales", new {id = fairyTale.Id})) {
+                        <input type="submit" value="Добавить переносы"/>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm("AddNewLines", "FairyTales", new { id = fairyTale.Id })) {
+                        <input type="submit" value="Добавить переносы" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </p>
+
     <strong>Text:</strong>
     <div class="clearfix">
         <div style="float: left; width: 50%">

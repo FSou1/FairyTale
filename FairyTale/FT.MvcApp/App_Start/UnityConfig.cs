@@ -9,6 +9,7 @@ using FT.Repositories;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using FT.Repositories.Fake;
+using FT.Repositories.NHibernate;
 
 namespace FT.MvcApp
 {
@@ -17,11 +18,14 @@ namespace FT.MvcApp
         public static void RegisterComponents() {
             var container = new UnityContainer();
 
-            container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
-            container.RegisterType<ITagsService, TagsService>(new PerRequestLifetimeManager());
-            container.RegisterType<IHomeService, HomeService>(new PerRequestLifetimeManager());
+            container.RegisterType<ITagsBuilder, TagsBuilder>(new PerRequestLifetimeManager());
+            container.RegisterType<IHomeBuilder, HomeBuilder>(new PerRequestLifetimeManager());
 
-            RegisterStub(container);
+            container.RegisterType<IFairyTalesBuilder, FairyTalesBuilder>(new PerRequestLifetimeManager());
+            container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
+            
+            //RegisterStub(container);
+            RegisterDatabase(container);
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
@@ -44,7 +48,7 @@ namespace FT.MvcApp
                     .BuildSessionFactory()
                 );
 
-            container.RegisterType<IUnitOfWork, UnitOfWork>(new PerRequestLifetimeManager());
+            container.RegisterType<IUnitOfWork, NHibernateUnitOfWork>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<FairyTale>, Repository<FairyTale>>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<Tag>, Repository<Tag>>(new PerRequestLifetimeManager());
         }

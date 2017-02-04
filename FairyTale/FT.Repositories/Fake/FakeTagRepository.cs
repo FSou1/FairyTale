@@ -48,6 +48,10 @@ namespace FT.Repositories.Fake
             return Task.FromResult(result);
         }
 
+        public Task UpdateAsync(Tag entity) {
+            throw new NotImplementedException();
+        }
+
         private static readonly IEnumerable<Tag> data = new List<Tag>()
         {
             new Tag

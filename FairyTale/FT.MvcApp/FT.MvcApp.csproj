@@ -144,11 +144,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FiltersConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Error\Controllers\ErrorController.cs" />
+    <Compile Include="Error\Models\ErrorViewModel.cs" />
     <Compile Include="FairyTales\Models\SingleViewModel.cs" />
+    <Compile Include="FairyTales\Services\FairyTalesBuilder.cs" />
     <Compile Include="FairyTales\Services\FairyTalesService.cs" />
+    <Compile Include="Filters\ExceptionHandlerAttribute.cs" />
+    <Compile Include="Filters\TransactionAttribute.cs" />
     <Compile Include="Home\Controllers\HomeController.cs" />
     <Compile Include="FairyTales\Controllers\FairyTalesController.cs" />
     <Compile Include="CustomRazorViewEngine.cs" />
@@ -158,7 +163,7 @@
     <Compile Include="Home\Models\AboutViewModel.cs" />
     <Compile Include="Home\Models\IndexViewModel.cs" />
     <Compile Include="Home\Models\SearchViewModel.cs" />
-    <Compile Include="Home\Services\HomeService.cs" />
+    <Compile Include="Home\Services\HomeBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\HtmlHelpers\FairyTaleHtmlHelpers.cs" />
     <Compile Include="Shared\HtmlHelpers\TagHtmlHelpers.cs" />
@@ -166,7 +171,8 @@
     <Compile Include="Tags\Controllers\TagsController.cs" />
     <Compile Include="Tags\Models\IndexViewModel.cs" />
     <Compile Include="Tags\Models\SingleViewModel.cs" />
-    <Compile Include="Tags\Services\TagsService.cs" />
+    <Compile Include="Tags\Services\TagsBuilder.cs" />
+    <Compile Include="Utility\Guard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

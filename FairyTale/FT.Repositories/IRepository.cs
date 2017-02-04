@@ -5,16 +5,17 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using FT.Entities;
+using FT.Repositories.NHibernate;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace FT.Repositories {
     public class Repository<T> : IRepository<T> {
         public Repository(IUnitOfWork unitOfWork) {
-            _unitOfWork = (UnitOfWork)unitOfWork;
+            _nHibernateUnitOfWork = (NHibernateUnitOfWork)unitOfWork;
         }
 
-        protected ISession Session => _unitOfWork.Session;
+        protected ISession Session => _nHibernateUnitOfWork.Session;
 
         public Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take) {
             var entities = Session.Query<T>().Where(filter).Skip(skip).Take(take).ToList();
@@ -45,8 +46,13 @@ namespace FT.Repositories {
             var count = Session.Query<T>().Where(filter).Count();
             return Task.FromResult(count);
         }
-        
-        private readonly UnitOfWork _unitOfWork;
+
+        public Task UpdateAsync(T entity) {
+            Session.Update(entity);
+            return Task.CompletedTask;
+        }
+
+        private readonly NHibernateUnitOfWork _nHibernateUnitOfWork;
     }
 
     public interface IRepository<T> {
@@ -61,5 +67,7 @@ namespace FT.Repositories {
         Task<int> CountAsync();
 
         Task<int> CountAsync(Expression<Func<T, bool>> filter);
+
+        Task UpdateAsync(T entity);
     }
 }

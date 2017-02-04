@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
 
-namespace FT.Repositories {
-    public class UnitOfWork : IUnitOfWork {
+namespace FT.Repositories.NHibernate {
+    public class NHibernateUnitOfWork : INHibernateUnitOfWork {
         public ISession Session { get; set; }
 
-        public UnitOfWork(ISessionFactory sessionFactory) {
+        public NHibernateUnitOfWork(ISessionFactory sessionFactory) {
             Session = sessionFactory.OpenSession();
         }
 
@@ -50,11 +44,5 @@ namespace FT.Repositories {
         }
 
         private ITransaction _transaction;
-    }
-
-    public interface IUnitOfWork : IDisposable {
-        void BeginTransaction();
-        void Commit();
-        void Rollback();
     }
 }

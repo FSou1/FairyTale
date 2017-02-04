@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using FT.MvcApp.Error.Models;
+using FT.MvcApp.Shared.Models;
 
 namespace FT.MvcApp.Error.Controllers
 {
@@ -10,7 +12,11 @@ namespace FT.MvcApp.Error.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            return View();
+            var model = new ErrorViewModel {
+                Title = "500. Что-то пошло явно не так"
+            };
+
+            return View(model);
         }
 
         /// <summary>
@@ -19,16 +25,23 @@ namespace FT.MvcApp.Error.Controllers
         /// <returns></returns>
         public ActionResult Unauthorized()
         {
-            return View();
+            var model = new ErrorViewModel {
+                Title = "401. Доступ запрещён"
+            };
+
+            return View(model);
         }
 
         /// <summary>
         /// Catch 404
         /// </summary>
         /// <returns></returns>
-        public ActionResult NotFound()
-        {
-            return View();
+        public ActionResult NotFound() {
+            var model = new ErrorViewModel {
+                Title = "404. Страница не найдена"
+            };
+
+            return View(model);
         }
     }
 }

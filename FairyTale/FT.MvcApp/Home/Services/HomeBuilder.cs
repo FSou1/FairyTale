@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using FT.Entities;
 
 namespace FT.MvcApp.Home.Services {
-    public class HomeService : IHomeService {
-        public HomeService(IRepository<FairyTale> repository) {
+    public class HomeBuilder : IHomeBuilder {
+        public HomeBuilder(IRepository<FairyTale> repository) {
             _repository = repository;
         }
 
@@ -64,7 +64,7 @@ namespace FT.MvcApp.Home.Services {
         private readonly IRepository<FairyTale> _repository;
     }
 
-    public interface IHomeService {
+    public interface IHomeBuilder {
         Task<IndexViewModel> BuildIndexViewModel(int page, int perPage);
 
         Task<SearchViewModel> BuildSearchViewModel(string term, int page, int perPage);

@@ -45,7 +45,11 @@ namespace FT.Repositories.Fake {
             var result = data.Count(filter.Compile());
             return Task.FromResult(result);
         }
-        
+
+        public Task UpdateAsync(FairyTale entity) {
+            throw new NotImplementedException();
+        }
+
         private IEnumerable<FairyTale> data = new List<FairyTale>()
         {
             new FairyTale

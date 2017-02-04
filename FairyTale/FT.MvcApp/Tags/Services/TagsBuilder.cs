@@ -10,8 +10,8 @@ using FT.Entities;
 
 namespace FT.MvcApp.Tags.Services
 {
-    public class TagsService : ITagsService {
-        public TagsService(
+    public class TagsBuilder : ITagsBuilder {
+        public TagsBuilder(
             IRepository<Tag> repository,
             IRepository<FairyTale> ftRepository
         ) {
@@ -62,7 +62,7 @@ namespace FT.MvcApp.Tags.Services
         private readonly IRepository<FairyTale> _ftRepository;
     }
 
-    public interface ITagsService {
+    public interface ITagsBuilder {
         Task<SingleViewModel> BuildSingleViewModel(int id, int page, int perPage);
 
         Task<IndexViewModel> BuildIndexViewModel();

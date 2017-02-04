@@ -11,8 +11,8 @@ namespace FT.MvcApp.Home.Controllers
     {
         private const int PerPage = 5;
 
-        public HomeController(IHomeService service) {
-            _service = service;
+        public HomeController(IHomeBuilder builder) {
+            _builder = builder;
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace FT.MvcApp.Home.Controllers
         [OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]        
         public async Task<ActionResult> Index(IndexParams param)
         {
-            var model = await _service.BuildIndexViewModel(param.CurrentPage, PerPage);
+            var model = await _builder.BuildIndexViewModel(param.CurrentPage, PerPage);
             return View(model);
         }
 
@@ -40,7 +40,7 @@ namespace FT.MvcApp.Home.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = await _service.BuildSearchViewModel(param.Term, param.CurrentPage, PerPage);
+            var model = await _builder.BuildSearchViewModel(param.Term, param.CurrentPage, PerPage);
             return View(model);
         }
 
@@ -51,10 +51,10 @@ namespace FT.MvcApp.Home.Controllers
         [Route("about")]
         public ActionResult About() 
         {
-            var model = _service.BuildAboutViewModel();
+            var model = _builder.BuildAboutViewModel();
             return View(model);
         }
 
-        private readonly IHomeService _service;
+        private readonly IHomeBuilder _builder;
     }
 }

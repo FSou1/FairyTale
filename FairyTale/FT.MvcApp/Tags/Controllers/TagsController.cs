@@ -9,8 +9,8 @@ namespace FT.MvcApp.Tags.Controllers {
     public class TagsController : Controller {
         private const int TalesPerPage = 5;
 
-        public TagsController(ITagsService service) {
-            _service = service;
+        public TagsController(ITagsBuilder builder) {
+            _builder = builder;
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace FT.MvcApp.Tags.Controllers {
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         [Route("tag/{id}")]
         public async Task<ActionResult> Single(SingleParams param) {
-            var model = await _service.BuildSingleViewModel(param.Id, param.CurrentPage, TalesPerPage);
+            var model = await _builder.BuildSingleViewModel(param.Id, param.CurrentPage, TalesPerPage);
             if (model.Tag == null)
             {
                 throw new HttpException(404, "ola");
@@ -38,11 +38,11 @@ namespace FT.MvcApp.Tags.Controllers {
         [Route("tags")]
         public async Task<ActionResult> Index()
         {
-            var model = await _service.BuildIndexViewModel();
+            var model = await _builder.BuildIndexViewModel();
 
             return View("Index", model);
         }
 
-        private readonly ITagsService _service;
+        private readonly ITagsBuilder _builder;
     }
 }

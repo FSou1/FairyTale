@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using FT.Components.Logger;
-using log4net;
+using FT.MvcApp.Filters;
 
 namespace FT.MvcApp
 {
@@ -15,7 +13,8 @@ namespace FT.MvcApp
         {
             UnityConfig.RegisterComponents();
             LoggerConfig.Configure();
-            
+            FiltersConfig.Configure();
+
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new CustomRazorViewEngine());
             AreaRegistration.RegisterAllAreas();
