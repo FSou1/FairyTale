@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using FT.Components.Utility;
 using FT.Entities;
@@ -20,6 +22,10 @@ namespace FT.MvcApp.FairyTales.Services {
             await _repository.UpdateAsync(fairyTale);
         }
 
+        public async Task<IList<FairyTale>> GetAllAsync(Expression<Func<FairyTale, bool>> filter, int skip, int take) {
+            return await _repository.GetAllAsync(filter, skip, take);
+        }
+
         private readonly IRepository<FairyTale> _repository;
     }
 
@@ -27,5 +33,9 @@ namespace FT.MvcApp.FairyTales.Services {
         Task<FairyTale> GetAsync(int id);
 
         Task UpdateAsync(FairyTale fairyTale);
+
+        Task<IList<FairyTale>> GetAllAsync(
+            Expression<Func<FairyTale, bool>> filter, int skip, int take
+        );
     }
 }

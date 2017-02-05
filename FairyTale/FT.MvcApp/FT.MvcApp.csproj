@@ -149,6 +149,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Error\Controllers\ErrorController.cs" />
     <Compile Include="Error\Models\ErrorViewModel.cs" />
+    <Compile Include="FairyTales\Models\ManageViewModel.cs" />
     <Compile Include="FairyTales\Models\SingleViewModel.cs" />
     <Compile Include="FairyTales\Services\FairyTalesBuilder.cs" />
     <Compile Include="FairyTales\Services\FairyTalesService.cs" />

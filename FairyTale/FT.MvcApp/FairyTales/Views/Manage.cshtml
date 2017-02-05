@@ -1,9 +1,11 @@
-﻿@model FT.MvcApp.FairyTales.Models.SingleViewModel
+﻿@model FT.MvcApp.FairyTales.Models.ManageViewModel
 
 @{
     ViewBag.Title = Model.Title;
 
     var fairyTale = Model.FairyTale;
+    var next = Model.Next;
+    var count = Model.NextCount;
 }
 
 <article>
@@ -24,10 +26,15 @@
             <table>
                 <tr>
                     <td>
-                        @Html.ActionLink("Отформатировать текст", "FormatText", "FairyTales", new { id = fairyTale.Id })
+                        @Html.ActionLink("Отформатировать текст", "FormatText", new { id = fairyTale.Id })
                     </td>
                     <td>
                         <input type="submit" value="Сохранить"/>
+                    </td>
+                    <td>
+                        @if (next != null) {
+                            @Html.ActionLink("Следующая неотформатированная " + count, "Manage", new {id = next.Id})
+                        }
                     </td>
                 </tr>
             </table>

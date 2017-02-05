@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -43,13 +45,30 @@ namespace FT.MvcApp.FairyTales.Controllers
         [Route("manage-story/{id}")]
         public async Task<ActionResult> Manage(int id)
         {
-            var model = await _builder.BuildSingleViewModel(id);
+            var model = await _builder.BuildManageViewModel(id);
             if (model.FairyTale == null)
             {
                 throw new HttpException(404, "ola");
             }
 
             return View("Manage", model);
+        }
+
+        [Route("manage-story/format-all")]
+        [Transaction]
+        public async Task<ActionResult> FormatAll() {
+            var notFormattedFairyTales = await _service.GetAllAsync(x => 
+                    !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine), 0, 100);
+            if (notFormattedFairyTales.Count == 0) {
+                throw new HttpException(404, "done");
+            }
+
+            foreach (var tale in notFormattedFairyTales) {
+                tale.Text = Format(tale.Text);
+                await _service.UpdateAsync(tale);
+            }
+
+            return Content($"Обновлено: {notFormattedFairyTales.Count}");
         }
 
         [Route("manage-story/update")]
@@ -79,26 +98,31 @@ namespace FT.MvcApp.FairyTales.Controllers
                 throw new HttpException(404, "ola");
             }
 
+            fairyTale.Text = Format(fairyTale.Text);
+
+            var model = await _builder.BuildManageViewModel(id);
+            model.FairyTale = fairyTale;
+
+            return View("Manage", model);
+        }
+
+        private string Format(string text) {
             var options = FormatTextOptions.Split
                           | FormatTextOptions.Wrap | FormatTextOptions.Join
-                          | FormatTextOptions.Trim | FormatTextOptions.Filter;
+                          | FormatTextOptions.Trim | FormatTextOptions.Filter
+                          | FormatTextOptions.Replace;
 
             var formatOptions = new FairyTalesFormatterOptions {
-                SplitSeparator = new[] {"<p>", "</p>"},
+                SplitSeparator = new[] { "<p>", "</p>" },
                 WrapStart = "<p>",
                 WrapEnd = "</p>",
                 JoinSeparator = $"{Environment.NewLine}{Environment.NewLine}",
-                TrimChars = new[] {' '},
-                FilterCondition = x => string.IsNullOrEmpty(x) || string.IsNullOrWhiteSpace(x)
+                TrimChars = new[] { ' ', '\r', '\n' },
+                FilterCondition = x => !Regex.IsMatch(x, "[а-яА-Я0-9]"),
+                Replace = new Dictionary<string, string>() { { "<br />", "</p><p>"} }
             };
 
-            fairyTale.Text = StringFormatter.Format(fairyTale.Text, options, formatOptions);
-
-            var model = new SingleViewModel {
-                FairyTale = fairyTale
-            };
-
-            return View("Manage", model);
+            return StringFormatter.Format(text, options, formatOptions);
         }
 
         private readonly IFairyTalesBuilder _builder;

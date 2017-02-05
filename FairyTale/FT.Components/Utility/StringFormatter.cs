@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 
 namespace FT.Components.Utility {
     public static class StringFormatter {
@@ -15,6 +16,9 @@ namespace FT.Components.Utility {
             if (options.HasFlag(FormatTextOptions.Trim)) {
                 parts = Trim(parts, formatOptions.TrimChars).ToList();
             }
+            if (options.HasFlag(FormatTextOptions.Replace)) {
+                parts = Replace(parts, formatOptions.Replace).ToList();
+            }
             if (options.HasFlag(FormatTextOptions.Filter)) {
                 parts = Filter(parts, formatOptions.FilterCondition);
             }
@@ -23,6 +27,10 @@ namespace FT.Components.Utility {
             }
 
             return string.Join(formatOptions.JoinSeparator, parts);
+        }
+
+        private static IEnumerable<string> Replace(IList<string> lines, IDictionary<string, string> replaceDict) {
+            return lines.Select(s => replaceDict.Aggregate(s, (current, kv) => current.Replace(kv.Key, kv.Value))).ToList();
         }
 
         private static IEnumerable<string> Split(string text, string[] separator) {
@@ -34,7 +42,7 @@ namespace FT.Components.Utility {
         }
 
         private static IEnumerable<string> Trim(IEnumerable<string> lines, char[] trimChars) {
-            return lines.Select(s => s.Trim(trimChars));
+            return lines.Select(s => s.Trim(trimChars)).Select(s => s.Trim());
         }
 
         private static IList<string> Filter(IEnumerable<string> parts, Expression<Func<string, bool>> filter) {
@@ -48,7 +56,8 @@ namespace FT.Components.Utility {
         Wrap,
         Join,
         Trim,
-        Filter
+        Filter,
+        Replace
     }
 
     public class FairyTalesFormatterOptions {
@@ -58,5 +67,6 @@ namespace FT.Components.Utility {
         public string JoinSeparator { get; set; }
         public char[] TrimChars { get; set; }
         public Expression<Func<string, bool>> FilterCondition { get; set; }
+        public IDictionary<string, string> Replace { get; set; }
     }
 }

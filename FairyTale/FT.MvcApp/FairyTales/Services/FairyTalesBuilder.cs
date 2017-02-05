@@ -31,10 +31,38 @@ namespace FT.MvcApp.FairyTales.Services
             return model;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ManageViewModel> BuildManageViewModel(int id) {
+            var fairyTale = await _repository.GetAsync(id);
+
+            var notFormatted = await _repository.GetAllAsync(x => 
+                !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine), 0, 1);
+
+            var count = await _repository.CountAsync(x => 
+                !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine));
+
+            var next = notFormatted.FirstOrDefault();
+
+            var model = new ManageViewModel {
+                Title = fairyTale.Title,
+                Description = fairyTale.Description,
+                FairyTale = fairyTale,
+                Next = next,
+                NextCount = count
+            };
+
+            return model;
+        }
+
         private readonly IRepository<FairyTale> _repository;
     }
 
     public interface IFairyTalesBuilder {
         Task<SingleViewModel> BuildSingleViewModel(int id);
+        Task<ManageViewModel> BuildManageViewModel(int id);
     }
 }
