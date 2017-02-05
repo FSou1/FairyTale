@@ -7,40 +7,40 @@
 }
 
 <article>
-    <strong>Title:</strong>
-    <p>@Html.TextBoxFor(x => x.FairyTale.Title, new { @style = "width: 100%" })</p>
+    @using (Html.BeginForm("Update", "FairyTales", FormMethod.Post)) {
+        @Html.HiddenFor(x=>x.FairyTale.Id);
 
-    <strong>Description</strong>
-    <p>@Html.TextBoxFor(x => x.FairyTale.Description, new { @style = "width: 100%" })</p>
+        <strong>Title:</strong>
+        <p>@Html.TextBoxFor(x => x.FairyTale.Title, new {@style = "width: 100%"})</p>
 
-    <strong>Tags:</strong>
-    <p>@Html.Partial("Tags", fairyTale.Tags)</p>
+        <strong>Description</strong>
+        <p>@Html.TextBoxFor(x => x.FairyTale.Description, new {@style = "width: 100%"})</p>
 
-    <strong>Actions:</strong>
-    <p>
-        <table>
-            <tr>
-                <td>
-                    @using (Html.BeginForm("AddNewLines", "FairyTales", new {id = fairyTale.Id})) {
-                        <input type="submit" value="Добавить переносы"/>
-                    }
-                </td>
-                <td>
-                    @using (Html.BeginForm("AddNewLines", "FairyTales", new { id = fairyTale.Id })) {
-                        <input type="submit" value="Добавить переносы" />
-                    }
-                </td>
-            </tr>
-        </table>
-    </p>
+        <strong>Tags:</strong>
+        <p>@Html.Partial("Tags", fairyTale.Tags)</p>
 
-    <strong>Text:</strong>
-    <div class="clearfix">
-        <div style="float: left; width: 50%">
-            @Html.TextAreaFor(x => x.FairyTale.Text, new { @cols = 60, @rows = 30 })
+        <strong>Actions:</strong>
+        <p>
+            <table>
+                <tr>
+                    <td>
+                        @Html.ActionLink("Отформатировать текст", "FormatText", "FairyTales", new { id = fairyTale.Id })
+                    </td>
+                    <td>
+                        <input type="submit" value="Сохранить"/>
+                    </td>
+                </tr>
+            </table>
+        </p>
+
+        <strong>Text:</strong>
+        <div class="clearfix">
+            <div style="float: left; width: 50%">
+                @Html.TextAreaFor(x => x.FairyTale.Text, new {@cols = 60, @rows = 30})
+            </div>
+            <div style="float: left; width: 50%">
+                @Html.Raw(fairyTale.Text)
+            </div>
         </div>
-        <div style="float: left; width: 50%">
-            @Html.Raw(fairyTale.Text)
-        </div>
-    </div>
+    }
 </article>

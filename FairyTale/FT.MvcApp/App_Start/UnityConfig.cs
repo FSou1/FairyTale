@@ -1,6 +1,8 @@
 using System.Web.Mvc;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FT.Components.Serializer;
+using FT.Components.Serializer.Json;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Home.Services;
@@ -17,6 +19,8 @@ namespace FT.MvcApp
     {
         public static void RegisterComponents() {
             var container = new UnityContainer();
+
+            container.RegisterType<ISerializer, NewtonsoftJsonSerializer>();
 
             container.RegisterType<ITagsBuilder, TagsBuilder>(new PerRequestLifetimeManager());
             container.RegisterType<IHomeBuilder, HomeBuilder>(new PerRequestLifetimeManager());

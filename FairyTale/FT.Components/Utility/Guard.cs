@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FT.MvcApp.Utility {
+namespace FT.Components.Utility {
     public static partial class Guard {
         public static void ArgumentNotNull(object argumentValue, string argumentName) {
             if (argumentValue == null) {

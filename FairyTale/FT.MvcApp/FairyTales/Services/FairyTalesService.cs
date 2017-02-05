@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FT.Components.Utility;
 using FT.Entities;
-using FT.MvcApp.Utility;
 using FT.Repositories;
 
 namespace FT.MvcApp.FairyTales.Services {
@@ -10,27 +10,22 @@ namespace FT.MvcApp.FairyTales.Services {
             _repository = repository;
         }
 
-        public Task UpdateTextAsync(FairyTale fairyTale, UpdateTextOptions options) {
-            Guard.ArgumentNotNull(fairyTale, nameof(fairyTale));
-
-            fairyTale.Text = "1" + fairyTale.Text;
-
-            return Task.CompletedTask;
-        }
-
         public async Task<FairyTale> GetAsync(int id) {
             return await _repository.GetAsync(id);
+        }
+
+        public async Task UpdateAsync(FairyTale fairyTale) {
+            Guard.ArgumentNotNull(fairyTale, nameof(fairyTale));
+
+            await _repository.UpdateAsync(fairyTale);
         }
 
         private readonly IRepository<FairyTale> _repository;
     }
 
     public interface IFairyTalesService {
-        Task UpdateTextAsync(FairyTale fairyTale, UpdateTextOptions options);
         Task<FairyTale> GetAsync(int id);
-    }
 
-    public enum UpdateTextOptions {
-        AddNewLines
+        Task UpdateAsync(FairyTale fairyTale);
     }
 }

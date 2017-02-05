@@ -172,7 +172,6 @@
     <Compile Include="Tags\Models\IndexViewModel.cs" />
     <Compile Include="Tags\Models\SingleViewModel.cs" />
     <Compile Include="Tags\Services\TagsBuilder.cs" />
-    <Compile Include="Utility\Guard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
