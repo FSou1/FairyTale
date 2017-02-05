@@ -58,7 +58,8 @@ namespace FT.MvcApp.FairyTales.Controllers
         [Transaction]
         public async Task<ActionResult> FormatAll() {
             var notFormattedFairyTales = await _service.GetAllAsync(x => 
-                    !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine), 0, 100);
+                    !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine)
+                    || x.Text.StartsWith("<p>&nbsp;</p>"), 0, 100);
             if (notFormattedFairyTales.Count == 0) {
                 throw new HttpException(404, "done");
             }
