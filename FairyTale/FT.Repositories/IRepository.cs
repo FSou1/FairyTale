@@ -22,8 +22,11 @@ namespace FT.Repositories {
             return Task.FromResult<IList<T>>(entities);
         }
 
-        public Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy) {
-            var entities = Session.Query<T>().OrderBy(orderBy).ToList();
+        public Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc) {
+            var entities = (asc 
+                ? Session.Query<T>().OrderBy(orderBy) 
+                : Session.Query<T>().OrderByDescending(orderBy)
+            ).ToList();
             return Task.FromResult<IList<T>>(entities);
         }
 
@@ -60,7 +63,7 @@ namespace FT.Repositories {
 
         Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy, int skip, int take);
 
-        Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy);
+        Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc);
 
         Task<T> GetAsync(object id);
 

@@ -47,7 +47,7 @@ namespace FT.MvcApp.Tags.Services
         /// </summary>
         /// <returns></returns>
         public async Task<IndexViewModel> BuildIndexViewModel() {
-            var tagData = await _repository.GetAllAsync(t => t.FairyTalesCount);
+            var tagData = await _repository.GetAllAsync(t => t.FairyTalesCount, false);
 
             var model = new IndexViewModel()
             {

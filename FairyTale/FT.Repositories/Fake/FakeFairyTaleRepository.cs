@@ -22,9 +22,13 @@ namespace FT.Repositories.Fake {
         }
 
         public Task<IList<FairyTale>> GetAllAsync<TKey>(
-            Func<FairyTale, TKey> orderBy)
+            Func<FairyTale, TKey> orderBy, bool asc
+        )
         {
-            var result = data.OrderBy(orderBy).ToList();
+            var result = (asc 
+                ? data.OrderBy(orderBy) 
+                : data.OrderByDescending(orderBy)
+            ).ToList();
             return Task.FromResult<IList<FairyTale>>(result);
         }
 

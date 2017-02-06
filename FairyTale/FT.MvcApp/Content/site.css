@@ -170,8 +170,12 @@ body > footer {
     height: 16px;
 }
 
+.tags {
+    text-align: justify;
+}
+
 .tag {
-    margin: 0 5px 0 0;
+    margin: 0 10px 0 0;
     color: #6c9471;
 }
 

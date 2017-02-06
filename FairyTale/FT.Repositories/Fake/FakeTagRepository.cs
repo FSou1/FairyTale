@@ -24,9 +24,12 @@ namespace FT.Repositories.Fake
         }
 
         public Task<IList<Tag>> GetAllAsync<TKey>(
-            Func<Tag, TKey> orderBy)
+            Func<Tag, TKey> orderBy, bool asc)
         {
-            var result = data.OrderBy(orderBy).ToList();
+            var result = (asc
+                ? data.OrderBy(orderBy)
+                : data.OrderByDescending(orderBy)
+            ).ToList();
             return Task.FromResult<IList<Tag>>(result);
         }
 
