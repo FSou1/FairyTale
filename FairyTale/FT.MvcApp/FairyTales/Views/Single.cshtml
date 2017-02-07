@@ -9,14 +9,25 @@
 
 <header>
     <h1>@fairyTale.Title</h1>
+
+    @Html.Partial("Tags", fairyTale.Tags)
+
     <p>@Model.Description</p>
 </header>
 
 <article>
     <header>
         <h2>@fairyTale.Title читать:</h2>
-        <p>@Html.Partial("Tags", fairyTale.Tags)</p>
     </header>
 
-    @Html.Raw(fairyTale.Text)
+    @if (fairyTale.Children.Count > 0) {
+        <ul>
+            @foreach (var ft in fairyTale.Children) {
+                <li>@Html.ActionLink(ft.Title, "Single", new {id = ft.Id})</li>
+            }
+        </ul>
+    }
+    else {
+        @Html.Raw(fairyTale.Text)
+    }
 </article>

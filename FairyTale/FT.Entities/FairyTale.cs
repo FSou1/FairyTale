@@ -15,6 +15,7 @@ namespace FT.Entities {
         public virtual DateTime CreatedAtUtc { get; set; }
         public virtual string Description { get; set; }
         
+        public virtual IList<FairyTale> Children { get; set; } = new List<FairyTale>();
         public virtual IList<Tag> Tags { get; set; } = new List<Tag>();
     }
 

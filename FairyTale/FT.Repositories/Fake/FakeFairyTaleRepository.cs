@@ -56,6 +56,36 @@ namespace FT.Repositories.Fake {
 
         private IEnumerable<FairyTale> data = new List<FairyTale>()
         {
+            new FairyTale() {
+              Id  = 500,
+              Title = "Снежная королева",
+              Teaser = "<p>MassTransit это open source библиотека, разработанная на языке C# для .NET платформы, упрощающая работу с шиной данных, которая используется при построении распределенных приложений и реализации SOA (service oriented architecture).</p>",
+              Description = "MassTransit это open source библиотека, разработанная на языке C# для .NET платформы, упрощающая работу с шиной данных, которая используется при построении распределенных приложений и реализации SOA (service oriented architecture).",
+              Children = new List<FairyTale>() {
+                new FairyTale() {
+                    Id = 501,
+                    Title = "Зеркало и его осколки",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new FairyTale() {
+                    Id = 502,
+                    Title = "Мальчик и девочка",
+                    CreatedAtUtc = DateTime.UtcNow
+                },
+                new FairyTale() {
+                    Id = 503,
+                    Title = "Цветник женщины, умевшей колдовать",
+                    CreatedAtUtc = DateTime.UtcNow
+                }
+              },
+              Tags = new List<Tag>() {
+                  new Tag() {
+                      Id = 1,
+                      Title = "Снежная королева"
+                  }
+              },
+              CreatedAtUtc = DateTime.UtcNow
+            },
             new FairyTale
             {
                 Id = 1,
