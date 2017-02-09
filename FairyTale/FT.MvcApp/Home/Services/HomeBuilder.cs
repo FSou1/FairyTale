@@ -4,6 +4,7 @@ using MvcPaging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using FT.Components.Utility;
 using FT.Entities;
 
 namespace FT.MvcApp.Home.Services {
@@ -17,8 +18,11 @@ namespace FT.MvcApp.Home.Services {
         /// </summary>
         /// <returns></returns>
         public async Task<IndexViewModel> BuildIndexViewModel(int page, int perPage) {
-            var totalCount = await _repository.CountAsync();
-            var data = await _repository.GetAllAsync(ft => true, ft => Guid.NewGuid(), page*perPage, perPage);
+            var filter = PredicateBuilder.True<FairyTale>()
+                .And(ft => ft.Parent == null);
+
+            var totalCount = await _repository.CountAsync(filter);
+            var data = await _repository.GetAllAsync(filter, ft => Guid.NewGuid(), page*perPage, perPage);
 
             var model = new IndexViewModel() {
                 Title = "«ВСказки» - вновь навстречу чуду",
@@ -36,8 +40,11 @@ namespace FT.MvcApp.Home.Services {
         /// <param name="perPage"></param>
         /// <returns></returns>
         public async Task<SearchViewModel> BuildSearchViewModel(string term, int page, int perPage) {
-            var totalCount = await _repository.CountAsync(ft => ft.Title.Contains(term));
-            var data = await _repository.GetAllAsync(ft => ft.Title.Contains(term), page*perPage, perPage);
+            var filter = PredicateBuilder.True<FairyTale>()
+                .And(ft => ft.Title.Contains(term));
+
+            var totalCount = await _repository.CountAsync(filter);
+            var data = await _repository.GetAllAsync(filter, page*perPage, perPage);
 
             var model = new SearchViewModel()
             {

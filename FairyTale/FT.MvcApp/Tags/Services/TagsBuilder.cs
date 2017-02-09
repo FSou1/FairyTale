@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using FT.Components.Utility;
 using FT.Entities;
 
 namespace FT.MvcApp.Tags.Services
@@ -29,8 +30,13 @@ namespace FT.MvcApp.Tags.Services
         public async Task<SingleViewModel> BuildSingleViewModel(int id, int page, int perPage)
         {
             var tag = await _repository.GetAsync(id);
-            var ftData = await _ftRepository.GetAllAsync(ft => ft.Tags.Contains(tag), page*perPage, perPage);
-            var ftTotalCount = await _ftRepository.CountAsync(ft => ft.Tags.Contains(tag));
+
+            var filter = PredicateBuilder.True<FairyTale>()
+                .And(ft => ft.Parent == null)
+                .And(ft => ft.Tags.Contains(tag));
+            
+            var ftData = await _ftRepository.GetAllAsync(filter, page*perPage, perPage);
+            var ftTotalCount = await _ftRepository.CountAsync(filter);
 
             var model = new SingleViewModel
             {

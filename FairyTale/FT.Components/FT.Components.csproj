@@ -53,6 +53,7 @@
     <Compile Include="Serializer\ISerializer.cs" />
     <Compile Include="Serializer\Json\NewtonsoftJsonSerializer.cs" />
     <Compile Include="Utility\Guard.cs" />
+    <Compile Include="Utility\PredicateBuilder.cs" />
     <Compile Include="Utility\StringFormatter.cs" />
   </ItemGroup>
   <ItemGroup>
