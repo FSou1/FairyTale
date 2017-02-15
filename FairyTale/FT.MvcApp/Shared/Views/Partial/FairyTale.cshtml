@@ -1,8 +1,11 @@
 ﻿@model FairyTale
+@{ 
+    var hrefClass = Model.IsBook ? "story-book" : "story";
+}
 
 <article>
     <header>
-        <h2>@Html.ActionLink(Model)</h2>
+        <h2>@Html.ActionLink(Model, new { @class = hrefClass })</h2>
         @Html.Partial("Tags", Model.Tags)
     </header>
 

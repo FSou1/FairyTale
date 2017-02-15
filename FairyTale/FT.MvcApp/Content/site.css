@@ -169,6 +169,21 @@ body > footer {
         margin: 0 16px;
     }
 
+/* fairy tale */
+.story:after {
+    content: url(images/tag-icon.png);
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+
+.story-book:after{
+    content: url(images/tag-icon.png);
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+
 /* tags */
 .tags:before {
     content: url(images/tag-icon.png);

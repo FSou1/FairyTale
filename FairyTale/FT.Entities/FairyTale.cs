@@ -11,7 +11,9 @@ namespace FT.Entities {
         public virtual string Text { get; set; }
         public virtual DateTime CreatedAtUtc { get; set; }
         public virtual string Description { get; set; }
-        
+
+        public virtual bool IsBook => Children.Count > 0;
+
         public virtual ISet<FairyTale> Children { get; set; } = new HashSet<FairyTale>();
         public virtual ISet<Tag> Tags { get; set; } = new HashSet<Tag>();
     }

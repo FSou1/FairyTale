@@ -9,7 +9,12 @@ using System.Web.Mvc.Html;
 namespace FT.MvcApp.Shared.HtmlHelpers {
     public static class FairyTaleHtmlHelpers {
         public static MvcHtmlString ActionLink(this HtmlHelper self, FairyTale fairyTale) {
-            return self.ActionLink(fairyTale.Title, "Single", "FairyTales", new { id = fairyTale.Id }, null);
+            return self.ActionLink(fairyTale, null);
+        }
+
+        public static MvcHtmlString ActionLink(this HtmlHelper self, FairyTale fairyTale, object htmlAttributes)
+        {
+            return self.ActionLink(fairyTale.Title, "Single", "FairyTales", new { id = fairyTale.Id }, htmlAttributes);
         }
     }
 }
