@@ -131,6 +131,8 @@
     <Content Include="App_Data\Fairytale_log.ldf">
       <DependentUpon>Fairytale.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\story-book-icon.png" />
+    <Content Include="Content\images\story-icon.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\find.png" />
     <Content Include="Content\images\logo.gif" />

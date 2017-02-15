@@ -171,17 +171,23 @@ body > footer {
 
 /* fairy tale */
 .story:after {
-    content: url(images/tag-icon.png);
+    background-image: url('images/story-icon.png');
+    background-size: 24px 24px;
+    display: inline-block;
+    width: 24px; 
+    height: 24px;
+    content:"";
     vertical-align: middle;
-    width: 16px;
-    height: 16px;
 }
 
 .story-book:after{
-    content: url(images/tag-icon.png);
+    background-image: url('images/story-book-icon.png');
+    background-size: 24px 24px;
+    display: inline-block;
+    width: 24px; 
+    height: 24px;
+    content:"";
     vertical-align: middle;
-    width: 16px;
-    height: 16px;
 }
 
 /* tags */
