@@ -1,0 +1,18 @@
+﻿@model FairyTale
+@{
+    var fairyTale = Model;
+
+    var parent = fairyTale.Parent;
+    var previous = fairyTale.Previous;
+    var next = fairyTale.Next;
+}
+
+<footer>
+    <nav>
+        <ul class="h-nav clearfix">
+            <li>@Html.Previous(previous)</li>
+            <li>@Html.Parent(parent)</li>
+            <li>@Html.Next(next)</li>
+        </ul>
+    </nav>
+</footer>

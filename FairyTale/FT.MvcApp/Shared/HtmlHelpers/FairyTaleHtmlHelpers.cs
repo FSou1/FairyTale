@@ -12,9 +12,29 @@ namespace FT.MvcApp.Shared.HtmlHelpers {
             return self.ActionLink(fairyTale, null);
         }
 
-        public static MvcHtmlString ActionLink(this HtmlHelper self, FairyTale fairyTale, object htmlAttributes)
-        {
-            return self.ActionLink(fairyTale.Title, "Single", "FairyTales", new { id = fairyTale.Id }, htmlAttributes);
+        public static MvcHtmlString ActionLink(this HtmlHelper self, FairyTale fairyTale, object htmlAttributes) {
+            return self.ActionLink(fairyTale.Title, fairyTale, htmlAttributes);
         }
+
+        public static MvcHtmlString ActionLink(this HtmlHelper self, string title, FairyTale fairyTale, object htmlAttributes) {
+            return self.ActionLink(title, "Single", "FairyTales", new {id = fairyTale.Id}, htmlAttributes);
+        }
+
+        public static MvcHtmlString Previous(this HtmlHelper self, FairyTale fairyTale) {
+            if (fairyTale == null) return EmptyString;
+            return self.ActionLink("Назад к " + fairyTale.Title, fairyTale, new { @class = "prev-arr" });
+        }
+
+        public static MvcHtmlString Parent(this HtmlHelper self, FairyTale fairyTale) {
+            if (fairyTale == null) return EmptyString;
+            return self.ActionLink("К оглавлению", fairyTale, null);
+        }
+
+        public static MvcHtmlString Next(this HtmlHelper self, FairyTale fairyTale) {
+            if (fairyTale == null) return EmptyString;
+            return self.ActionLink("Вперёд к " + fairyTale.Title, fairyTale, new { @class = "next-arr" });
+        }
+
+        private static MvcHtmlString EmptyString => new MvcHtmlString("&nbsp;");
     }
 }

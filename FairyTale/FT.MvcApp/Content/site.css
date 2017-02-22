@@ -62,10 +62,14 @@ body > header {
     padding: 20px 0;
 }
 
-article, .container > header {
+article, .container > header, .container > footer {
     border: 0;
     border-bottom: 1px dashed #d5dddf;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+}
+
+.container > footer > nav {
+    margin: 16px;
 }
 
 article ul {
@@ -73,6 +77,11 @@ article ul {
     padding: 0;
     list-style: disc outside;
     line-height: 22px;
+}
+
+article > footer {
+    border-top: 1px dashed #d5dddf;
+    margin-top: 20px;
 }
 
 /* logo */
@@ -99,6 +108,40 @@ body > nav {
         .top_menu li:last-child {
             margin-right: 0px;
         }
+
+/* horizontal list navigation */
+.h-nav {
+    list-style: none;
+    margin: 16px auto;
+}
+
+.h-nav li {
+    float: left;
+    width: 33%;
+    text-align: center;
+}
+
+.prev-arr:before {
+    background-image: url('images/arrow-l.png');
+    background-size: 16px 16px;
+    display: inline-block;
+    width: 16px; 
+    height: 16px;
+    margin-right: 5px;
+    content:"";
+    vertical-align: middle;
+}
+
+.next-arr:after{
+    background-image: url('images/arrow-r.png');
+    background-size: 16px 16px;
+    display: inline-block;
+    width: 16px; 
+    height: 16px;
+    margin-left: 5px;
+    content:"";
+    vertical-align: middle;
+}
 
 /* search */
 .search {

@@ -6,7 +6,6 @@
     var fairyTale = Model.FairyTale;
 }
 
-
 <header>
     <h1>@fairyTale.Title</h1>
 
@@ -20,14 +19,14 @@
         <h2>@fairyTale.Title читать:</h2>
     </header>
 
-    @if (fairyTale.Children.Count > 0) {
-        <ul>
-            @foreach (var ft in fairyTale.Children) {
-                <li>@Html.ActionLink(ft.Title, "Single", new {id = ft.Id})</li>
-            }
-        </ul>
+    @if (fairyTale.IsBook) {
+        @Html.Partial("Book", fairyTale)
     }
     else {
         @Html.Raw(fairyTale.Text)
+    }
+
+    @if (fairyTale.HasNavigation) {
+        @Html.Partial("Navigation", fairyTale)
     }
 </article>

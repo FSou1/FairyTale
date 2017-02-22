@@ -131,6 +131,8 @@
     <Content Include="App_Data\Fairytale_log.ldf">
       <DependentUpon>Fairytale.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\images\arrow-l.png" />
+    <Content Include="Content\images\arrow-r.png" />
     <Content Include="Content\images\story-book-icon.png" />
     <Content Include="Content\images\story-icon.png" />
     <Content Include="Content\images\favicon.ico" />
@@ -194,6 +196,8 @@
     <Content Include="Tags\Views\Index.cshtml" />
     <Content Include="Shared\Views\Partial\Tags.cshtml" />
     <Content Include="FairyTales\Views\Manage.cshtml" />
+    <Content Include="Shared\Views\Partial\Navigation.cshtml" />
+    <Content Include="Shared\Views\Partial\Book.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

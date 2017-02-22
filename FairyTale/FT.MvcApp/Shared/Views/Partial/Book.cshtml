@@ -1,0 +1,10 @@
+﻿@model FairyTale
+@{
+    var fairyTale = Model;
+}
+
+<ul>
+    @foreach (var ft in fairyTale.Children) {
+        <li>@Html.ActionLink(ft)</li>
+    }
+</ul>

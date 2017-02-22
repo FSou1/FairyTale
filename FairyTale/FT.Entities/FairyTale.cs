@@ -6,6 +6,8 @@ namespace FT.Entities {
     public class FairyTale {
         public virtual int Id { get; set; }        
         public virtual FairyTale Parent { get; set; }
+        public virtual FairyTale Previous { get; set; }
+        public virtual FairyTale Next { get; set; }
         public virtual string Title { get; set; }
         public virtual string Teaser { get; set; }
         public virtual string Text { get; set; }
@@ -13,6 +15,7 @@ namespace FT.Entities {
         public virtual string Description { get; set; }
 
         public virtual bool IsBook => Children.Count > 0;
+        public virtual bool HasNavigation => Parent != null || Previous != null || Next != null;
 
         public virtual ISet<FairyTale> Children { get; set; } = new HashSet<FairyTale>();
         public virtual ISet<Tag> Tags { get; set; } = new HashSet<Tag>();
@@ -25,6 +28,8 @@ namespace FT.Entities {
 
             Id(x => x.Id).GeneratedBy.Identity();
             References(x => x.Parent).Column("ParentId");
+            References(x => x.Previous).Column("PreviousId");
+            References(x => x.Next).Column("NextId");
             Map(x => x.Title);
             Map(x => x.Teaser);
             Map(x => x.Text).CustomType("StringClob").CustomSqlType("nvarchar(max)");
