@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentNHibernate.Mapping;
+using FT.Entities.Contract;
 
 namespace FT.Entities {
-    public class FairyTale {
+    public class FairyTale : IEntity {
         public virtual int Id { get; set; }        
         public virtual FairyTale Parent { get; set; }
         public virtual FairyTale Previous { get; set; }
@@ -39,13 +40,16 @@ namespace FT.Entities {
             HasMany(x => x.Children)
                 .Schema("[ft]")
                 .Table("[FairyTales]")
-                .KeyColumn("ParentId");
+                .KeyColumn("ParentId")
+                .ExtraLazyLoad()
+                .Fetch.Join();
 
             HasManyToMany(x => x.Tags)
                 .Schema("[ft]")
                 .Table("[FairyTales_Tags]")
                 .ParentKeyColumn("FairyTaleId")
-                .ChildKeyColumn("TagId");
+                .ChildKeyColumn("TagId")
+                .Fetch.Join();
         }
     }
 }

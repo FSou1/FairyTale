@@ -13,10 +13,12 @@ namespace FT.MvcApp.Shared.HtmlHelpers {
         }
 
         public static MvcHtmlString ActionLink(this HtmlHelper self, FairyTale fairyTale, object htmlAttributes) {
+            if (fairyTale == null) return EmptyString;
             return self.ActionLink(fairyTale.Title, fairyTale, htmlAttributes);
         }
 
         public static MvcHtmlString ActionLink(this HtmlHelper self, string title, FairyTale fairyTale, object htmlAttributes) {
+            if (fairyTale == null) return EmptyString;
             return self.ActionLink(title, "Single", "FairyTales", new {id = fairyTale.Id}, htmlAttributes);
         }
 

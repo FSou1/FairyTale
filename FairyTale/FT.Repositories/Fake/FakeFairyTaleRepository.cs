@@ -21,6 +21,10 @@ namespace FT.Repositories.Fake {
             return Task.FromResult<IList<FairyTale>>(result);
         }
 
+        public Task<IList<FairyTale>> GetAllAsync<TKey>(Expression<Func<FairyTale, bool>> filter, Func<FairyTale, TKey> orderBy) {
+            throw new NotImplementedException();
+        }
+
         public Task<IList<FairyTale>> GetAllAsync<TKey>(
             Func<FairyTale, TKey> orderBy, bool asc
         )

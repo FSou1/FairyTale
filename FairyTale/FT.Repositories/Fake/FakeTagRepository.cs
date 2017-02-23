@@ -23,6 +23,10 @@ namespace FT.Repositories.Fake
             return Task.FromResult<IList<Tag>>(result);
         }
 
+        public Task<IList<Tag>> GetAllAsync<TKey>(Expression<Func<Tag, bool>> filter, Func<Tag, TKey> orderBy) {
+            throw new NotImplementedException();
+        }
+
         public Task<IList<Tag>> GetAllAsync<TKey>(
             Func<Tag, TKey> orderBy, bool asc)
         {
@@ -54,6 +58,7 @@ namespace FT.Repositories.Fake
         public Task UpdateAsync(Tag entity) {
             throw new NotImplementedException();
         }
+
 
         private static readonly IEnumerable<Tag> data = new List<Tag>()
         {

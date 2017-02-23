@@ -5,21 +5,35 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using FT.Entities;
+using FT.Entities.Contract;
 using FT.Repositories.NHibernate;
 using NHibernate;
 using NHibernate.Linq;
 
 namespace FT.Repositories {
-    public class Repository<T> : IRepository<T> {
+    public class Repository<T> : IRepository<T> where T : IEntity {
         public Repository(IUnitOfWork unitOfWork) {
             _nHibernateUnitOfWork = (NHibernateUnitOfWork)unitOfWork;
         }
 
         protected ISession Session => _nHibernateUnitOfWork.Session;
 
-        public Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take) {
-            var entities = Session.Query<T>().Where(filter).Skip(skip).Take(take).ToList();
-            return Task.FromResult<IList<T>>(entities);
+        public async Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take) {
+            var ids = await GetIds(filter, skip, take);
+            var entities = Session.Query<T>().Where(x => ids.Contains(x.Id)).ToList();
+            return entities;
+        }
+
+        public async Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy, int skip, int take) {
+            var ids = await GetIds(filter, skip, take);
+            var entities = Session.Query<T>().Where(x => ids.Contains(x.Id)).OrderBy(orderBy).ToList();
+            return entities;
+        }
+
+        public async Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy) {
+            var ids = await GetIds(filter);
+            var entities = Session.Query<T>().Where(x => ids.Contains(x.Id)).OrderBy(orderBy).ToList();
+            return entities;
         }
 
         public Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc) {
@@ -27,11 +41,6 @@ namespace FT.Repositories {
                 ? Session.Query<T>().OrderBy(orderBy) 
                 : Session.Query<T>().OrderByDescending(orderBy)
             ).ToList();
-            return Task.FromResult<IList<T>>(entities);
-        }
-
-        public Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy, int skip, int take) {
-            var entities = Session.Query<T>().Where(filter).OrderBy(orderBy).Skip(skip).Take(take).ToList();
             return Task.FromResult<IList<T>>(entities);
         }
 
@@ -55,6 +64,28 @@ namespace FT.Repositories {
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Increase performance methods
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        private Task<IList<int>> GetIds(Expression<Func<T, bool>> filter) {
+            var ids = Session.Query<T>().Where(filter).Select(x => x.Id).ToList();
+            return Task.FromResult<IList<int>>(ids);
+        }
+
+        /// <summary>
+        /// Increase performance methods
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        private Task<IList<int>> GetIds(Expression<Func<T, bool>> filter, int skip, int take) {
+            var ids = Session.Query<T>().Where(filter).Select(x => x.Id).Skip(skip).Take(take).ToList();
+            return Task.FromResult<IList<int>>(ids);
+        }
+
         private readonly NHibernateUnitOfWork _nHibernateUnitOfWork;
     }
 
@@ -62,6 +93,8 @@ namespace FT.Repositories {
         Task<IList<T>> GetAllAsync(Expression<Func<T, bool>> filter, int skip, int take);
 
         Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy, int skip, int take);
+
+        Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Func<T, TKey> orderBy);
 
         Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc);
 

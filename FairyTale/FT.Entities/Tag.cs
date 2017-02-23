@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using FluentNHibernate.Mapping;
+using FT.Entities.Contract;
 
 namespace FT.Entities {
-    public class Tag {
+    public class Tag : IEntity {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
         public virtual string Description { get; set; }

@@ -20,7 +20,7 @@ namespace FT.Components.Logger {
                 AcceptOnMatch = true
             });
             sqlRoller.AddFilter(new DenyAllFilter());
-            sqlRoller.AppendToFile = true;
+            sqlRoller.AppendToFile = false;
             sqlRoller.File = $@"log/sql.txt";
             sqlRoller.Layout = patternLayout;
             sqlRoller.MaxSizeRollBackups = 5;
@@ -35,7 +35,7 @@ namespace FT.Components.Logger {
                 LoggerToMatch = "NHibernate",
                 AcceptOnMatch = false
             });
-            logRoller.AppendToFile = true;
+            logRoller.AppendToFile = false;
             logRoller.File = $@"log/log.txt";
             logRoller.Layout = patternLayout;
             logRoller.MaxSizeRollBackups = 5;
