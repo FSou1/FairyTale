@@ -41,6 +41,7 @@ namespace FT.MvcApp.Tags.Services
             var model = new SingleViewModel
             {
                 Title = "Просмотр",
+                Description = tag.Description,
                 Tag = tag,
                 FairyTales = ftData.ToPagedList(page, perPage, ftTotalCount)
             };
@@ -58,6 +59,7 @@ namespace FT.MvcApp.Tags.Services
             var model = new IndexViewModel()
             {
                 Title = "Список тегов",
+                Description = "Удобный сгруппированный каталог авторских и народных сказок",
                 Tags = tagData
             };
 

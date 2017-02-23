@@ -26,6 +26,7 @@ namespace FT.MvcApp.Home.Services {
 
             var model = new IndexViewModel() {
                 Title = "«ВСказки» - вновь навстречу чуду",
+                Description = "Vskazki.ru - сказки народов мира, библиотека авторских сказок для детей и взрослых.",
                 RandomFairyTales = data.ToPagedList(page, perPage, totalCount)
             };
 
@@ -48,7 +49,8 @@ namespace FT.MvcApp.Home.Services {
 
             var model = new SearchViewModel()
             {
-                Title = "Поиск",
+                Title = "Поиск сказок",
+                Description = $"Поиск сказок в библиотеке по запросу {term}",
                 Term = term,
                 FoundFairyTales = data.ToPagedList(page, perPage, totalCount)
             };
