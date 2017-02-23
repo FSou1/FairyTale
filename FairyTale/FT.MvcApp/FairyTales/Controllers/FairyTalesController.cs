@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using FT.Components.Utility;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Models;
@@ -27,6 +28,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("story/{id}")]
+        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         public async Task<ActionResult> Single(int id)
         {
             var model = await _builder.BuildSingleViewModel(id);
@@ -43,6 +45,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("manage-story/{id}")]
+        [Authorize]
         public async Task<ActionResult> Manage(int id)
         {
             var model = await _builder.BuildManageViewModel(id);
@@ -56,6 +59,7 @@ namespace FT.MvcApp.FairyTales.Controllers
 
         [Route("manage-story/format-all")]
         [Transaction]
+        [Authorize]
         public async Task<ActionResult> FormatAll() {
             var notFormattedFairyTales = await _service.GetAllAsync(x => 
                     !x.Text.StartsWith("<p>") || !x.Text.Contains(Environment.NewLine)
@@ -75,6 +79,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         [Route("manage-story/update")]
         [ValidateInput(false)]
         [Transaction]
+        [Authorize]
         public async Task<ActionResult> Update(SingleViewModel model) {
             var fairyTale = await _service.GetAsync(model.FairyTale.Id);
             if (fairyTale == null) {
@@ -93,6 +98,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("manage-story/format-text/{id}")]
+        [Authorize]
         public async Task<ActionResult> FormatText(int id) {
             var fairyTale = await _service.GetAsync(id);
             if (fairyTale == null) {

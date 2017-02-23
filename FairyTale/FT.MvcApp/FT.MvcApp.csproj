@@ -139,6 +139,7 @@
     <Content Include="Content\images\find.png" />
     <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\tag-icon.png" />
+    <Content Include="Content\images\error.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\pager.css" />
     <Content Include="Content\site.css" />
@@ -184,7 +185,6 @@
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Home\Views\Index.cshtml" />
     <Content Include="FairyTales\Views\Single.cshtml" />
-    <Content Include="Error\Views\NotFound.cshtml" />
     <Content Include="Error\Views\Index.cshtml" />
     <Content Include="Error\Views\Unauthorized.cshtml" />
     <Content Include="Home\Views\About.cshtml" />
@@ -198,6 +198,7 @@
     <Content Include="FairyTales\Views\Manage.cshtml" />
     <Content Include="Shared\Views\Partial\Navigation.cshtml" />
     <Content Include="Shared\Views\Partial\Book.cshtml" />
+    <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

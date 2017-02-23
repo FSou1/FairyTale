@@ -41,7 +41,7 @@ namespace FT.MvcApp.Error.Controllers
                 Title = "404. Страница не найдена"
             };
 
-            return View(model);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
