@@ -7,6 +7,7 @@ namespace FT.Entities {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
         public virtual string Description { get; set; }
+        public virtual TagType Type { get; set; }
         public virtual int FairyTalesCount { get; set; }
                
         public virtual IList<FairyTale> FairyTales { get; set; } = new List<FairyTale>();
@@ -20,6 +21,7 @@ namespace FT.Entities {
             Id(x => x.Id).GeneratedBy.Identity();
             Map(x => x.Title);
             Map(x => x.Description);
+            Map(x => x.Type);
             Map(x => x.FairyTalesCount);
 
             HasManyToMany(x => x.FairyTales)

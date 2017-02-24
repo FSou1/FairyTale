@@ -54,13 +54,17 @@ namespace FT.MvcApp.Tags.Services
         /// </summary>
         /// <returns></returns>
         public async Task<IndexViewModel> BuildIndexViewModel() {
-            var tagData = await _repository.GetAllAsync(t => t.FairyTalesCount, false);
+            var list = await _repository.GetAllAsync(t => t.FairyTalesCount, false);
+
+            var dict = list
+                .GroupBy(x => x.Type)
+                .ToDictionary(k => k.Key, v=> v.ToList());
 
             var model = new IndexViewModel()
             {
                 Title = "Список тегов",
                 Description = "Удобный сгруппированный каталог авторских и народных сказок",
-                Tags = tagData
+                Tags = dict
             };
 
             return model;

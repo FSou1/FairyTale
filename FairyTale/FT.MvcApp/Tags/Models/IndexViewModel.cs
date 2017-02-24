@@ -9,6 +9,6 @@ namespace FT.MvcApp.Tags.Models
 {
     public class IndexViewModel : LayoutViewModel
     {
-        public IList<Tag> Tags { get; set; }
+        public IDictionary<TagType, List<Tag>> Tags { get; set; }
     }
 }

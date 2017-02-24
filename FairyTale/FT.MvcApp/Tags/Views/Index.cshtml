@@ -6,15 +6,23 @@
 
 <header>
     <h1>Популярные теги</h1>
-    <p>На этой странице упорядочены по популярности все теги (категории) сказок, которые вы сможете найти на нашем сайте.</p>
+    <p>На этой странице упорядочены по количеству сказок все теги (категории), которые вы сможете найти на нашем сайте.</p>
 </header>
 
-<section>
-    <p class="tags">
-        @foreach (var tag in Model.Tags)
-        {
-            <span>(@tag.FairyTalesCount)</span>
-            @Html.ActionLink(tag.Title, "Single", "Tags", new { id = tag.Id }, new { @class = "tag" })
-        }
-    </p>
-</section>
+@Html.Partial("TagsByType",
+    new TagsByTypeViewModel {
+        Type = TagType.Author,
+        Tags = Model.Tags
+    })
+
+@Html.Partial("TagsByType",
+    new TagsByTypeViewModel {
+        Type = TagType.Folk,
+        Tags = Model.Tags
+    })
+
+@Html.Partial("TagsByType",
+    new TagsByTypeViewModel {
+        Type = TagType.Other,
+        Tags = Model.Tags
+    })
