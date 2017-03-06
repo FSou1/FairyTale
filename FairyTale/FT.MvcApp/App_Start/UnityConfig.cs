@@ -28,8 +28,8 @@ namespace FT.MvcApp
             container.RegisterType<IFairyTalesBuilder, FairyTalesBuilder>(new PerRequestLifetimeManager());
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
             
-            //RegisterStub(container);
-            RegisterDatabase(container);
+            RegisterStub(container);
+            //RegisterDatabase(container);
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

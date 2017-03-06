@@ -7,6 +7,7 @@
     <header>
         <h2>@Html.ActionLink(Model, new { @class = hrefClass })</h2>
         @Html.Partial("Tags", Model.Tags)
+        @Html.Partial("FairyTaleSummary", Model.Summary)
     </header>
 
     @Html.Raw(Model.Teaser)

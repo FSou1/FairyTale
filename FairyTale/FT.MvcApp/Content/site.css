@@ -233,6 +233,19 @@ body > footer {
     vertical-align: middle;
 }
 
+/* summary */
+.clock:before {
+    content: url(images/clock.png);
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.likes:before {
+    content: url(images/like.png);
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
 /* tags */
 .tags:before {
     content: url(images/tag-icon.png);
