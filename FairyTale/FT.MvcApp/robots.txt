@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /avtorskie-sborniki
+Disallow: /narodnie-skazki
+Disallow: /avtorskie-skazki
+Disallow: /narodnie-sborniki
+Disallow: /Error
+
+User-agent: Yandex
+Host: vskazki.ru
+Disallow: /avtorskie-sborniki
+Disallow: /narodnie-skazki
+Disallow: /avtorskie-skazki
+Disallow: /narodnie-sborniki
+Disallow: /Error
+
+User-agent: Googlebot
+Disallow: /avtorskie-sborniki
+Disallow: /narodnie-skazki
+Disallow: /avtorskie-skazki
+Disallow: /narodnie-sborniki
+Disallow: /Error
+
+Sitemap: http://vskazki.ru/sitemap.xml

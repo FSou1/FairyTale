@@ -146,6 +146,12 @@
     <Content Include="Content\pager.css" />
     <Content Include="Content\site.css" />
     <Content Include="Global.asax" />
+    <Content Include="robots.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sitemap.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
