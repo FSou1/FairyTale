@@ -11,8 +11,6 @@
 
     @Html.Partial("Tags", fairyTale.Tags)
 
-    @Html.Partial("FairyTaleSummary", fairyTale.Summary)
-
     <p>@Model.Description</p>
 </header>
 
@@ -32,3 +30,7 @@
         @Html.Partial("Navigation", fairyTale)
     }
 </article>
+
+<footer>
+    @Html.Partial("FairyTaleSummary", fairyTale.Summary)
+</footer>

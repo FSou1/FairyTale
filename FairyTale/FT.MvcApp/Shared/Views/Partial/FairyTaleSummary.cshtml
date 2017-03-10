@@ -1,6 +1,10 @@
 ﻿@model FairyTaleSummary
 
-<p class="summary">
-    <span class="clock">@Model.EstimatedReadingMinutes мин.</span>
-    <span class="likes">@Model.Likes</span>
-</p>
+<ul class="summary">
+    <li class="summary-item">
+        <span class="clock" title="Примерное время для прочтения">@Model.EstimatedReadingMinutes мин.</span>
+    </li>
+    <li class="summary-item">
+        <span class="likes" title="Понравилось">@Model.Likes</span>
+    </li>
+</ul>

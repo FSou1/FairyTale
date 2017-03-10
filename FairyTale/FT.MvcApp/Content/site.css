@@ -64,7 +64,6 @@ body > header {
 
 article, .container > header, .container > footer {
     border: 0;
-    border-bottom: 1px dashed #d5dddf;
     margin-bottom: 20px;
 }
 
@@ -79,9 +78,8 @@ article ul {
     line-height: 22px;
 }
 
-article > footer {
-    border-top: 1px dashed #d5dddf;
-    margin-top: 20px;
+footer ul {
+    margin-left: 16px;    
 }
 
 /* logo */
@@ -234,6 +232,24 @@ body > footer {
 }
 
 /* summary */
+.summary {
+    border: 1px solid #ebeaea;
+    display: inline-block;
+    height: 40px;
+}
+
+.summary-item {
+    border-right: 1px solid #ebeaea;
+    display: inline-block;
+    height: 100%;
+    line-height: 38px;
+    padding: 0 12px;
+}
+
+.summary-item:last-child {
+    border-right: none;
+}
+
 .clock:before {
     content: url(images/clock.png);
     vertical-align: middle;

@@ -44,6 +44,11 @@ namespace FT.Entities {
             Map(x => x.CreatedAtUtc);
             Map(x => x.Description);
 
+            Component(x => x.Summary, part => {
+                part.Map(p => p.EstimatedReadingMinutes, "EstimatedReadingMinutes");
+                part.Map(p => p.Likes, "Likes");
+            });
+
             HasMany(x => x.Children)
                 .Schema("[ft]")
                 .Table("[FairyTales]")
