@@ -207,6 +207,7 @@
     <Content Include="FairyTales\Views\Manage.cshtml" />
     <Content Include="Shared\Views\Partial\Navigation.cshtml" />
     <Content Include="Shared\Views\Partial\Book.cshtml" />
+    <Content Include="Error\Views\NotFound.cshtml" />
     <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTaleSummary.cshtml" />
