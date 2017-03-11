@@ -1,4 +1,5 @@
-﻿@model LayoutViewModel
+﻿@using System.Web.Optimization
+@model LayoutViewModel
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,9 +8,7 @@
     <title>@Model.Title</title>
     <meta content="@Model.Description" name="description"  />
     <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" type="image/x-icon">
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/reset.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/pager.css")" />
-    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/site.css")" />
+    @Styles.Render("~/content/css")
 </head>
 <body>
 
@@ -44,6 +43,6 @@
         </dl>
     </nav>
 </footer>
-
+    
 </body>
 </html>
