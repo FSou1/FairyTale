@@ -275,15 +275,18 @@ body > footer {
 }
 
 .tag {
-    margin: 0 10px 0 0;
     color: #6c9471;
 }
 
-    .tag:after {
+.tags .tag {
+    margin: 0 10px 0 0;
+}
+
+    .tags .tag:after {
         content: ",";
     }
 
-    .tag:last-child:after {
+    .tags .tag:last-child:after {
         content: " ";
     }
 
