@@ -17,9 +17,9 @@ namespace FT.Repositories.Fake
         }
 
         public Task<IList<FairyTale>> GetAllAsync<TKey>(
-            Expression<Func<FairyTale, bool>> filter, Func<FairyTale, TKey> orderBy, int skip, int take)
+            Expression<Func<FairyTale, bool>> filter, Expression<Func<FairyTale, TKey>> orderBy, bool asc, int skip, int take)
         {
-            var result = data.Where(filter.Compile()).OrderBy(orderBy).Skip(skip).Take(take).ToList();
+            var result = data.Where(filter.Compile()).OrderBy(orderBy.Compile()).Skip(skip).Take(take).ToList();
             return Task.FromResult<IList<FairyTale>>(result);
         }
 

@@ -61,6 +61,10 @@
     <Compile Include="NHibernate\NHibernateUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FT.Components\FT.Components.csproj">
+      <Project>{4CEE7B92-5CBA-42BF-8B9B-C6C41BCCD70D}</Project>
+      <Name>FT.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FT.Entities\FT.Entities.csproj">
       <Project>{0CF880D2-5EF1-4365-8183-D35A54E7F40F}</Project>
       <Name>FT.Entities</Name>

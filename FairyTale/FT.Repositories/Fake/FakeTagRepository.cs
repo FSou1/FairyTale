@@ -17,9 +17,9 @@ namespace FT.Repositories.Fake
         }
 
         public Task<IList<Tag>> GetAllAsync<TKey>(
-            Expression<Func<Tag, bool>> filter, Func<Tag, TKey> orderBy, int skip, int take)
+            Expression<Func<Tag, bool>> filter, Expression<Func<Tag, TKey>> orderBy, bool asc, int skip, int take)
         {
-            var result = data.Where(filter.Compile()).OrderBy(orderBy).Skip(skip).Take(take).ToList();
+            var result = data.Where(filter.Compile()).OrderBy(orderBy.Compile()).Skip(skip).Take(take).ToList();
             return Task.FromResult<IList<Tag>>(result);
         }
 

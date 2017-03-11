@@ -27,19 +27,17 @@ namespace FT.MvcApp.Tags.Services
         /// <param name="page"></param>
         /// <param name="perPage"></param>
         /// <returns></returns>
-        public async Task<SingleViewModel> BuildSingleViewModel(int id, int page, int perPage)
-        {
+        public async Task<SingleViewModel> BuildSingleViewModel(int id, int page, int perPage) {
             var tag = await _repository.GetAsync(id);
 
             var filter = PredicateBuilder.True<FairyTale>()
                 .And(ft => ft.Parent == null)
                 .And(ft => ft.Tags.Contains(tag));
-            
-            var ftData = await _ftRepository.GetAllAsync(filter, page*perPage, perPage);
+
+            var ftData = await _ftRepository.GetAllAsync(filter, ft => ft.Summary.Likes, false, page*perPage, perPage);
             var ftTotalCount = await _ftRepository.CountAsync(filter);
 
-            var model = new SingleViewModel
-            {
+            var model = new SingleViewModel {
                 Title = "Просмотр",
                 Description = tag.Description,
                 Tag = tag,

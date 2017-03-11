@@ -22,7 +22,7 @@ namespace FT.MvcApp.Home.Services {
                 .And(ft => ft.Parent == null);
 
             var totalCount = await _repository.CountAsync(filter);
-            var data = await _repository.GetAllAsync(filter, ft => Guid.NewGuid(), page*perPage, perPage);
+            var data = await _repository.GetAllAsync(filter, ft => ft.Summary.Likes, false, page*perPage, perPage);
 
             var model = new IndexViewModel() {
                 Title = "«ВСказки» - вновь навстречу чуду",
