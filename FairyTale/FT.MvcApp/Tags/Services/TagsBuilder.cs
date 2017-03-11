@@ -38,7 +38,7 @@ namespace FT.MvcApp.Tags.Services
             var ftTotalCount = await _ftRepository.CountAsync(filter);
 
             var model = new SingleViewModel {
-                Title = "Просмотр",
+                Title = tag.Title,
                 Description = tag.Description,
                 Tag = tag,
                 FairyTales = ftData.ToPagedList(page, perPage, ftTotalCount)
