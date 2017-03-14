@@ -8,5 +8,11 @@
 
         public bool HasDescription => !string.IsNullOrEmpty(Description);
         public bool HasCanonical => !string.IsNullOrEmpty(CanonicalUrl);
+
+        #if DEBUG
+        public bool IncludeMetrics => false;
+        #else
+        public bool IncludeMetrics => true;
+        #endif
     }
 }

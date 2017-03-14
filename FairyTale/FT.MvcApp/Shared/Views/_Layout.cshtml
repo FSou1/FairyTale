@@ -39,7 +39,9 @@
 <div class="container">
     @RenderBody()
 
-    @Html.Partial("YandexMetrika")
+    @if (Model.IncludeMetrics) {
+        @Html.Partial("Metrics")
+    }
 </div>
 
 <footer>

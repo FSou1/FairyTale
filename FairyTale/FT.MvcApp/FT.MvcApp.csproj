@@ -218,7 +218,7 @@
     <Content Include="Home\Views\Search.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTale.cshtml" />
     <Content Include="Shared\Views\Partial\SiteDescription.cshtml" />
-    <Content Include="Shared\Views\Partial\YandexMetrika.cshtml" />
+    <Content Include="Shared\Views\Partial\Metrics.cshtml" />
     <Content Include="Tags\Views\Single.cshtml" />
     <Content Include="Tags\Views\Index.cshtml" />
     <Content Include="Shared\Views\Partial\Tags.cshtml" />
