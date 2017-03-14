@@ -12,7 +12,6 @@ namespace FT.MvcApp.Tags.Models {
     {
         public int Id { get; set; }
         public int? Page { get; set; }
-
-        public int CurrentPage => Page - 1 ?? 0;
+        public int PageIndex => Page - 1 ?? 0;
     }
 }

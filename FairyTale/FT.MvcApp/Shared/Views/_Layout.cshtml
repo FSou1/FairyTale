@@ -6,7 +6,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Model.Title</title>
-    <meta content="@Model.Description" name="description"  />
+    @if (Model.HasDescription)
+    {
+        <meta content="@Model.Description" name="description"/>
+    }
+    @if (Model.HasCanonical)
+    {
+        <link rel="canonical" href="@Model.CanonicalUrl" />
+    }
     <link rel="shortcut icon" href="@Url.Content("~/Content/images/favicon.ico")" type="image/x-icon">
     @Styles.Render("~/content/css")
 </head>

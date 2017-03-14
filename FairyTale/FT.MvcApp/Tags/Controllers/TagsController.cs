@@ -16,15 +16,21 @@ namespace FT.MvcApp.Tags.Controllers {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         [Route("tag/{id}")]
         public async Task<ActionResult> Single(SingleParams param) {
-            var model = await _builder.BuildSingleViewModel(param.Id, param.CurrentPage, TalesPerPage);
+            var model = await _builder.BuildSingleViewModel(param.Id, param.PageIndex, TalesPerPage);
+
             if (model.Tag == null)
             {
                 throw new HttpException(404, "ola");
+            }
+            if (param.Page != null)
+            {
+                model.Title += $" - Страница {param.Page}";
+                model.CanonicalUrl = Url.Action("Single", "Tags", new { id = param.Id }, "http");
             }
 
             return View("Single", model);

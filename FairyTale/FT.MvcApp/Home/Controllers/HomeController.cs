@@ -24,6 +24,13 @@ namespace FT.MvcApp.Home.Controllers
         public async Task<ActionResult> Index(IndexParams param)
         {
             var model = await _builder.BuildIndexViewModel(param.CurrentPage, PerPage);
+
+            if (param.Page != null)
+            {
+                model.Title += $" - Страница {param.Page}";
+                model.CanonicalUrl = Url.Action("Index", "Home", new { }, "http");
+            }
+
             return View(model);
         }
 
