@@ -18,8 +18,8 @@ namespace FT.MvcApp.Tags.Controllers {
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         [Route("tag/{id}")]
+        [OutputCache(Duration = 60, VaryByParam = "*")]
         public async Task<ActionResult> Single(SingleParams param) {
             var model = await _builder.BuildSingleViewModel(param.Id, param.PageIndex, TalesPerPage);
 
@@ -40,8 +40,8 @@ namespace FT.MvcApp.Tags.Controllers {
         /// 
         /// </summary>
         /// <returns></returns>
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
         [Route("tags")]
+        [OutputCache(Duration = 60, VaryByParam = "none")]
         public async Task<ActionResult> Index()
         {
             var model = await _builder.BuildIndexViewModel();

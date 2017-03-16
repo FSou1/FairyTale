@@ -20,7 +20,7 @@ namespace FT.MvcApp.Home.Controllers
         /// </summary> 
         /// <param name="param"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 10, Location = OutputCacheLocation.Server)]        
+        [OutputCache(Duration = 10, VaryByParam = "*")]        
         public async Task<ActionResult> Index(IndexParams param)
         {
             var model = await _builder.BuildIndexViewModel(param.CurrentPage, PerPage);
@@ -40,7 +40,7 @@ namespace FT.MvcApp.Home.Controllers
         /// <param name="param"></param>
         /// <returns></returns>
         [Route("search")]
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
+        [OutputCache(Duration = 60, VaryByParam = "*")]
         public async Task<ActionResult> Search(SearchParams param)
         {
             if (string.IsNullOrEmpty(param.Term)) {
@@ -56,6 +56,7 @@ namespace FT.MvcApp.Home.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("about")]
+        [OutputCache(Duration = 60, VaryByParam = "*")]
         public ActionResult About() 
         {
             var model = _builder.BuildAboutViewModel();

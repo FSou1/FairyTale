@@ -28,7 +28,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [Route("story/{id}")]
-        [OutputCache(Duration = 60, Location = OutputCacheLocation.Server)]
+        [OutputCache(Duration = 60, VaryByParam = "id")]
         public async Task<ActionResult> Single(int id)
         {
             var model = await _builder.BuildSingleViewModel(id);
