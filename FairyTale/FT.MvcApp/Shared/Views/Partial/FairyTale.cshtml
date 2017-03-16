@@ -9,7 +9,9 @@
         @Html.Partial("Tags", Model.Tags)
     </header>
 
-    @Html.Raw(Model.Teaser)
+    <noindex>
+        @Html.Raw(Model.Teaser)
+    </noindex>
 
     <footer>
         @Html.Partial("FairyTaleSummary", Model.Summary)
