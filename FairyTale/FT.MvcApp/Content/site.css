@@ -250,28 +250,10 @@ body > footer {
     border-right: none;
 }
 
-.clock:before {
-    content: url(images/clock.png);
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
-.likes:before {
-    content: url(images/like.png);
-    vertical-align: middle;
-    margin-right: 5px;
-}
-
 /* tags */
-.tags:before {
-    content: url(images/tag-icon.png);
-    vertical-align: middle;
-    width: 16px;
-    height: 16px;
-}
-
 .tags {
     text-align: justify;
+    color: #6c9471;
 }
 
 .tag {
@@ -289,6 +271,29 @@ body > footer {
     .tags .tag:last-child:after {
         content: " ";
     }
+
+.push {
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.push:hover, .push:active, .push:visited {
+    color: #fff;
+}
+
+.facebook {background-color: #3b5998;}
+.facebook:hover {background-color: #2d4373;}
+.twitter {background-color:#55acee;}
+.twitter:hover {background-color:#2795e9;}
+.vkontakte {background-color:#587ea3;}
+.vkontakte:hover {background-color:#466482;}
+.ok {background-color:#ee8208;}
+.ok:hover {background-color:#ee7808; color:#fff;}
 
 /* special */
 .clearfix:after {

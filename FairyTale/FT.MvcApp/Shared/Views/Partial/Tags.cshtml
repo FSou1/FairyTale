@@ -4,8 +4,9 @@
 
 @if (tags.Count > 0) {
     <p class="tags">
+        <i class="fa fa-tags"></i>
         @foreach (var tag in tags) {
-            @Html.ActionLink(tag)            
+            @Html.ActionLink(tag)
         }
     </p>
 }

@@ -14,6 +14,10 @@
     </noindex>
 
     <footer>
-        @Html.Partial("FairyTaleSummary", Model.Summary)
+        @Html.Partial("FairyTaleSummary",
+            new FairyTaleSummaryModel {
+                FairyTale = Model,
+                DisplaySharing = false
+            })
     </footer>
 </article>

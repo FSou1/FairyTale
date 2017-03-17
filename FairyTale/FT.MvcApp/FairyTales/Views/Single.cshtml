@@ -32,5 +32,9 @@
 </article>
 
 <footer>
-    @Html.Partial("FairyTaleSummary", fairyTale.Summary)
+    @Html.Partial("FairyTaleSummary",
+        new FairyTaleSummaryModel {
+            FairyTale = fairyTale,
+            DisplaySharing = true
+        })
 </footer>
