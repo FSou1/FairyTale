@@ -19,33 +19,39 @@
 
     @if (displaySharing) {
         <li class="summary-item">
-            <a href="https://vk.com/share.php?url=@currentUrl"
-               class="push vkontakte"
-               title="Опубликовать ссылку во ВКонтакте"
-               onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300,toolbar=0,status=0'); return false;">
-                <i class="fa fa-vk"></i>
-            </a>
+            <noindex>
+                <a href="https://vk.com/share.php?url=@currentUrl"
+                   class="push vkontakte"
+                   title="Опубликовать ссылку во ВКонтакте"
+                   rel="nofollow"
+                   onclick="window.open(this.href, 'Опубликовать ссылку во Вконтакте', 'width=800,height=300,toolbar=0,status=0'); return false;">
+                    <i class="fa fa-vk"></i>
+                </a>
 
-            <a href="https://www.facebook.com/sharer/sharer.php?u=@currentUrl"
-               class="push facebook"
-               title="Опубликовать ссылку в Facebook"
-               onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false;">
-                <i class="fa fa-facebook"></i>
-            </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=@currentUrl"
+                   class="push facebook"
+                   title="Опубликовать ссылку в Facebook"
+                   rel="nofollow"
+                   onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false;">
+                    <i class="fa fa-facebook"></i>
+                </a>
 
-            <a href="https://twitter.com/intent/tweet?text=@fairyTale.Title+@currentUrl+via+&#64;vskazkiru"
-               class="push twitter"
-               title="Опубликовать ссылку в Twitter"
-               onclick="window.open(this.href, 'Опубликовать ссылку в Twitter', 'width=800,height=300,resizable=yes,toolbar=0,status=0'); return false;">
-                <i class="fa fa-twitter"></i>
-            </a>
+                <a href="https://twitter.com/intent/tweet?text=@fairyTale.Title+@currentUrl+via+&#64;vskazkiru"
+                   class="push twitter"
+                   title="Опубликовать ссылку в Twitter"
+                   rel="nofollow"
+                   onclick="window.open(this.href, 'Опубликовать ссылку в Twitter', 'width=800,height=300,resizable=yes,toolbar=0,status=0'); return false;">
+                    <i class="fa fa-twitter"></i>
+                </a>
 
-            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=@currentUrl"
-               class="push ok"
-               title="Опубликовать ссылку в Одноклассники"
-               onclick="window.open(this.href, 'Опубликовать ссылку в Одноклассники', 'width=800,height=300,resizable=yes,toolbar=0,status=0'); return false;">
-                <i class="fa fa-odnoklassniki"></i>
-            </a>
+                <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl=@currentUrl"
+                   class="push ok"
+                   title="Опубликовать ссылку в Одноклассники"
+                   rel="nofollow"
+                   onclick="window.open(this.href, 'Опубликовать ссылку в Одноклассники', 'width=800,height=300,resizable=yes,toolbar=0,status=0'); return false;">
+                    <i class="fa fa-odnoklassniki"></i>
+                </a>
+            </noindex>
         </li>
     }
 </ul>
