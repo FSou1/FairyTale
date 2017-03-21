@@ -24,7 +24,7 @@ namespace FT.MvcApp.Shared.HtmlHelpers {
 
         public static MvcHtmlString Previous(this HtmlHelper self, FairyTale fairyTale) {
             if (fairyTale == null) return EmptyString;
-            return self.ActionLink("Назад к " + fairyTale.Title, fairyTale, new { @class = "prev-arr" });
+            return self.ActionLink("Назад к " + fairyTale.Title, fairyTale, null);
         }
 
         public static MvcHtmlString Parent(this HtmlHelper self, FairyTale fairyTale) {
@@ -34,7 +34,7 @@ namespace FT.MvcApp.Shared.HtmlHelpers {
 
         public static MvcHtmlString Next(this HtmlHelper self, FairyTale fairyTale) {
             if (fairyTale == null) return EmptyString;
-            return self.ActionLink("Вперёд к " + fairyTale.Title, fairyTale, new { @class = "next-arr" });
+            return self.ActionLink("Вперёд к " + fairyTale.Title, fairyTale, null);
         }
 
         private static MvcHtmlString EmptyString => new MvcHtmlString("&nbsp;");

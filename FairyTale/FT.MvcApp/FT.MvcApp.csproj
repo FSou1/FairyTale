@@ -144,8 +144,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\images\arrow-l.png" />
-    <Content Include="Content\images\arrow-r.png" />
     <Content Include="Content\images\story-book-icon.png" />
     <Content Include="Content\images\story-icon.png" />
     <Content Include="Content\images\favicon.ico" />

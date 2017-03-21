@@ -119,28 +119,6 @@ body > nav {
     text-align: center;
 }
 
-.prev-arr:before {
-    background-image: url('images/arrow-l.png');
-    background-size: 16px 16px;
-    display: inline-block;
-    width: 16px; 
-    height: 16px;
-    margin-right: 5px;
-    content:"";
-    vertical-align: middle;
-}
-
-.next-arr:after{
-    background-image: url('images/arrow-r.png');
-    background-size: 16px 16px;
-    display: inline-block;
-    width: 16px; 
-    height: 16px;
-    margin-left: 5px;
-    content:"";
-    vertical-align: middle;
-}
-
 /* search */
 .search {
     position: relative;
