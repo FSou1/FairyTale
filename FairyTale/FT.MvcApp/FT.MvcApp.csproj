@@ -171,6 +171,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlphaIndex\Controllers\AlphaIndexController.cs" />
+    <Compile Include="AlphaIndex\Models\IndexParams.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FiltersConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -235,7 +237,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AlphaIndex\Services\" />
+    <Folder Include="AlphaIndex\Views\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FT.Components\FT.Components.csproj">
       <Project>{4CEE7B92-5CBA-42BF-8B9B-C6C41BCCD70D}</Project>

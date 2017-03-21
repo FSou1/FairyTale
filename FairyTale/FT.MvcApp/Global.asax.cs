@@ -23,4 +23,9 @@ namespace FT.MvcApp
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
+
+    public class AppPropertyKeys
+    {
+        public static int TalesPerPage = 5;
+    }
 }

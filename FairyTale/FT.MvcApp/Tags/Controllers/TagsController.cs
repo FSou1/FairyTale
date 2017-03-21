@@ -7,7 +7,7 @@ using System.Web.UI;
 
 namespace FT.MvcApp.Tags.Controllers {
     public class TagsController : Controller {
-        private const int TalesPerPage = 5;
+        private static readonly int TalesPerPage = AppPropertyKeys.TalesPerPage;
 
         public TagsController(ITagsBuilder builder) {
             _builder = builder;

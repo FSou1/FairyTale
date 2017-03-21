@@ -1,29 +1,66 @@
-﻿@model FT.MvcApp.Home.Models.SearchViewModel
+﻿@using NHibernate.Util
+@model FT.MvcApp.Home.Models.SearchViewModel
 
 @{
     ViewBag.Title = Model.Title;
 
+    var query = Model.Query;
+    var routeValues = Model.RouteValues;
     var fairyTales = Model.FoundFairyTales;
+    var tags = Model.FoundTags;
 }
 
-<header>
-    <h1>Поиск</h1>
-    @if (Model.Found) {
-        <p>Результатов поиска: @fairyTales.TotalItemCount</p>
-    }
-</header>
+@if (!Model.TalesFound && !Model.TagsFound)
+{
+    <section>
+        <p>По запросу «@query» ничего не нашлось. Попробуйте указать другое слово для поиска или вернить на @Html.ActionLink("главную страницу", "Index")</p>
+    </section>
+}
+else
+{
+    <header>
+        <h2>Результаты поиска по запросу «@query»</h2>
+    </header>
+}
 
-<section>
-    @if (Model.Found) {
-        foreach (var ft in fairyTales) {
+@if (Model.TagsFound)
+{
+    <section>
+        <header>
+            <h2>Теги (@tags.Count)</h2>
+        </header>
+
+        <p class="tags">
+            @foreach (var tag in tags)
+            {
+                <span>(@tag.FairyTalesCount)</span>
+                @Html.ActionLink(tag)
+            }
+        </p>
+    </section>
+}
+
+@if (Model.TalesFound)
+{
+    <section>
+        <header>
+            <h2>Сказки (@(fairyTales.TotalItemCount))</h2>
+        </header>
+        
+        @foreach (var ft in fairyTales)
+        {
             @Html.Partial("FairyTale", ft)
         }
 
         <nav class="pager">
-            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o => o.AddRouteValue("term", Model.Term)).Options(x => x.MaxNrOfPages(3))
+            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o =>
+            {
+                o.MaxNrOfPages(3);
+                foreach (var rv in routeValues)
+                {
+                    o.AddRouteValue(rv.Key, rv.Value);
+                }
+            })
         </nav>
-    }
-    else {
-        <p>По вашему запросу ничего не нашлось. Попробуйте указать другое слово для поиска или вернить на @Html.ActionLink("главную страницу", "Index")</p>
-    }
-</section>
+    </section>
+}

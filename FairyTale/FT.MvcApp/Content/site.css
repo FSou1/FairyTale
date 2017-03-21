@@ -62,7 +62,7 @@ body > header {
     padding: 20px 0;
 }
 
-article, .container > header, .container > footer {
+article, .container > header, .container > footer, section > header {
     border: 0;
     margin-bottom: 20px;
 }

@@ -1,15 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FT.MvcApp.Home.Models;
 using FT.MvcApp.Home.Services;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 
 namespace FT.MvcApp.Home.Controllers
 {
     public class HomeController : Controller
     {
-        private const int PerPage = 5;
+        private static readonly int PerPage = AppPropertyKeys.TalesPerPage;
 
         public HomeController(IHomeBuilder builder) {
             _builder = builder;
@@ -43,12 +42,25 @@ namespace FT.MvcApp.Home.Controllers
         [OutputCache(Duration = 60, VaryByParam = "*")]
         public async Task<ActionResult> Search(SearchParams param)
         {
-            if (string.IsNullOrEmpty(param.Term)) {
+            if (!param.IsValid) {
                 return RedirectToAction("Index");
             }
 
-            var model = await _builder.BuildSearchViewModel(param.Term, param.CurrentPage, PerPage);
+            var model = await _builder.BuildSearchViewModel(param.Term, param.StartsWith, param.CurrentPage, PerPage);
+
+            model.RouteValues = BuildRouteValues(param.Term, param.StartsWith);
+
             return View(model);
+        }
+
+        private IDictionary<string, object> BuildRouteValues(string term, string startsWith)
+        {
+            var dict = new Dictionary<string, object>();
+            if(!string.IsNullOrEmpty(term))
+                dict.Add("term", $"{term}");
+            if(!string.IsNullOrEmpty(startsWith))
+                dict.Add("startsWith", $"{startsWith}");
+            return dict;
         }
 
         /// <summary>

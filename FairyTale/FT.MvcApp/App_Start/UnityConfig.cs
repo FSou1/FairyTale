@@ -24,10 +24,10 @@ namespace FT.MvcApp
 
             container.RegisterType<ITagsBuilder, TagsBuilder>(new PerRequestLifetimeManager());
             container.RegisterType<IHomeBuilder, HomeBuilder>(new PerRequestLifetimeManager());
-
             container.RegisterType<IFairyTalesBuilder, FairyTalesBuilder>(new PerRequestLifetimeManager());
+
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
-            
+
             //RegisterStub(container);
             RegisterDatabase(container);
 
