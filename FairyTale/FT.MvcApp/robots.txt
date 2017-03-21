@@ -1,11 +1,8 @@
 User-agent: *
-Disallow: /search
 
 User-agent: Yandex
 Host: vskazki.ru
-Disallow: /search
 
 User-agent: Googlebot
-Disallow: /search
 
 Sitemap: http://vskazki.ru/sitemap.xml

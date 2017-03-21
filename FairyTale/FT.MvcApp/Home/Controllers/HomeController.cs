@@ -19,7 +19,7 @@ namespace FT.MvcApp.Home.Controllers
         /// </summary> 
         /// <param name="param"></param>
         /// <returns></returns>
-        [OutputCache(Duration = 10, VaryByParam = "*")]        
+        [OutputCache(Duration = 60, VaryByParam = "*")]        
         public async Task<ActionResult> Index(IndexParams param)
         {
             var model = await _builder.BuildIndexViewModel(param.CurrentPage, PerPage);
@@ -47,8 +47,11 @@ namespace FT.MvcApp.Home.Controllers
             }
 
             var model = await _builder.BuildSearchViewModel(param.Term, param.StartsWith, param.CurrentPage, PerPage);
-
-            model.RouteValues = BuildRouteValues(param.Term, param.StartsWith);
+            if (model != null)
+            {
+                model.RouteValues = BuildRouteValues(param.Term, param.StartsWith);
+                model.DisallowIndex = true;
+            }
 
             return View(model);
         }

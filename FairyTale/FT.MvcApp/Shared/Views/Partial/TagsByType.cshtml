@@ -12,8 +12,7 @@
 
         <p class="tags">
             @foreach (var tag in tags[type]) {
-                <span>(@tag.FairyTalesCount)</span>
-                @Html.ActionLink(tag)
+                @Html.ActionLink(tag, tag.Title + " (" + tag.FairyTalesCount + ")")
             }
         </p>
     </section>

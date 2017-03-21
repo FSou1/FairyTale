@@ -14,7 +14,8 @@ namespace FT.Entities {
         public virtual string Text { get; set; }
         public virtual DateTime CreatedAtUtc { get; set; }
         public virtual string Description { get; set; }
-        
+        public virtual char FirstLetter { get; set; }
+
         public virtual bool IsBook => Children.Count > 0;
         public virtual bool HasNavigation => Parent != null || Previous != null || Next != null;
 
@@ -43,6 +44,7 @@ namespace FT.Entities {
             Map(x => x.Text).CustomType("StringClob").CustomSqlType("nvarchar(max)");
             Map(x => x.CreatedAtUtc);
             Map(x => x.Description);
+            Map(x => x.FirstLetter);
 
             Component(x => x.Summary, part => {
                 part.Map(p => p.EstimatedReadingMinutes, "EstimatedReadingMinutes");

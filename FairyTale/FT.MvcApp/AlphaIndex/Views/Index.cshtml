@@ -1,0 +1,14 @@
+﻿@model FT.MvcApp.AlphaIndex.Models.IndexViewModel
+
+@{
+    ViewBag.Title = Model.Title;
+
+    var letters = Model.Letters;
+}
+
+<nav>
+    @foreach (var letter in letters)
+    {
+        <strong>@letter</strong>
+    }
+</nav>

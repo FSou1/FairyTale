@@ -71,7 +71,7 @@ namespace FT.Repositories {
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        private Task<IList<int>> GetIds(Expression<Func<T, bool>> filter) {
+        protected Task<IList<int>> GetIds(Expression<Func<T, bool>> filter) {
             var ids = Session.Query<T>().Where(filter).Select(x => x.Id).ToList();
             return Task.FromResult<IList<int>>(ids);
         }
@@ -83,7 +83,7 @@ namespace FT.Repositories {
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        private Task<IList<int>> GetIds(Expression<Func<T, bool>> filter, int skip, int take) {
+        protected Task<IList<int>> GetIds(Expression<Func<T, bool>> filter, int skip, int take) {
             var ids = Session.Query<T>().Where(filter).Select(x => x.Id).Skip(skip).Take(take).ToList();
             return Task.FromResult<IList<int>>(ids);
         }
@@ -96,7 +96,7 @@ namespace FT.Repositories {
         /// <param name="orderBy"></param>
         /// <param name="asc"></param>
         /// <returns></returns>
-        private Task<IList<int>> GetIds<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> orderBy, bool asc)
+        protected Task<IList<int>> GetIds<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> orderBy, bool asc)
         {
             var ids = Session.Query<T>().Where(filter).OrderBy(orderBy, asc).Select(x => x.Id).ToList();
             return Task.FromResult<IList<int>>(ids);
@@ -112,7 +112,7 @@ namespace FT.Repositories {
         /// <param name="skip"></param>
         /// <param name="take"></param>
         /// <returns></returns>
-        private Task<IList<int>> GetIds<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> orderBy, bool asc, int skip, int take) {
+        protected Task<IList<int>> GetIds<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> orderBy, bool asc, int skip, int take) {
             var ids = Session.Query<T>().Where(filter).OrderBy(orderBy, asc).Select(x => x.Id).Skip(skip).Take(take).ToList();
             return Task.FromResult<IList<int>>(ids);
         }

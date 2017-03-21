@@ -19,7 +19,7 @@
 
     @if (displaySharing) {
         <li class="summary-item">
-            <noindex>
+            <!--noindex-->
                 <a href="https://vk.com/share.php?url=@currentUrl"
                    class="push vkontakte"
                    title="Опубликовать ссылку во ВКонтакте"
@@ -51,7 +51,7 @@
                    onclick="window.open(this.href, 'Опубликовать ссылку в Одноклассники', 'width=800,height=300,resizable=yes,toolbar=0,status=0'); return false;">
                     <i class="fa fa-odnoklassniki"></i>
                 </a>
-            </noindex>
+            <!--/noindex-->
         </li>
     }
 </ul>

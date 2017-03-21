@@ -172,7 +172,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlphaIndex\Controllers\AlphaIndexController.cs" />
-    <Compile Include="AlphaIndex\Models\IndexParams.cs" />
+    <Compile Include="AlphaIndex\Models\IndexViewModel.cs" />
+    <Compile Include="AlphaIndex\Services\AlphaIndexBuilder.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FiltersConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -226,9 +227,11 @@
     <Content Include="Shared\Views\Partial\Navigation.cshtml" />
     <Content Include="Shared\Views\Partial\Book.cshtml" />
     <Content Include="Error\Views\NotFound.cshtml" />
+    <Content Include="AlphaIndex\Views\Index.cshtml" />
     <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTaleSummary.cshtml" />
+    <Content Include="Shared\Views\Partial\Letters.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -237,10 +240,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AlphaIndex\Services\" />
-    <Folder Include="AlphaIndex\Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\FT.Components\FT.Components.csproj">
       <Project>{4CEE7B92-5CBA-42BF-8B9B-C6C41BCCD70D}</Project>

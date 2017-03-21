@@ -1,0 +1,8 @@
+﻿@model IList<char>
+
+<nav class="pager">
+    @foreach (var letter in Model)
+    {
+        @Html.ActionLink(letter.ToString(), "Search", "Home", new { startsWith = letter }, null)
+    }
+</nav>

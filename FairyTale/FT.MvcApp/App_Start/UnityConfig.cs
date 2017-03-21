@@ -4,6 +4,7 @@ using FluentNHibernate.Cfg.Db;
 using FT.Components.Serializer;
 using FT.Components.Serializer.Json;
 using FT.Entities;
+using FT.MvcApp.AlphaIndex.Services;
 using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Home.Services;
 using FT.MvcApp.Tags.Services;
@@ -25,6 +26,7 @@ namespace FT.MvcApp
             container.RegisterType<ITagsBuilder, TagsBuilder>(new PerRequestLifetimeManager());
             container.RegisterType<IHomeBuilder, HomeBuilder>(new PerRequestLifetimeManager());
             container.RegisterType<IFairyTalesBuilder, FairyTalesBuilder>(new PerRequestLifetimeManager());
+            container.RegisterType<IAlphaIndexBuilder, AlphaIndexBuilder>(new PerRequestLifetimeManager());
 
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
 
@@ -54,7 +56,9 @@ namespace FT.MvcApp
 
             container.RegisterType<IUnitOfWork, NHibernateUnitOfWork>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<FairyTale>, Repository<FairyTale>>(new PerRequestLifetimeManager());
+            container.RegisterType<IFairyTaleRepository, FairyTaleRepository>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<Tag>, Repository<Tag>>(new PerRequestLifetimeManager());
+            container.RegisterType<ITagRepository, TagRepository>(new PerRequestLifetimeManager());
         }
     }
 }

@@ -6,15 +6,35 @@
     var fairyTales = Model.RandomFairyTales;
 }
 
-<section>
-    @foreach (var ft in fairyTales) {
-        @Html.Partial("FairyTale", ft)
-    }
+<!--noindex-->
+    <section>
+        <header>
+            <h2>Указатель</h2>
+        </header>
 
-    <nav class="pager">
-        @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(x=> x.MaxNrOfPages(4))
-    </nav>
-</section>
+        @{
+            Html.RenderAction("Index", "AlphaIndex");
+        }
+    </section>
+
+    <section>
+        @foreach (var ft in fairyTales)
+        {
+            @Html.Partial("FairyTale", ft)
+        }
+        
+        @if (fairyTales.PageCount > 1)
+        {
+            <nav class="pager">
+                @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o =>
+                {
+                    o.MaxNrOfPages(4);
+                    o.HidePreviousAndNextPage();
+                })
+            </nav>
+        }
+    </section>
+<!--/noindex-->
 
 <article>
     @Html.Partial("SiteDescription")

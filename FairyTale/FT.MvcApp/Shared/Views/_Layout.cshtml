@@ -1,11 +1,14 @@
-﻿@using System.Web.Optimization
-@model LayoutViewModel
+﻿@model LayoutViewModel
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@Model.Title</title>
+    @if (Model.DisallowIndex)
+    {
+        <meta name="robots" content="noindex,follow">
+    }
     @if (Model.HasDescription)
     {
         <meta content="@Model.Description" name="description"/>

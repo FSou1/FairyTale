@@ -1,5 +1,4 @@
-﻿@using NHibernate.Util
-@model FT.MvcApp.Home.Models.SearchViewModel
+﻿@model FT.MvcApp.Home.Models.SearchViewModel
 
 @{
     ViewBag.Title = Model.Title;
@@ -33,8 +32,7 @@ else
         <p class="tags">
             @foreach (var tag in tags)
             {
-                <span>(@tag.FairyTalesCount)</span>
-                @Html.ActionLink(tag)
+                @Html.ActionLink(tag, tag.Title + " (" + tag.FairyTalesCount + ")")
             }
         </p>
     </section>
@@ -51,16 +49,20 @@ else
         {
             @Html.Partial("FairyTale", ft)
         }
-
-        <nav class="pager">
-            @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o =>
-            {
-                o.MaxNrOfPages(3);
-                foreach (var rv in routeValues)
+        
+        @if (fairyTales.PageCount > 1)
+        {
+            <nav class="pager">
+                @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o =>
                 {
-                    o.AddRouteValue(rv.Key, rv.Value);
-                }
-            })
-        </nav>
+                    o.MaxNrOfPages(4);
+                    o.HidePreviousAndNextPage();
+                    foreach (var rv in routeValues)
+                    {
+                        o.AddRouteValue(rv.Key, rv.Value);
+                    }
+                })
+            </nav>
+        }
     </section>
 }
