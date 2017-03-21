@@ -144,12 +144,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\404.gif" />
     <Content Include="Content\images\story-book-icon.png" />
     <Content Include="Content\images\story-icon.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\find.png" />
     <Content Include="Content\images\logo.gif" />
-    <Content Include="Content\images\error.png" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\pager.css" />
     <Content Include="Content\site.css" />
@@ -207,8 +207,6 @@
     <Content Include="Shared\Views\_Layout.cshtml" />
     <Content Include="Home\Views\Index.cshtml" />
     <Content Include="FairyTales\Views\Single.cshtml" />
-    <Content Include="Error\Views\Index.cshtml" />
-    <Content Include="Error\Views\Unauthorized.cshtml" />
     <Content Include="Home\Views\About.cshtml" />
     <Content Include="Home\Views\Search.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTale.cshtml" />
