@@ -4,5 +4,6 @@ namespace FT.MvcApp.Shared.Models {
     public class FairyTaleSummaryModel {
         public FairyTale FairyTale { get; set; }
         public bool DisplaySharing { get; set; }
+        public bool DisplayRead { get; set; }
     }
 }

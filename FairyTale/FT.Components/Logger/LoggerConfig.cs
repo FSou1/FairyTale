@@ -20,14 +20,15 @@ namespace FT.Components.Logger {
                 AcceptOnMatch = true
             });
             sqlRoller.AddFilter(new DenyAllFilter());
-            sqlRoller.AppendToFile = false;
+            sqlRoller.AppendToFile = true;
             sqlRoller.File = $@"log/sql.txt";
             sqlRoller.Layout = patternLayout;
             sqlRoller.MaxSizeRollBackups = 5;
-            sqlRoller.MaximumFileSize = "100MB";
+            sqlRoller.MaximumFileSize = "10MB";
             sqlRoller.RollingStyle = RollingFileAppender.RollingMode.Size;
             sqlRoller.StaticLogFileName = true;
             sqlRoller.ActivateOptions();
+            sqlRoller.LockingModel = new FileAppender.MinimalLock();
             hierarchy.Root.AddAppender(sqlRoller);
 
             RollingFileAppender logRoller = new RollingFileAppender();
@@ -35,14 +36,15 @@ namespace FT.Components.Logger {
                 LoggerToMatch = "NHibernate",
                 AcceptOnMatch = false
             });
-            logRoller.AppendToFile = false;
+            logRoller.AppendToFile = true;
             logRoller.File = $@"log/log.txt";
             logRoller.Layout = patternLayout;
             logRoller.MaxSizeRollBackups = 5;
-            logRoller.MaximumFileSize = "100MB";
+            logRoller.MaximumFileSize = "10MB";
             logRoller.RollingStyle = RollingFileAppender.RollingMode.Size;
             logRoller.StaticLogFileName = true;
             logRoller.ActivateOptions();
+            logRoller.LockingModel = new FileAppender.MinimalLock();
             hierarchy.Root.AddAppender(logRoller);
 
             hierarchy.Root.Level = Level.Debug;

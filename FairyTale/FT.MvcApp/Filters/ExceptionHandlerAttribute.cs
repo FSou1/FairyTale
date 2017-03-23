@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using FT.Components.Serializer;
 using FT.Components.Serializer.Json;
 using log4net;
@@ -10,7 +11,10 @@ namespace FT.MvcApp.Filters {
                 ?? new NewtonsoftJsonSerializer();
 
             var exception = filterContext.Exception;
-            var json = serializer.Serialize(exception);
+            var json = serializer.Serialize(new {
+                exception.Message,
+                exception.StackTrace
+            });
 
             LogManager.GetLogger(typeof(ExceptionHandlerAttribute)).Error(json);
 

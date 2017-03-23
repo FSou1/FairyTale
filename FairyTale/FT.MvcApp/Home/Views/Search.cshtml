@@ -55,7 +55,7 @@ else
             <nav class="pager">
                 @Html.Pager(fairyTales.PageSize, fairyTales.PageNumber, fairyTales.TotalItemCount).Options(o =>
                 {
-                    o.MaxNrOfPages(4);
+                    o.MaxNrOfPages(8);
                     o.HidePreviousAndNextPage();
                     foreach (var rv in routeValues)
                     {

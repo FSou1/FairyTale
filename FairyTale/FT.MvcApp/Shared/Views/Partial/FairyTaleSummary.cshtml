@@ -4,6 +4,7 @@
     var fairyTale = Model.FairyTale;
     var summary = fairyTale.Summary;
     var displaySharing = Model.DisplaySharing;
+    var displayRead = Model.DisplayRead;
     var currentUrl = Request.Url.AbsoluteUri;
 }
 
@@ -16,6 +17,13 @@
         title="Понравилось">
         <i class="fa fa-heart"></i> @summary.Likes
     </li>
+    @if (displayRead) {
+        <li class="summary-item"
+            title="Читать сказку @fairyTale.Title">
+            @Html.ActionLink("Читать", fairyTale, null)
+            <i class="fa fa-arrow-right"></i>
+        </li>
+    }
 
     @if (displaySharing) {
         <li class="summary-item">
