@@ -3,6 +3,6 @@
 <nav class="pager">
     @foreach (var letter in Model)
     {
-        @Html.ActionLink(letter.ToString(), "Search", "Home", new { startsWith = letter }, null)
+        @Html.ActionLink(letter.ToString(), "Search", "Home", new { firstLetter = letter }, null)
     }
 </nav>
