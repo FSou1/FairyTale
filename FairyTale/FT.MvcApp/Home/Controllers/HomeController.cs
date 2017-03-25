@@ -46,23 +46,23 @@ namespace FT.MvcApp.Home.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = await _builder.BuildSearchViewModel(param.Term, param.StartsWith, param.CurrentPage, PerPage);
+            var model = await _builder.BuildSearchViewModel(param.Term, param.FirstLetter, param.CurrentPage, PerPage);
             if (model != null)
             {
-                model.RouteValues = BuildRouteValues(param.Term, param.StartsWith);
+                model.RouteValues = BuildRouteValues(param.Term, param.FirstLetter);
                 model.DisallowIndex = true;
             }
 
             return View(model);
         }
 
-        private IDictionary<string, object> BuildRouteValues(string term, string startsWith)
+        private IDictionary<string, object> BuildRouteValues(string term, char firstLetter)
         {
             var dict = new Dictionary<string, object>();
             if(!string.IsNullOrEmpty(term))
                 dict.Add("term", $"{term}");
-            if(!string.IsNullOrEmpty(startsWith))
-                dict.Add("startsWith", $"{startsWith}");
+            if(firstLetter != ' ')
+                dict.Add("firstLetter", $"{firstLetter}");
             return dict;
         }
 

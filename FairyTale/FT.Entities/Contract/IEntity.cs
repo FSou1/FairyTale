@@ -3,5 +3,6 @@
     {
         int Id { get; set; }
         string Title { get; set; }
+        char FirstLetter { get; set; }
     }
 }

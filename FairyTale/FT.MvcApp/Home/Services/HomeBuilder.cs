@@ -44,13 +44,13 @@ namespace FT.MvcApp.Home.Services {
         /// 
         /// </summary>
         /// <param name="term"></param>
-        /// <param name="startsWith"></param>
+        /// <param name="firstLetter"></param>
         /// <param name="page"></param>
         /// <param name="perPage"></param>
         /// <returns></returns>
-        public async Task<SearchViewModel> BuildSearchViewModel(string term, string startsWith, int page, int perPage) {
-            var taleFilter = BuildFilter<FairyTale>(term, startsWith);
-            var tagFilter = BuildFilter<Tag>(term, startsWith);
+        public async Task<SearchViewModel> BuildSearchViewModel(string term, char firstLetter, int page, int perPage) {
+            var taleFilter = BuildFilter<FairyTale>(term, firstLetter);
+            var tagFilter = BuildFilter<Tag>(term, firstLetter);
             
             var tales = await _taleRepository.GetAllAsync(taleFilter.Filter, x => x.Title, true, page*perPage, perPage);
             var tags = await _tagRepository.GetAllAsync(tagFilter.Filter, x => x.Title, true);
@@ -68,7 +68,7 @@ namespace FT.MvcApp.Home.Services {
             return model;
         }
 
-        private FilterQuery<T> BuildFilter<T>(string term, string startsWith) where T : IEntity
+        private FilterQuery<T> BuildFilter<T>(string term, char firstLetter) where T : IEntity
         {
             var filter = PredicateBuilder.True<T>();
             string query = null;
@@ -80,11 +80,10 @@ namespace FT.MvcApp.Home.Services {
                 query += $"содержит {term}";
             }
 
-            if (!string.IsNullOrEmpty(startsWith) 
-                && !string.IsNullOrWhiteSpace(startsWith))
+            if (firstLetter != ' ')
             {
-                filter = filter.And(ft => ft.Title.StartsWith(startsWith));
-                query += $"начинается на {startsWith}";
+                filter = filter.And(ft => ft.FirstLetter.Equals(firstLetter));
+                query += $"начинается на {firstLetter}";
             }
 
             return new FilterQuery<T>()
@@ -119,7 +118,7 @@ namespace FT.MvcApp.Home.Services {
     public interface IHomeBuilder {
         Task<IndexViewModel> BuildIndexViewModel(int page, int perPage);
 
-        Task<SearchViewModel> BuildSearchViewModel(string term, string startsWith, int page, int perPage);
+        Task<SearchViewModel> BuildSearchViewModel(string term, char firstLetter, int page, int perPage);
 
         AboutViewModel BuildAboutViewModel();
     }

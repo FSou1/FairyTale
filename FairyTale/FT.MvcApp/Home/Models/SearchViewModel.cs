@@ -19,12 +19,12 @@ namespace FT.MvcApp.Home.Models
 
     public class SearchParams
     {
-        public string StartsWith { get; set; }
+        public char FirstLetter { get; set; }
         public string Term { get; set; }
         public int? Page { get; set; }
 
         public int CurrentPage => Page - 1 ?? 0;
 
-        public bool IsValid => !string.IsNullOrEmpty(Term) || !string.IsNullOrEmpty(StartsWith);
+        public bool IsValid => !string.IsNullOrEmpty(Term) || FirstLetter != ' ';
     }
 }
