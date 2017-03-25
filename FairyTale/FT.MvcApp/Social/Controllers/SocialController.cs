@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Facebook;
 using FT.Components.Extension;
 using FT.Components.Serializer;
 using FT.Components.Utility;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Services;
+using FT.MvcApp.Social.Services;
 using LinqToTwitter;
 
 namespace FT.MvcApp.Social.Controllers {
@@ -14,22 +16,41 @@ namespace FT.MvcApp.Social.Controllers {
         public SocialController(
             IFairyTalesService talesService,
             ISerializer serializer,
-            IAuthorizer twitterAuth
+            ITwitter twitter,
+            IFacebook facebook
         ) {
             _talesService = talesService;
             _serializer = serializer;
-            _twitterAuth = twitterAuth;
+            _twitter = twitter;
+            _facebook = facebook;
         }
 
+        /// <summary>
+        /// Publish message to facebook page
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ActionResult> Facebook() {
+            var tale = await GetRandomTale();
+            var message = GetMessage(tale);
+
+            var post = await _facebook.PostAsync(message);
+
+            var result = new {
+                post.Id
+            };
+
+            return Content(_serializer.Serialize(result));
+        }
+
+        /// <summary>
+        /// Publish message to twitter account
+        /// </summary>
+        /// <returns></returns>
         public async Task<ActionResult> Twitter() {
-            await _twitterAuth.AuthorizeAsync();
-
-            var ctx = new TwitterContext(_twitterAuth);
-
             var tale = await GetRandomTale();
             var message = GetMessage(tale, 140);
 
-            var status = await ctx.TweetAsync(message);
+            var status = await _twitter.TweetAsync(message);
 
             var result = new {
                 status.Text,
@@ -44,6 +65,16 @@ namespace FT.MvcApp.Social.Controllers {
             Guard.ArgumentNotNull(tale, nameof(tale));
 
             return tale;
+        }
+
+        private string GetMessage(FairyTale tale) {
+            var url = " " + GetUrl(tale);
+
+            var title = tale.Title;
+
+            var message = $"{title}{url}";
+
+            return message;
         }
 
         private string GetMessage(FairyTale tale, int maxLength) {
@@ -62,6 +93,7 @@ namespace FT.MvcApp.Social.Controllers {
 
         private readonly IFairyTalesService _talesService;
         private readonly ISerializer _serializer;
-        private readonly IAuthorizer _twitterAuth;
+        private readonly ITwitter _twitter;
+        private readonly IFacebook _facebook;
     }
 }

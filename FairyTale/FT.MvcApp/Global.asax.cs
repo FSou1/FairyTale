@@ -32,5 +32,6 @@ namespace FT.MvcApp
         public static string TwitterConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
         public static string TwitterAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
         public static string TwitterAccessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"];
+        public static string FacebookAccessToken = ConfigurationManager.AppSettings["FacebookAccessToken"];
     }
 }

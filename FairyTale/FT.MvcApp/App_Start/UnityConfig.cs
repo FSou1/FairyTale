@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Facebook;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FT.Components.Serializer;
@@ -7,6 +8,7 @@ using FT.Entities;
 using FT.MvcApp.AlphaIndex.Services;
 using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Home.Services;
+using FT.MvcApp.Social.Services;
 using FT.MvcApp.Tags.Services;
 using FT.Repositories;
 using Microsoft.Practices.Unity;
@@ -32,7 +34,6 @@ namespace FT.MvcApp
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
 
             #region Twitter
-
             container.RegisterInstance(typeof (IAuthorizer), new SingleUserAuthorizer {
                 CredentialStore = new SingleUserInMemoryCredentialStore {
                     ConsumerKey = AppPropertyKeys.TwitterConsumerKey,
@@ -41,7 +42,14 @@ namespace FT.MvcApp
                     AccessTokenSecret = AppPropertyKeys.TwitterAccessTokenSecret
                 }
             });
+            container.RegisterType<ITwitter, TwitterService>(new PerRequestLifetimeManager());
+            #endregion
 
+            #region Facebook
+            container.RegisterInstance(typeof (FacebookClient), 
+                new FacebookClient(AppPropertyKeys.FacebookAccessToken)
+            );
+            container.RegisterType<IFacebook, FacebookService>(new PerRequestLifetimeManager());
             #endregion
 
             //RegisterStub(container);
