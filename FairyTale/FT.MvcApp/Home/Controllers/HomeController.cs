@@ -56,12 +56,12 @@ namespace FT.MvcApp.Home.Controllers
             return View(model);
         }
 
-        private IDictionary<string, object> BuildRouteValues(string term, char firstLetter)
+        private IDictionary<string, object> BuildRouteValues(string term, char? firstLetter)
         {
             var dict = new Dictionary<string, object>();
             if(!string.IsNullOrEmpty(term))
                 dict.Add("term", $"{term}");
-            if(firstLetter != ' ')
+            if(firstLetter != null)
                 dict.Add("firstLetter", $"{firstLetter}");
             return dict;
         }

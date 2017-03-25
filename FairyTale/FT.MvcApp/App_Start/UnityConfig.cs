@@ -34,21 +34,22 @@ namespace FT.MvcApp
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
 
             #region Twitter
-            container.RegisterInstance(typeof (IAuthorizer), new SingleUserAuthorizer {
+
+            container.RegisterType<IAuthorizer>(new InjectionFactory(c => new SingleUserAuthorizer {
                 CredentialStore = new SingleUserInMemoryCredentialStore {
                     ConsumerKey = AppPropertyKeys.TwitterConsumerKey,
                     ConsumerSecret = AppPropertyKeys.TwitterConsumerSecret,
                     AccessToken = AppPropertyKeys.TwitterAccessToken,
                     AccessTokenSecret = AppPropertyKeys.TwitterAccessTokenSecret
                 }
-            });
+            }));
             container.RegisterType<ITwitter, TwitterService>(new PerRequestLifetimeManager());
             #endregion
 
             #region Facebook
-            container.RegisterInstance(typeof (FacebookClient), 
+            container.RegisterType<FacebookClient>(new InjectionFactory(c =>
                 new FacebookClient(AppPropertyKeys.FacebookAccessToken)
-            );
+            ));
             container.RegisterType<IFacebook, FacebookService>(new PerRequestLifetimeManager());
             #endregion
 

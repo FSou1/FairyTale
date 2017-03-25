@@ -48,7 +48,7 @@ namespace FT.MvcApp.Home.Services {
         /// <param name="page"></param>
         /// <param name="perPage"></param>
         /// <returns></returns>
-        public async Task<SearchViewModel> BuildSearchViewModel(string term, char firstLetter, int page, int perPage) {
+        public async Task<SearchViewModel> BuildSearchViewModel(string term, char? firstLetter, int page, int perPage) {
             var taleFilter = BuildFilter<FairyTale>(term, firstLetter);
             var tagFilter = BuildFilter<Tag>(term, firstLetter);
             
@@ -68,7 +68,7 @@ namespace FT.MvcApp.Home.Services {
             return model;
         }
 
-        private FilterQuery<T> BuildFilter<T>(string term, char firstLetter) where T : IEntity
+        private FilterQuery<T> BuildFilter<T>(string term, char? firstLetter) where T : IEntity
         {
             var filter = PredicateBuilder.True<T>();
             string query = null;
@@ -80,9 +80,9 @@ namespace FT.MvcApp.Home.Services {
                 query += $"содержит {term}";
             }
 
-            if (firstLetter != ' ')
+            if (firstLetter != null)
             {
-                filter = filter.And(ft => ft.FirstLetter.Equals(firstLetter));
+                filter = filter.And(ft => ft.FirstLetter.Equals(firstLetter.Value));
                 query += $"начинается на {firstLetter}";
             }
 
@@ -118,7 +118,7 @@ namespace FT.MvcApp.Home.Services {
     public interface IHomeBuilder {
         Task<IndexViewModel> BuildIndexViewModel(int page, int perPage);
 
-        Task<SearchViewModel> BuildSearchViewModel(string term, char firstLetter, int page, int perPage);
+        Task<SearchViewModel> BuildSearchViewModel(string term, char? firstLetter, int page, int perPage);
 
         AboutViewModel BuildAboutViewModel();
     }
