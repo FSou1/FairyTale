@@ -28,16 +28,24 @@ namespace FT.Repositories.Fake
             throw new NotImplementedException();
         }
 
+        public Task<IList<Tag>> GetRandomAsync(int skip, int take) {
+            throw new NotImplementedException();
+        }
+
+        public Task<IList<Tag>> GetAllAsync<TKey>(Expression<Func<Tag, TKey>> orderBy, bool asc, int skip, int take) {
+            throw new NotImplementedException();
+        }
+
         public Task<IList<Tag>> GetAllAsync<TKey>(Expression<Func<Tag, bool>> filter, Func<Tag, TKey> orderBy) {
             throw new NotImplementedException();
         }
 
         public Task<IList<Tag>> GetAllAsync<TKey>(
-            Func<Tag, TKey> orderBy, bool asc)
+            Expression<Func<Tag, TKey>> orderBy, bool asc)
         {
             var result = (asc
-                ? data.OrderBy(orderBy)
-                : data.OrderByDescending(orderBy)
+                ? data.OrderBy(orderBy.Compile())
+                : data.OrderByDescending(orderBy.Compile())
             ).ToList();
             return Task.FromResult<IList<Tag>>(result);
         }

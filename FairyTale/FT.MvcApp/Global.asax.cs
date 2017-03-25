@@ -27,5 +27,10 @@ namespace FT.MvcApp
     public class AppPropertyKeys
     {
         public static int TalesPerPage = 5;
+
+        public static string TwitterConsumerKey = ConfigurationManager.AppSettings["TwitterConsumerKey"];
+        public static string TwitterConsumerSecret = ConfigurationManager.AppSettings["TwitterConsumerSecret"];
+        public static string TwitterAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
+        public static string TwitterAccessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"];
     }
 }

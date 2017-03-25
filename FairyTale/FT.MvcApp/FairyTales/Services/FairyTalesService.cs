@@ -26,6 +26,11 @@ namespace FT.MvcApp.FairyTales.Services {
             return await _repository.GetAllAsync(filter, skip, take);
         }
 
+        public async Task<FairyTale> GetRandomAsync() {
+            var tales = await _repository.GetRandomAsync(0, 1);
+            return tales?[0];
+        }
+
         private readonly IRepository<FairyTale> _repository;
     }
 
@@ -37,5 +42,7 @@ namespace FT.MvcApp.FairyTales.Services {
         Task<IList<FairyTale>> GetAllAsync(
             Expression<Func<FairyTale, bool>> filter, int skip, int take
         );
+
+        Task<FairyTale> GetRandomAsync();
     }
 }

@@ -9,10 +9,11 @@ using FT.Entities;
 using FT.Entities.Contract;
 using FT.Repositories.NHibernate;
 using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Linq;
 
 namespace FT.Repositories {
-    public class Repository<T> : IRepository<T> where T : IEntity {
+    public class Repository<T> : IRepository<T> where T : class, IEntity {
         public Repository(IUnitOfWork unitOfWork) {
             _nHibernateUnitOfWork = (NHibernateUnitOfWork)unitOfWork;
         }
@@ -38,7 +39,17 @@ namespace FT.Repositories {
             return entities;
         }
 
-        public Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc) {
+        public async Task<IList<T>> GetRandomAsync(int skip, int take) {
+            var ids = await GetRandomIds<T>(skip, take);
+            var entities = Session.CreateCriteria<T>()
+                .Add(new InExpression(Projections.Id(), ids.OfType<object>().ToArray()))
+                .SetFirstResult(skip)
+                .SetMaxResults(take)
+                .List<T>();
+            return entities;
+        }
+
+        public Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> orderBy, bool asc) {
             var entities = (asc 
                 ? Session.Query<T>().OrderBy(orderBy) 
                 : Session.Query<T>().OrderByDescending(orderBy)
@@ -106,6 +117,23 @@ namespace FT.Repositories {
         /// Increase performance methods
         /// </summary>
         /// <typeparam name="TKey"></typeparam>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        protected Task<IList<int>> GetRandomIds<TKey>(int skip, int take) where TKey : class, IEntity {
+            var ids = Session.CreateCriteria<TKey>()
+                .SetProjection(Projections.Id())
+                .AddOrder(new RandomOrder())
+                .SetFirstResult(skip)
+                .SetMaxResults(take)
+                .List<int>();
+            return Task.FromResult(ids);
+        }
+
+        /// <summary>
+        /// Increase performance methods
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
         /// <param name="filter"></param>
         /// <param name="orderBy"></param>
         /// <param name="asc"></param>
@@ -127,7 +155,9 @@ namespace FT.Repositories {
 
         Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> orderBy, bool asc);
 
-        Task<IList<T>> GetAllAsync<TKey>(Func<T, TKey> orderBy, bool asc);
+        Task<IList<T>> GetRandomAsync(int skip, int take);
+
+        Task<IList<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> orderBy, bool asc);
 
         Task<T> GetAsync(object id);
 

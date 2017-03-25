@@ -13,6 +13,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using FT.Repositories.Fake;
 using FT.Repositories.NHibernate;
+using LinqToTwitter;
 
 namespace FT.MvcApp
 {
@@ -29,6 +30,19 @@ namespace FT.MvcApp
             container.RegisterType<IAlphaIndexBuilder, AlphaIndexBuilder>(new PerRequestLifetimeManager());
 
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
+
+            #region Twitter
+
+            container.RegisterInstance(typeof (IAuthorizer), new SingleUserAuthorizer {
+                CredentialStore = new SingleUserInMemoryCredentialStore {
+                    ConsumerKey = AppPropertyKeys.TwitterConsumerKey,
+                    ConsumerSecret = AppPropertyKeys.TwitterConsumerSecret,
+                    AccessToken = AppPropertyKeys.TwitterAccessToken,
+                    AccessTokenSecret = AppPropertyKeys.TwitterAccessTokenSecret
+                }
+            });
+
+            #endregion
 
             //RegisterStub(container);
             RegisterDatabase(container);

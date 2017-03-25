@@ -3,7 +3,6 @@ using System.Web;
 using System.Web.Mvc;
 using FT.MvcApp.Tags.Models;
 using FT.MvcApp.Tags.Services;
-using System.Web.UI;
 
 namespace FT.MvcApp.Tags.Controllers {
     public class TagsController : Controller {
