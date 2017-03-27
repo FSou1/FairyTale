@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Facebook;
 using FT.Components.Extension;
 using FT.Components.Serializer;
 using FT.Components.Utility;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Social.Services;
-using LinqToTwitter;
 
 namespace FT.MvcApp.Social.Controllers {
     public class SocialController : Controller {
@@ -25,12 +22,36 @@ namespace FT.MvcApp.Social.Controllers {
             _facebook = facebook;
         }
 
+        public enum PostType { RandomTale }
+
         /// <summary>
-        /// Publish message to facebook page
+        /// Publish post
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> Post(PostType type) {
+            switch (type) {
+                case PostType.RandomTale: {
+                    var tale = await GetRandomTale();
+
+                    var fb = await Facebook(tale);
+                    var tw = await Twitter(tale);
+
+                    var result = new { fb, tw };
+
+                    return Content(_serializer.Serialize(result));
+                }
+                default: {
+                    throw new InvalidEnumArgumentException(nameof(type));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Publish tale to facebook page
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult> Facebook() {
-            var tale = await GetRandomTale();
+        private async Task<ActionResult> Facebook(FairyTale tale) {
             var message = GetMessage(tale);
 
             var post = await _facebook.PostAsync(message);
@@ -43,11 +64,10 @@ namespace FT.MvcApp.Social.Controllers {
         }
 
         /// <summary>
-        /// Publish message to twitter account
+        /// Publish tale to twitter account
         /// </summary>
         /// <returns></returns>
-        public async Task<ActionResult> Twitter() {
-            var tale = await GetRandomTale();
+        private async Task<ActionResult> Twitter(FairyTale tale) {
             var message = GetMessage(tale, 140);
 
             var status = await _twitter.TweetAsync(message);
