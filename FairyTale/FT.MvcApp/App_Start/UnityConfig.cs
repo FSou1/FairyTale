@@ -16,6 +16,7 @@ using Microsoft.Practices.Unity.Mvc;
 using FT.Repositories.Fake;
 using FT.Repositories.NHibernate;
 using LinqToTwitter;
+using VkNet;
 
 namespace FT.MvcApp
 {
@@ -47,10 +48,28 @@ namespace FT.MvcApp
             #endregion
 
             #region Facebook
+
             container.RegisterType<FacebookClient>(new InjectionFactory(c =>
                 new FacebookClient(AppPropertyKeys.FacebookAccessToken)
             ));
             container.RegisterType<IFacebook, FacebookService>(new PerRequestLifetimeManager());
+            #endregion
+
+            #region Vk
+
+            container.RegisterType<VkApi>(new InjectionFactory(c => {
+                var vk = new VkApi();
+                vk.Authorize(new ApiAuthParams() {
+                    ApplicationId = AppPropertyKeys.VkApplicationId,
+                    Login = AppPropertyKeys.VkLogin,
+                    Password = AppPropertyKeys.VkPassword,
+                    Settings = VkNet.Enums.Filters.Settings.Wall
+                });
+                return vk;
+            }));
+            container.RegisterType<IVkontakte, VkService>(new PerRequestLifetimeManager(),
+                new InjectionConstructor(new ResolvedParameter(typeof(VkApi)), AppPropertyKeys.VkPageId)
+            );
             #endregion
 
             //RegisterStub(container);

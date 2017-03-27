@@ -8,11 +8,11 @@ namespace FT.MvcApp.Social.Services {
             _client = client;
         }
 
-        public Task<PostMessageResult> PostAsync(string message) {
+        public Task<PostFbMessageResult> PostAsync(string message) {
             var result = _client.Post("feed", new {message});
             var json = (JsonObject) result;
             
-            return Task.FromResult(new PostMessageResult() {
+            return Task.FromResult(new PostFbMessageResult() {
                 Id = $"{json["id"]}"
             });
         }
@@ -20,11 +20,11 @@ namespace FT.MvcApp.Social.Services {
         private readonly FacebookClient _client;
     }
 
-    public class PostMessageResult {
+    public class PostFbMessageResult {
         public string Id;
     }
 
     public interface IFacebook {
-        Task<PostMessageResult> PostAsync(string message);
+        Task<PostFbMessageResult> PostAsync(string message);
     }
 }

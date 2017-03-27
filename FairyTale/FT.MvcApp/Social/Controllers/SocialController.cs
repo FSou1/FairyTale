@@ -14,12 +14,14 @@ namespace FT.MvcApp.Social.Controllers {
             IFairyTalesService talesService,
             ISerializer serializer,
             ITwitter twitter,
-            IFacebook facebook
+            IFacebook facebook,
+            IVkontakte vkontakte
         ) {
             _talesService = talesService;
             _serializer = serializer;
             _twitter = twitter;
             _facebook = facebook;
+            _vkontakte = vkontakte;
         }
 
         public enum PostType { RandomTale }
@@ -33,11 +35,12 @@ namespace FT.MvcApp.Social.Controllers {
             switch (type) {
                 case PostType.RandomTale: {
                     var tale = await GetRandomTale();
-
+                        
                     var fb = await Facebook(tale);
                     var tw = await Twitter(tale);
+                    var vk = await Vkontakte(tale);
 
-                    var result = new { fb, tw };
+                    var result = new { fb, tw, vk };
 
                     return Content(_serializer.Serialize(result));
                 }
@@ -45,6 +48,23 @@ namespace FT.MvcApp.Social.Controllers {
                     throw new InvalidEnumArgumentException(nameof(type));
                 }
             }
+        }
+
+        /// <summary>
+        /// Publish tale to vk page
+        /// </summary>
+        /// <param name="tale"></param>
+        /// <returns></returns>
+        private async Task<ActionResult> Vkontakte(FairyTale tale) {
+            var message = GetMessage(tale);
+
+            var post = await _vkontakte.PostAsync(message);
+
+            var result = new {
+                post.Id
+            };
+
+            return Content(_serializer.Serialize(result));
         }
 
         /// <summary>
@@ -115,5 +135,6 @@ namespace FT.MvcApp.Social.Controllers {
         private readonly ISerializer _serializer;
         private readonly ITwitter _twitter;
         private readonly IFacebook _facebook;
+        private readonly IVkontakte _vkontakte;
     }
 }

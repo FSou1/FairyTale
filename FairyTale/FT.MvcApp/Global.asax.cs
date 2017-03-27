@@ -33,5 +33,9 @@ namespace FT.MvcApp
         public static string TwitterAccessToken = ConfigurationManager.AppSettings["TwitterAccessToken"];
         public static string TwitterAccessTokenSecret = ConfigurationManager.AppSettings["TwitterAccessTokenSecret"];
         public static string FacebookAccessToken = ConfigurationManager.AppSettings["FacebookAccessToken"];
+        public static ulong VkApplicationId = ulong.Parse(ConfigurationManager.AppSettings["VkApplicationId"]);
+        public static string VkLogin = ConfigurationManager.AppSettings["VkLogin"];
+        public static string VkPassword = ConfigurationManager.AppSettings["VkPassword"];
+        public static long VkPageId = long.Parse(ConfigurationManager.AppSettings["VkPageId"]);
     }
 }
