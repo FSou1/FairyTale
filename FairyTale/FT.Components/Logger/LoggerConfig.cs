@@ -16,21 +16,20 @@ namespace FT.Components.Logger {
 
             RollingFileAppender sqlRoller = new RollingFileAppender();
             sqlRoller.AddFilter(new LoggerMatchFilter() {
-                LoggerToMatch = "NHibernate.SQL",
+                LoggerToMatch = "SqlInterceptor",
                 AcceptOnMatch = true
             });
             sqlRoller.AddFilter(new DenyAllFilter());
             sqlRoller.AppendToFile = true;
-            sqlRoller.File = $@"log/sql.txt";
-            sqlRoller.Layout = patternLayout;
-            sqlRoller.MaxSizeRollBackups = 5;
-            sqlRoller.MaximumFileSize = "10MB";
-            sqlRoller.RollingStyle = RollingFileAppender.RollingMode.Size;
-            sqlRoller.StaticLogFileName = true;
+            sqlRoller.File = $@"log/interceptor_sql.txt";
+            sqlRoller.Layout = new PatternLayout("%message%newline");
+            sqlRoller.MaxSizeRollBackups = 15;
+            sqlRoller.RollingStyle = RollingFileAppender.RollingMode.Date;
+            sqlRoller.StaticLogFileName = false;
             sqlRoller.ActivateOptions();
             sqlRoller.LockingModel = new FileAppender.MinimalLock();
             hierarchy.Root.AddAppender(sqlRoller);
-
+            
             RollingFileAppender logRoller = new RollingFileAppender();
             logRoller.AddFilter(new LoggerMatchFilter() {
                 LoggerToMatch = "NHibernate",

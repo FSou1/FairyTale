@@ -15,6 +15,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
 using FT.Repositories.Fake;
 using FT.Repositories.NHibernate;
+using log4net;
 using LinqToTwitter;
 using VkNet;
 
@@ -93,6 +94,9 @@ namespace FT.MvcApp
                     .Database(MsSqlConfiguration
                         .MsSql2012
                         .ConnectionString(x => x.FromConnectionStringWithKey("db")))
+                    .ExposeConfiguration(cfg => {
+                        cfg.SetInterceptor(new SqlInterceptor(x => LogManager.GetLogger("SqlInterceptor").Info(x)));
+                    })
                     .BuildSessionFactory()
                 );
 
