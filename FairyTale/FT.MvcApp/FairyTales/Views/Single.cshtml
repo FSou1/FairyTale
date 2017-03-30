@@ -4,6 +4,8 @@
     ViewBag.Title = Model.Title;
 
     var fairyTale = Model.FairyTale;
+    var related = Model.Related;
+    var hasRelated = related != null && related.Count > 0;
 }
 
 <header>
@@ -38,3 +40,7 @@
             DisplaySharing = true
         })
 </footer>
+
+@if (hasRelated) {
+    @Html.Partial("Related", related)
+}

@@ -5,25 +5,32 @@
     var parent = fairyTale.Parent;
     var previous = fairyTale.Previous;
     var next = fairyTale.Next;
+
+    var hasPrevious = previous != null;
+    var hasNext = next != null;
 }
 
 <footer>
     <nav>
         <ul class="h-nav clearfix">
-            <li>
-                <i class="fa fa-arrow-left"></i>
-                @Html.ActionLink(previous)
-            </li>
+            @if (hasPrevious) {
+                <li>
+                    <i class="fa fa-arrow-left"></i>
+                    @Html.ActionLink(previous)
+                </li>
+            }
 
             <li>
                 <i class="fa fa-list"></i>
                 @Html.Parent(parent)
             </li>
 
-            <li>
-                @Html.ActionLink(next)
-                <i class="fa fa-arrow-right"></i>
-            </li>
+            @if (hasNext) {
+                <li>
+                    @Html.ActionLink(next)
+                    <i class="fa fa-arrow-right"></i>
+                </li>
+            }
         </ul>
     </nav>
 </footer>

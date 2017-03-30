@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FT.Components.Utility;
 using FT.Entities;
 using FT.MvcApp.FairyTales.Models;
 using FT.Repositories;
@@ -9,7 +10,7 @@ using FT.Repositories;
 namespace FT.MvcApp.FairyTales.Services
 {
     public class FairyTalesBuilder : IFairyTalesBuilder {
-        public FairyTalesBuilder(IRepository<FairyTale> repository) {
+        public FairyTalesBuilder(IFairyTaleRepository repository) {
             _repository = repository;
         }
 
@@ -20,12 +21,13 @@ namespace FT.MvcApp.FairyTales.Services
         /// <returns></returns>
         public async Task<SingleViewModel> BuildSingleViewModel(int id) {
             var fairyTale = await _repository.GetAsync(id);
-
+            
             var model = new SingleViewModel
             {
                 Title = fairyTale.Title,
                 Description = fairyTale.Description,
-                FairyTale = fairyTale
+                FairyTale = fairyTale,
+                Related = await _repository.Related(fairyTale, 0, 5)
             };
 
             return model;
@@ -58,7 +60,7 @@ namespace FT.MvcApp.FairyTales.Services
             return model;
         }
 
-        private readonly IRepository<FairyTale> _repository;
+        private readonly IFairyTaleRepository _repository;
     }
 
     public interface IFairyTalesBuilder {

@@ -265,6 +265,7 @@
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />
     <Content Include="Shared\Views\Partial\FairyTaleSummary.cshtml" />
     <Content Include="Shared\Views\Partial\Letters.cshtml" />
+    <Content Include="Shared\Views\Partial\Related.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

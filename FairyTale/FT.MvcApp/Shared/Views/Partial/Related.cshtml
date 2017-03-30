@@ -1,0 +1,19 @@
+﻿@model IList<FairyTale>
+
+@{
+    var related = Model;
+}
+
+<article class="top_botom_dashed">
+    <header>
+        <h3>Читать похожие сказки:</h3>
+    </header>
+
+    <ul>
+        @foreach (var ft in related) {
+            <li>
+                @Html.ActionLink(ft)
+            </li>
+        }
+    </ul>
+</article>

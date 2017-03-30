@@ -228,6 +228,13 @@ body > footer {
     border-right: none;
 }
 
+/* other */
+.top_botom_dashed {
+    padding: 20px;
+    border-top: 1px dashed gray;
+    border-bottom: 1px dashed gray;
+}
+
 /* tags */
 .tags {
     text-align: justify;
