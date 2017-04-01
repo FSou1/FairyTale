@@ -29,6 +29,7 @@ namespace FT.Entities {
     {
         public virtual int EstimatedReadingMinutes { get; set; }
         public virtual int Likes { get; set; }
+        public virtual int Views { get; set; }
     }
 
     public class FairyTaleMap : ClassMap<FairyTale> {
@@ -50,6 +51,7 @@ namespace FT.Entities {
             Component(x => x.Summary, part => {
                 part.Map(p => p.EstimatedReadingMinutes, "EstimatedReadingMinutes");
                 part.Map(p => p.Likes, "Likes");
+                part.Map(p => p.Views, "Views");
             });
 
             HasMany(x => x.Children)

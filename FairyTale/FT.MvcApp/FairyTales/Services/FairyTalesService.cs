@@ -22,6 +22,13 @@ namespace FT.MvcApp.FairyTales.Services {
             await _repository.UpdateAsync(fairyTale);
         }
 
+        public async Task IncreaseViews(FairyTale fairyTale) {
+            Guard.ArgumentNotNull(fairyTale, nameof(fairyTale));
+
+            fairyTale.Summary.Views += 1;
+            await _repository.UpdateAsync(fairyTale);
+        }
+
         public async Task<IList<FairyTale>> GetAllAsync(Expression<Func<FairyTale, bool>> filter, int skip, int take) {
             return await _repository.GetAllAsync(filter, skip, take);
         }
@@ -38,6 +45,8 @@ namespace FT.MvcApp.FairyTales.Services {
         Task<FairyTale> GetAsync(int id);
 
         Task UpdateAsync(FairyTale fairyTale);
+
+        Task IncreaseViews(FairyTale fairyTale);
 
         Task<IList<FairyTale>> GetAllAsync(
             Expression<Func<FairyTale, bool>> filter, int skip, int take
