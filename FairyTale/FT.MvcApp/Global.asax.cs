@@ -37,5 +37,6 @@ namespace FT.MvcApp
         public static string VkLogin = ConfigurationManager.AppSettings["VkLogin"];
         public static string VkPassword = ConfigurationManager.AppSettings["VkPassword"];
         public static long VkPageId = long.Parse(ConfigurationManager.AppSettings["VkPageId"] ?? "0");
+        public static string OkAccessToken = ConfigurationManager.AppSettings["OkAccessToken"];
     }
 }

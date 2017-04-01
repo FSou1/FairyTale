@@ -50,10 +50,74 @@
 
 <footer>
     <nav class="clearfix">
-        <dl>
-            <dt>Разделы</dt>
-            <dd>@Html.ActionLink("Список тегов", "Index", "Tags")</dd>
-        </dl>
+        <ul class="footer_list">
+            <li>
+                <span>Сайт</span>
+            </li>
+            <li>
+                <a href="#">О проекте</a>
+            </li>
+            <li>
+                <a href="mailto:webmaster@vskazki.ru" target="_blank">Приглашаем авторов</a>
+            </li>
+            <li>
+                <a href="mailto:webmaster@vskazki.ru" target="_blank">Контакты</a>
+            </li>
+            <li>
+                <a href="/sitemap.xml" target="_blank">Карта сайта</a>
+            </li>
+        </ul>
+
+        <ul class="footer_list">
+            <li>
+                <span>Навигация</span>
+            </li>
+            <li>
+                @Html.ActionLink("Главная страница", "Index", "Home")
+            </li>
+            <li>
+                @Html.ActionLink("Список категорий", "Index", "Tags")
+            </li>
+        </ul>
+
+        <ul class="footer_list">
+            <li>
+                <span>ВСказки в соцсетях</span>
+            </li>
+            <li>
+                <a href="https://vk.com/public143661798"
+                   class="group vkontakte"
+                   title="Мы ВКонтакте"
+                   target="_blank"
+                   rel="nofollow">
+                    <i class="fa fa-vk"></i>
+                </a>
+
+                <a href="https://ok.ru/group/55357696049182"
+                   class="group ok"
+                   title="Мы в Одноклассниках"
+                   target="_blank"
+                   rel="nofollow">
+                    <i class="fa fa-odnoklassniki"></i>
+                </a>
+
+                <a href="https://www.facebook.com/vskazkiru"
+                   class="group facebook"
+                   title="Мы в Facebook"
+                   target="_blank"
+                   rel="nofollow">
+                    <i class="fa fa-facebook"></i>
+                </a>
+
+                <a href="https://twitter.com/vskazki_"
+                   class="group twitter"
+                   title="Мы в Twitter"
+                   target="_blank"
+                   rel="nofollow">
+                    <i class="fa fa-twitter"></i>
+                </a>
+            </li>
+        </ul>
     </nav>
 </footer>
     

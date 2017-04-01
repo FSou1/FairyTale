@@ -172,21 +172,23 @@ body > footer {
     font-size: 14px;
 }
 
-    body > footer dt, body > footer dl {
-        margin: 0 0 5px;
-    }
+.footer_list {
+    float: left;
+    width: 25%;
+    display: block;
+}
 
-    body > footer dl {
-        float: left;
-        width: 25%;
-        display: block;
-    }
+.footer_list li {
+    line-height: 150%;
+    font-size: 14px;
+    margin: 0 16px;
+}
 
-    body > footer dd {
-        line-height: 150%;
-        font-size: 13px;
-        margin: 0 16px;
-    }
+.footer_list > li:first-child {
+    margin: 0 0 5px;
+    font-size: 24px;
+    color: #474646;
+}
 
 /* fairy tale */
 .story:after {
@@ -257,17 +259,35 @@ body > footer {
         content: " ";
     }
 
-.push {
+.push, .group {
     color: #fff;
     text-align: center;
     cursor: pointer;
     display: inline-block;
+}
+
+.push {
     width: 24px;
     height: 24px;
     line-height: 24px;
 }
 
-.push:hover, .push:active, .push:visited {
+.group {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    font-size: 22px;
+    margin-bottom: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .footer_list {
+        width: inherit;
+    }
+}
+
+.push:hover, .push:active, .push:visited, .group:hover, .group:active, .group:visited {
     color: #fff;
 }
 
