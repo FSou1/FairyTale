@@ -20,15 +20,18 @@ namespace FT.MvcApp.FairyTales.Services
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task<SingleViewModel> BuildSingleViewModel(int id) {
+            var model = new SingleViewModel();
+
             var fairyTale = await _repository.GetAsync(id);
-            
-            var model = new SingleViewModel
+            if (fairyTale == null)
             {
-                Title = fairyTale.Title,
-                Description = fairyTale.Description,
-                FairyTale = fairyTale,
-                Related = await _repository.Related(fairyTale, 0, 5)
-            };
+                return model;
+            }
+
+            model.FairyTale = fairyTale;
+            model.Title = fairyTale.Title;
+            model.Description = fairyTale.Description;            
+            model.Related = await _repository.Related(fairyTale, 0, 5);            
 
             return model;
         }
