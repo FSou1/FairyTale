@@ -1,7 +1,5 @@
-﻿using System.Net;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using FT.MvcApp.Error.Models;
-using FT.MvcApp.Shared.Models;
 
 namespace FT.MvcApp.Error.Controllers
 {
@@ -16,6 +14,22 @@ namespace FT.MvcApp.Error.Controllers
 
             var model = new ErrorViewModel {
                 Title = "404. Страница не найдена"
+            };
+
+            return View(model);
+        }
+
+        /// <summary>
+        /// Catch 500
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Internal()
+        {
+            Response.StatusCode = 500;
+
+            var model = new ErrorViewModel
+            {
+                Title = "500. К сожалению мы не смогли обработать ваш запрос :("
             };
 
             return View(model);

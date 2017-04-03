@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\404.gif" />
+    <Content Include="Content\images\500.jpg" />
     <Content Include="Content\images\story-book-icon.png" />
     <Content Include="Content\images\story-icon.png" />
     <Content Include="Content\images\favicon.ico" />
@@ -260,6 +261,7 @@
     <Content Include="Shared\Views\Partial\Book.cshtml" />
     <Content Include="Error\Views\NotFound.cshtml" />
     <Content Include="AlphaIndex\Views\Index.cshtml" />
+    <Content Include="Error\Views\Internal.cshtml" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />
