@@ -19,15 +19,17 @@ namespace FT.MvcApp.Filters {
             base.OnActionExecuting(filterContext);
         }
 
-        public override void OnActionExecuted(ActionExecutedContext filterContext) {
+        public override void OnResultExecuted(ResultExecutedContext filterContext)
+        {
             var modelValid = filterContext.Controller.ViewData.ModelState.IsValid;
             var error = filterContext.HttpContext.Error;
 
-            if (modelValid && error == null) {
+            if (modelValid && error == null)
+            {
                 _unitOfWork.Commit();
             }
 
-            base.OnActionExecuted(filterContext);
+            base.OnResultExecuted(filterContext);
         }
     }
 }

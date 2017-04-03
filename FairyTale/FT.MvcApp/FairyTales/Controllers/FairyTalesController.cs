@@ -21,7 +21,7 @@ namespace FT.MvcApp.FairyTales.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        //[Transaction]
+        [Transaction]
         [Route("story/{id}")]
         [OutputCache(Duration = 60, VaryByParam = "id")]
         public async Task<ActionResult> Single(int id)
