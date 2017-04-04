@@ -38,9 +38,16 @@ namespace FT.Entities {
             Table("[FairyTales]");
 
             Id(x => x.Id).GeneratedBy.Identity();
-            References(x => x.Parent).Column("ParentId");
-            References(x => x.Previous).Column("PreviousId");
-            References(x => x.Next).Column("NextId");
+
+            References(x => x.Parent)
+                .Column("ParentId");
+
+            References(x => x.Previous)
+                .Column("PreviousId");
+
+            References(x => x.Next)
+                .Column("NextId");
+
             Map(x => x.Title);
             Map(x => x.Teaser);
             Map(x => x.Text).CustomType("StringClob").CustomSqlType("nvarchar(max)");

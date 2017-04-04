@@ -2,49 +2,30 @@
 using log4net.Appender;
 using log4net.Core;
 using log4net.Filter;
+using log4net.loggly;
 using log4net.Layout;
 using log4net.Repository.Hierarchy;
 
 namespace FT.Components.Logger {
     public class LoggerConfig {
-        public static void Configure() {
+        public static void Configure(string logglyInputKey) {
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
 
             PatternLayout patternLayout = new PatternLayout();
             patternLayout.ConversionPattern = "%date [%thread] %-5level %logger - %message%newline";
             patternLayout.ActivateOptions();
 
-            RollingFileAppender sqlRoller = new RollingFileAppender();
-            sqlRoller.AddFilter(new LoggerMatchFilter() {
-                LoggerToMatch = "SqlInterceptor",
-                AcceptOnMatch = true
-            });
-            sqlRoller.AddFilter(new DenyAllFilter());
-            sqlRoller.AppendToFile = true;
-            sqlRoller.File = $@"log/interceptor_sql.txt";
-            sqlRoller.Layout = new PatternLayout("%message%newline");
-            sqlRoller.MaxSizeRollBackups = 15;
-            sqlRoller.RollingStyle = RollingFileAppender.RollingMode.Date;
-            sqlRoller.StaticLogFileName = false;
-            sqlRoller.ActivateOptions();
-            sqlRoller.LockingModel = new FileAppender.MinimalLock();
-            hierarchy.Root.AddAppender(sqlRoller);
-            
-            RollingFileAppender logRoller = new RollingFileAppender();
-            logRoller.AddFilter(new LoggerMatchFilter() {
+            LogglyAppender loggly = new LogglyAppender();
+            loggly.AddFilter(new LoggerMatchFilter()
+            {
                 LoggerToMatch = "NHibernate",
                 AcceptOnMatch = false
             });
-            logRoller.AppendToFile = true;
-            logRoller.File = $@"log/log.txt";
-            logRoller.Layout = patternLayout;
-            logRoller.MaxSizeRollBackups = 5;
-            logRoller.MaximumFileSize = "10MB";
-            logRoller.RollingStyle = RollingFileAppender.RollingMode.Size;
-            logRoller.StaticLogFileName = true;
-            logRoller.ActivateOptions();
-            logRoller.LockingModel = new FileAppender.MinimalLock();
-            hierarchy.Root.AddAppender(logRoller);
+            loggly.RootUrl = "https://logs-01.loggly.com/";
+            loggly.InputKey = logglyInputKey;
+            loggly.Tag = "all";
+            loggly.ActivateOptions();
+            hierarchy.Root.AddAppender(loggly);
 
             hierarchy.Root.Level = Level.Debug;
             hierarchy.Configured = true;

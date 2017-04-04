@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FT.Components.Logger;
-using FT.MvcApp.Filters;
 
 namespace FT.MvcApp
 {
@@ -13,7 +12,7 @@ namespace FT.MvcApp
         protected void Application_Start()
         {
             UnityConfig.RegisterComponents();
-            LoggerConfig.Configure();
+            LoggerConfig.Configure(AppPropertyKeys.LogglyInputKey);
             FiltersConfig.Configure();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
@@ -38,5 +37,6 @@ namespace FT.MvcApp
         public static string VkPassword = ConfigurationManager.AppSettings["VkPassword"];
         public static long VkPageId = long.Parse(ConfigurationManager.AppSettings["VkPageId"] ?? "0");
         public static string OkAccessToken = ConfigurationManager.AppSettings["OkAccessToken"];
+        public static string LogglyInputKey = ConfigurationManager.AppSettings["LogglyInputKey"];
     }
 }

@@ -28,6 +28,10 @@ namespace FT.MvcApp.Filters {
             {
                 _unitOfWork.Commit();
             }
+            else
+            {
+                _unitOfWork.Rollback();
+            }
 
             base.OnResultExecuted(filterContext);
         }
