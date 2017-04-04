@@ -118,7 +118,7 @@ namespace FT.MvcApp.Social.Controllers {
         }
 
         private string GetMessage(FairyTale tale, int maxLength) {
-            var url = " " + GetUrl(tale);
+            var url = " " + GetUrl(tale) + " #сказка";
 
             var title = tale.Title.Truncate(maxLength - url.Length);
 
