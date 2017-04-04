@@ -107,6 +107,10 @@
       <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -224,6 +228,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Home\Models\AboutViewModel.cs" />
+    <Compile Include="Home\Models\AuthorsViewModel.cs" />
     <Compile Include="Home\Models\IndexViewModel.cs" />
     <Compile Include="Home\Models\SearchViewModel.cs" />
     <Compile Include="Home\Services\HomeBuilder.cs" />
@@ -262,6 +267,7 @@
     <Content Include="Error\Views\NotFound.cshtml" />
     <Content Include="AlphaIndex\Views\Index.cshtml" />
     <Content Include="Error\Views\Internal.cshtml" />
+    <Content Include="Home\Views\Authors.cshtml" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />

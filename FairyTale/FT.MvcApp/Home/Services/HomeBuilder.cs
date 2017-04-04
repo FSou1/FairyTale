@@ -111,6 +111,14 @@ namespace FT.MvcApp.Home.Services {
             return model;
         }
 
+        public AuthorsViewModel BuildAuthorsViewModel() {
+            var model = new AuthorsViewModel() {
+                Title = "Для авторов"
+            };
+
+            return model;
+        }
+
         private readonly IRepository<FairyTale> _taleRepository;
         private readonly IRepository<Tag> _tagRepository;
     }
@@ -121,5 +129,7 @@ namespace FT.MvcApp.Home.Services {
         Task<SearchViewModel> BuildSearchViewModel(string term, char? firstLetter, int page, int perPage);
 
         AboutViewModel BuildAboutViewModel();
+
+        AuthorsViewModel BuildAuthorsViewModel();
     }
 }

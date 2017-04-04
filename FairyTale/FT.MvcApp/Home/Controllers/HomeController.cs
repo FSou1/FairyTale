@@ -78,6 +78,17 @@ namespace FT.MvcApp.Home.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Route("authors")]
+        [OutputCache(Duration = 60, VaryByParam = "*")]
+        public ActionResult Authors() {
+            var model = _builder.BuildAuthorsViewModel();
+            return View(model);
+        }
+
         private readonly IHomeBuilder _builder;
     }
 }

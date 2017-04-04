@@ -2,6 +2,7 @@ using System.Web.Mvc;
 using Facebook;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using FT.Components.Interaction;
 using FT.Components.Serializer;
 using FT.Components.Serializer.Json;
 using FT.Entities;
@@ -34,6 +35,10 @@ namespace FT.MvcApp
             container.RegisterType<IAlphaIndexBuilder, AlphaIndexBuilder>(new PerRequestLifetimeManager());
 
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
+
+            container.RegisterType<IEventBroker, HttpEventBroker>(new ContainerControlledLifetimeManager(),
+                new InjectionConstructor(AppPropertyKeys.BaseUrl, AppPropertyKeys.BaseAccessToken)
+            );
 
             #region Twitter
 
