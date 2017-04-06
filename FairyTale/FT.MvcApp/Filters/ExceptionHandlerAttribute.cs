@@ -10,8 +10,12 @@ namespace FT.MvcApp.Filters {
             var serializer = DependencyResolver.Current.GetService<ISerializer>() 
                 ?? new NewtonsoftJsonSerializer();
 
+            var url = filterContext.HttpContext.Request.Url;
+
             var exception = filterContext.Exception;
+
             var json = serializer.Serialize(new {
+                url,
                 exception.Message,
                 exception.StackTrace
             });

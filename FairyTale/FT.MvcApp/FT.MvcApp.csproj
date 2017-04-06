@@ -268,6 +268,7 @@
     <Content Include="AlphaIndex\Views\Index.cshtml" />
     <Content Include="Error\Views\Internal.cshtml" />
     <Content Include="Home\Views\Authors.cshtml" />
+    <Content Include="Config\appsettings.config" />
     <None Include="Properties\PublishProfiles\fs.pubxml" />
     <None Include="Properties\PublishProfiles\invs-release.pubxml" />
     <Content Include="Shared\Views\Partial\TagsByType.cshtml" />

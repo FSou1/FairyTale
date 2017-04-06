@@ -11,11 +11,16 @@ namespace FT.Components.Logger {
         public static void Configure(string logglyInputKey) {
             Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
 
-            PatternLayout patternLayout = new PatternLayout();
-            patternLayout.ConversionPattern = "%date [%thread] %-5level %logger - %message%newline";
+            PatternLayout patternLayout = new PatternLayout {
+                ConversionPattern = "%date [%thread] %-5level %logger - %message%newline"
+            };
             patternLayout.ActivateOptions();
 
             LogglyAppender loggly = new LogglyAppender();
+            loggly.AddFilter(new LoggerMatchFilter() {
+                LoggerToMatch = "NHibernate.SQL",
+                AcceptOnMatch = true
+            });
             loggly.AddFilter(new LoggerMatchFilter()
             {
                 LoggerToMatch = "NHibernate",
