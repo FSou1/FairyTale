@@ -5,6 +5,7 @@
 
     var fairyTale = Model.FairyTale;
     var related = Model.Related;
+    var suggestedTags = Model.SuggestTags;
     var hasRelated = related != null && related.Count > 0;
 }
 
@@ -41,6 +42,12 @@
         })
 </footer>
 
+<!--noindex-->
+@Html.Partial("SuggestTags", Tuple.Create(fairyTale.Id, fairyTale.Title, suggestedTags))
+<!--/noindex-->
+
+<!--noindex-->
 @if (hasRelated) {
     @Html.Partial("Related", related)
 }
+<!--/noindex-->

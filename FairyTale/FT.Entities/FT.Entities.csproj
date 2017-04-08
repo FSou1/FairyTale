@@ -55,6 +55,7 @@
     <Compile Include="Contract\IEntity.cs" />
     <Compile Include="FairyTale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuggestedTag.cs" />
     <Compile Include="Tag.cs" />
     <Compile Include="TagType.cs" />
   </ItemGroup>

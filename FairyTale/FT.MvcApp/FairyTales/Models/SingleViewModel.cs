@@ -8,5 +8,6 @@ namespace FT.MvcApp.FairyTales.Models
     {
         public FairyTale FairyTale { get; set; }
         public IList<FairyTale> Related { get; set; }
+        public IList<SuggestedTag> SuggestTags { get; set; }
     }
 }

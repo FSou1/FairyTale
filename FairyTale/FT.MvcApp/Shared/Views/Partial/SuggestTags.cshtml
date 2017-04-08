@@ -1,0 +1,50 @@
+﻿@model Tuple<int, string, IList<SuggestedTag>>
+
+@{
+    var taleId = Model.Item1;
+    var title = Model.Item2;
+    var tags = Model.Item3;
+}
+
+<section class="padding_20 top_dashed">
+    <header>
+        <h3><i class="fa fa-exclamation red"></i> Нам важно ваше мнение:</h3>
+    </header>
+
+    <p>Если на ваш взгляд сказка «@(title)» подходит под одну или несколько категорий ниже, просто нажмите на них:</p>
+
+    <p class="tags">
+        @foreach (var tag in tags) {
+            <a href="#" class="not-suggested" onclick="suggestTag(@taleId, @tag.Id, this); return false;">@tag.Title</a>
+        }
+    </p>
+
+    <p>Это поможет сделать сайт чуточку лучше. Спасибо!</p>
+</section>
+
+@Scripts.Render("~/script/jquery-lib")
+<script type="text/javascript">
+    var suggestTag = (function ($, url) {
+        'use strict';
+
+        return function (taleId, suggestTagId, elem) {
+            'use strict';
+
+            var options = {
+                data: {
+                    taleId: taleId,
+                    suggestedTagId: suggestTagId
+                },
+                success: function (response) {
+                    $(elem).fadeOut();
+                    console.log(response);
+                },
+                error: function() {
+                    console.error(arguments);
+                }
+            };
+
+            $.ajax(url, options);
+        };
+    })(jQuery, '@Url.Action("SuggestTag", "FairyTales")');
+</script>

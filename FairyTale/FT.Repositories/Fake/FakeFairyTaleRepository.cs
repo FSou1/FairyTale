@@ -70,6 +70,10 @@ namespace FT.Repositories.Fake
             return Task.FromResult(result);
         }
 
+        public Task CreateAsync(FairyTale entity) {
+            throw new NotImplementedException();
+        }
+
         public Task UpdateAsync(FairyTale entity)
         {
             throw new NotImplementedException();

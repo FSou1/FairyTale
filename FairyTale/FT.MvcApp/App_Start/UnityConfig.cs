@@ -107,6 +107,7 @@ namespace FT.MvcApp
             container.RegisterType<IFairyTaleRepository, FairyTaleRepository>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<Tag>, Repository<Tag>>(new PerRequestLifetimeManager());
             container.RegisterType<ITagRepository, TagRepository>(new PerRequestLifetimeManager());
+            container.RegisterType<IRepository<SuggestedTag>, Repository<SuggestedTag>>(new PerRequestLifetimeManager());
         }
     }
 }

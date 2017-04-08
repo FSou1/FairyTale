@@ -72,6 +72,11 @@ namespace FT.Repositories {
             return Task.FromResult(count);
         }
 
+        public Task CreateAsync(T entity) {
+            Session.Save(entity);
+            return Task.CompletedTask;
+        }
+
         public Task UpdateAsync(T entity) {
             Session.Update(entity);
             return Task.CompletedTask;
@@ -164,6 +169,8 @@ namespace FT.Repositories {
         Task<int> CountAsync();
 
         Task<int> CountAsync(Expression<Func<T, bool>> filter);
+
+        Task CreateAsync(T entity);
 
         Task UpdateAsync(T entity);
     }

@@ -10,8 +10,12 @@ using FT.Repositories;
 namespace FT.MvcApp.FairyTales.Services
 {
     public class FairyTalesBuilder : IFairyTalesBuilder {
-        public FairyTalesBuilder(IFairyTaleRepository repository) {
+        public FairyTalesBuilder(
+            IFairyTaleRepository repository,
+            IRepository<SuggestedTag> suggestedTagRepository
+        ) {
             _repository = repository;
+            _suggestedTagRepository = suggestedTagRepository;
         }
 
         /// <summary>
@@ -31,7 +35,8 @@ namespace FT.MvcApp.FairyTales.Services
             model.FairyTale = fairyTale;
             model.Title = fairyTale.Title;
             model.Description = fairyTale.Description;            
-            model.Related = await _repository.Related(fairyTale, 0, 5);            
+            model.Related = await _repository.Related(fairyTale, 0, 5);
+            model.SuggestTags = await _suggestedTagRepository.GetRandomAsync(0, 5);
 
             return model;
         }
@@ -64,6 +69,7 @@ namespace FT.MvcApp.FairyTales.Services
         }
 
         private readonly IFairyTaleRepository _repository;
+        private readonly IRepository<SuggestedTag> _suggestedTagRepository;
     }
 
     public interface IFairyTalesBuilder {

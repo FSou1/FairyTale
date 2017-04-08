@@ -9,6 +9,10 @@ namespace FT.MvcApp {
                 "~/Content/site.css"
             ));
 
+            bundles.Add(new ScriptBundle("~/script/jquery-lib").Include(
+                "~/Scripts/jquery-3.1.1.min.js"
+            ));
+
             BundleTable.EnableOptimizations = true;
         }
     }

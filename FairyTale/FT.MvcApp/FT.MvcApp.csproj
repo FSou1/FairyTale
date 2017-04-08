@@ -198,6 +198,12 @@
     <Content Include="robots.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Shared\Views\Partial\SuggestTags.cshtml" />
     <Content Include="sitemap.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -217,6 +223,7 @@
     <Compile Include="Error\Models\ErrorViewModel.cs" />
     <Compile Include="FairyTales\Models\ManageViewModel.cs" />
     <Compile Include="FairyTales\Models\SingleViewModel.cs" />
+    <Compile Include="FairyTales\Models\SuggestTagViewModel.cs" />
     <Compile Include="FairyTales\Services\FairyTalesBuilder.cs" />
     <Compile Include="FairyTales\Services\FairyTalesService.cs" />
     <Compile Include="Filters\ExceptionHandlerAttribute.cs" />
@@ -275,6 +282,8 @@
     <Content Include="Shared\Views\Partial\FairyTaleSummary.cshtml" />
     <Content Include="Shared\Views\Partial\Letters.cshtml" />
     <Content Include="Shared\Views\Partial\Related.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

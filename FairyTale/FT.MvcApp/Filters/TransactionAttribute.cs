@@ -23,7 +23,7 @@ namespace FT.MvcApp.Filters {
         {
             var modelValid = filterContext.Controller.ViewData.ModelState.IsValid;
             var error = filterContext.HttpContext.Error;
-
+            
             if (modelValid && error == null)
             {
                 _unitOfWork.Commit();

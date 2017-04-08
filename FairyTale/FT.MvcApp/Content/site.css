@@ -231,9 +231,15 @@ body > footer {
 }
 
 /* other */
-.top_botom_dashed {
+.padding_20 {
     padding: 20px;
+}
+
+.top_dashed {
     border-top: 1px dashed gray;
+}
+
+.bottom_dashed {
     border-bottom: 1px dashed gray;
 }
 
@@ -258,6 +264,14 @@ body > footer {
     .tags .tag:last-child:after {
         content: " ";
     }
+
+.tags .not-suggested {
+    display: inline-block;
+    margin: 6px 0;
+    padding: 6px;
+    border-radius: 6px;
+    background-color: #f5f5f5;    
+}
 
 .push, .group {
     color: #fff;
@@ -299,6 +313,14 @@ body > footer {
 .vkontakte:hover {background-color:#466482;}
 .ok {background-color:#ee8208;}
 .ok:hover {background-color:#ee7808; color:#fff;}
+
+.bold {
+    font-weight: bold;
+}
+
+/* colors */
+.red { color: red; }
+.orange { color: #ee7808; }
 
 /* special */
 .clearfix:after {

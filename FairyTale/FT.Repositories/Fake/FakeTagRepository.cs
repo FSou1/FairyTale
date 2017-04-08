@@ -68,6 +68,10 @@ namespace FT.Repositories.Fake
             return Task.FromResult(result);
         }
 
+        public Task CreateAsync(Tag entity) {
+            throw new NotImplementedException();
+        }
+
         public Task UpdateAsync(Tag entity) {
             throw new NotImplementedException();
         }

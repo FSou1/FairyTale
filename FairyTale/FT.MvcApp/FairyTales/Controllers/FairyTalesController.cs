@@ -2,9 +2,9 @@
 using System.Web;
 using System.Web.Mvc;
 using FT.Components.Interaction;
+using FT.MvcApp.FairyTales.Models;
 using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Filters;
-using RestSharp;
 
 namespace FT.MvcApp.FairyTales.Controllers
 {
@@ -59,6 +59,24 @@ namespace FT.MvcApp.FairyTales.Controllers
             await _service.IncreaseViews(fairyTale);
 
             return Content("success");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("story/suggest-tag")]
+        [Transaction]
+        public async Task<ActionResult> SuggestTag(SuggestTagViewModel model) {
+            var fairyTale = await _service.GetAsync(model.TaleId);
+            if (fairyTale == null) {
+                throw new HttpException(404, $"Сказка с id {model.TaleId} не найдена");
+            }
+
+            await _service.SuggestTag(fairyTale, model.SuggestedTagId);
+
+            return Content($"{model.TaleId} {model.SuggestedTagId}");
         }
 
         public class IncreaseViewsModel {

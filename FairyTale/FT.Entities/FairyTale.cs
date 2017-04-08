@@ -23,6 +23,7 @@ namespace FT.Entities {
         public virtual FairyTaleSummary Summary { get; set; } = new FairyTaleSummary();
         public virtual ISet<FairyTale> Children { get; set; } = new HashSet<FairyTale>();
         public virtual ISet<Tag> Tags { get; set; } = new HashSet<Tag>();
+        public virtual ISet<SuggestedTag> SuggestedTags { get; set; } = new HashSet<SuggestedTag>();
     }
     
     public class FairyTaleSummary
@@ -71,6 +72,13 @@ namespace FT.Entities {
             HasManyToMany(x => x.Tags)
                 .Schema("[ft]")
                 .Table("[FairyTales_Tags]")
+                .ParentKeyColumn("FairyTaleId")
+                .ChildKeyColumn("TagId")
+                .Fetch.Join();
+
+            HasManyToMany(x => x.SuggestedTags)
+                .Schema("[ft]")
+                .Table("[FairyTales_SuggestedTags]")
                 .ParentKeyColumn("FairyTaleId")
                 .ChildKeyColumn("TagId")
                 .Fetch.Join();

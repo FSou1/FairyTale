@@ -8,8 +8,12 @@ using FT.Repositories;
 
 namespace FT.MvcApp.FairyTales.Services {
     public class FairyTalesService : IFairyTalesService {
-        public FairyTalesService(IRepository<FairyTale> repository) {
+        public FairyTalesService(
+            IRepository<FairyTale> repository,
+            IRepository<SuggestedTag> suggestedTagRepository
+        ) {
             _repository = repository;
+            _suggestedTagRepository = suggestedTagRepository;
         }
 
         public async Task<FairyTale> GetAsync(int id) {
@@ -38,7 +42,19 @@ namespace FT.MvcApp.FairyTales.Services {
             return tales?[0];
         }
 
+        public async Task SuggestTag(FairyTale fairyTale, int suggestedTagId) {
+            var tag = await _suggestedTagRepository.GetAsync(suggestedTagId);
+            if (tag == null) {
+                throw new NullReferenceException(nameof(tag));
+            }
+
+            fairyTale.SuggestedTags.Add(tag);
+
+            await UpdateAsync(fairyTale);
+        }
+
         private readonly IRepository<FairyTale> _repository;
+        private readonly IRepository<SuggestedTag> _suggestedTagRepository;
     }
 
     public interface IFairyTalesService {
@@ -53,5 +69,9 @@ namespace FT.MvcApp.FairyTales.Services {
         );
 
         Task<FairyTale> GetRandomAsync();
+
+        Task SuggestTag(
+            FairyTale fairyTale, int suggestedTagId
+        );
     }
 }
