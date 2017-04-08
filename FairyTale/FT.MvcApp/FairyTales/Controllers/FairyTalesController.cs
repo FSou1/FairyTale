@@ -61,24 +61,6 @@ namespace FT.MvcApp.FairyTales.Controllers
             return Content("success");
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        [Route("story/suggest-tag")]
-        [Transaction]
-        public async Task<ActionResult> SuggestTag(SuggestTagViewModel model) {
-            var fairyTale = await _service.GetAsync(model.TaleId);
-            if (fairyTale == null) {
-                throw new HttpException(404, $"Сказка с id {model.TaleId} не найдена");
-            }
-
-            await _service.SuggestTag(fairyTale, model.SuggestedTagId);
-
-            return Content($"{model.TaleId} {model.SuggestedTagId}");
-        }
-
         public class IncreaseViewsModel {
             public int Id { get; set; }
             public string Token { get; set; }

@@ -223,7 +223,7 @@
     <Compile Include="Error\Models\ErrorViewModel.cs" />
     <Compile Include="FairyTales\Models\ManageViewModel.cs" />
     <Compile Include="FairyTales\Models\SingleViewModel.cs" />
-    <Compile Include="FairyTales\Models\SuggestTagViewModel.cs" />
+    <Compile Include="TagSuggestions\Models\SuggestTagViewModel.cs" />
     <Compile Include="FairyTales\Services\FairyTalesBuilder.cs" />
     <Compile Include="FairyTales\Services\FairyTalesService.cs" />
     <Compile Include="Filters\ExceptionHandlerAttribute.cs" />
@@ -249,6 +249,8 @@
     <Compile Include="Social\Services\FacebookService.cs" />
     <Compile Include="Social\Services\TwitterService.cs" />
     <Compile Include="Social\Services\VkService.cs" />
+    <Compile Include="TagSuggestions\Controllers\TagSuggestionController.cs" />
+    <Compile Include="TagSuggestions\Services\TagSuggestionService.cs" />
     <Compile Include="Tags\Controllers\TagsController.cs" />
     <Compile Include="Tags\Models\IndexViewModel.cs" />
     <Compile Include="Tags\Models\SingleViewModel.cs" />

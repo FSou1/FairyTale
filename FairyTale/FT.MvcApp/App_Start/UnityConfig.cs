@@ -11,6 +11,7 @@ using FT.MvcApp.FairyTales.Services;
 using FT.MvcApp.Home.Services;
 using FT.MvcApp.Social.Services;
 using FT.MvcApp.Tags.Services;
+using FT.MvcApp.TagSuggestions.Services;
 using FT.Repositories;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Mvc;
@@ -35,6 +36,7 @@ namespace FT.MvcApp
             container.RegisterType<IAlphaIndexBuilder, AlphaIndexBuilder>(new PerRequestLifetimeManager());
 
             container.RegisterType<IFairyTalesService, FairyTalesService>(new PerRequestLifetimeManager());
+            container.RegisterType<ITagSuggestionService, TagSuggestionService>(new PerRequestLifetimeManager());
 
             container.RegisterType<IEventBroker, HttpEventBroker>(new ContainerControlledLifetimeManager(),
                 new InjectionConstructor(AppPropertyKeys.BaseUrl, AppPropertyKeys.BaseAccessToken)
@@ -108,6 +110,7 @@ namespace FT.MvcApp
             container.RegisterType<IRepository<Tag>, Repository<Tag>>(new PerRequestLifetimeManager());
             container.RegisterType<ITagRepository, TagRepository>(new PerRequestLifetimeManager());
             container.RegisterType<IRepository<SuggestedTag>, Repository<SuggestedTag>>(new PerRequestLifetimeManager());
+            container.RegisterType<IRepository<TagSuggestion>, Repository<TagSuggestion>>(new PerRequestLifetimeManager());
         }
     }
 }

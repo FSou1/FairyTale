@@ -75,13 +75,6 @@ namespace FT.Entities {
                 .ParentKeyColumn("FairyTaleId")
                 .ChildKeyColumn("TagId")
                 .Fetch.Join();
-
-            HasManyToMany(x => x.SuggestedTags)
-                .Schema("[ft]")
-                .Table("[FairyTales_SuggestedTags]")
-                .ParentKeyColumn("FairyTaleId")
-                .ChildKeyColumn("SuggestedTagId")
-                .Fetch.Join();
         }
     }
 }
