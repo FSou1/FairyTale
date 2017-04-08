@@ -80,7 +80,7 @@ namespace FT.Entities {
                 .Schema("[ft]")
                 .Table("[FairyTales_SuggestedTags]")
                 .ParentKeyColumn("FairyTaleId")
-                .ChildKeyColumn("TagId")
+                .ChildKeyColumn("SuggestedTagId")
                 .Fetch.Join();
         }
     }
