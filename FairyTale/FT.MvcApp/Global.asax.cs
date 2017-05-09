@@ -11,7 +11,7 @@ namespace FT.MvcApp
     {
         protected void Application_Start()
         {
-            UnityConfig.RegisterComponents();
+            IoCConfig.RegisterComponents();
             LoggerConfig.Configure(AppPropertyKeys.LogglyInputKey);
             FiltersConfig.Configure();
             BundleConfig.RegisterBundles(BundleTable.Bundles);
